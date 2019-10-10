@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    float maxSpeed = 50;
-
     public static int playerDirection = 1;
 
-    float smoothTime = 0.3f;
+    [SerializeField] float accelerationSmoothTime = 0.3f;
+    [SerializeField] float topSpeed = 20f;
+    [SerializeField] float decelerationSmoothTime = 0.1f;
     float xVelocity = 0.0f;
 
     Rigidbody2D rigid;
 
+    // Utilisé pour bloquer le mouvement du personnage
 	public static bool lockMovement;
 
     // Use this for initialization 
@@ -26,10 +26,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame 
     void FixedUpdate()
     {
-        //Prevent the player to override velocity during dash
         if (!lockMovement)
         {
-            //Handle the player's direction
+            //Gérer la direction de mouvement
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 transform.localScale = new Vector3(1, 1, 0);
@@ -41,13 +40,19 @@ public class PlayerMovement : MonoBehaviour
                 playerDirection = -1;
             }
 
-            //If there is an input, character starts to move
+            //Commencer un déplacement si un input horizontal est enregistré
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
-                float acceleration = Mathf.SmoothDamp(0, playerDirection * maxSpeed, ref xVelocity, smoothTime);
+                float acceleration = Mathf.SmoothDamp(0, playerDirection * topSpeed, ref xVelocity, accelerationSmoothTime, topSpeed);
                 rigid.velocity = new Vector2(acceleration, rigid.velocity.y);
             }
-            //rigid.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rigid.velocity.y); 
+
+            //Arrêter le mouvement du personnage quand l'input est relâché
+            if (Input.GetAxisRaw("Horizontal") == 0)
+            {
+                float deceleration = Mathf.SmoothDamp(rigid.velocity.x, 0, ref xVelocity, decelerationSmoothTime, topSpeed);
+                rigid.velocity = new Vector2(deceleration, rigid.velocity.y);
+            }
         }
     }
 }

@@ -9,8 +9,7 @@ public class Jump : MonoBehaviour {
 	public LayerMask groundLayer;
     Rigidbody2D rigid;
 
-	public float jumpForce = 2.5f; // gravity if the jump button is down
-	public float fallForce = 2f; // gravity if the jump button is up
+	[SerializeField] float jumpForce;
 
     private void Start()
     {
@@ -20,13 +19,12 @@ public class Jump : MonoBehaviour {
     void Update () {
         // Test si le personnage est au sol
         isGrounded = Physics2D.OverlapCircle (feetPos.position, checkRadius, groundLayer);
-        Debug.Log(isGrounded);
 
         // Saut
         if (isGrounded && Input.GetButton("Jump"))
 		{
-			rigid.velocity += Vector2.up * (-Physics2D.gravity.y) * (jumpForce) * Time.deltaTime;
-            Debug.Log(rigid.velocity);
+			// rigid.velocity += (new Vector2(0, (Vector2.up.y * jumpForce) -Physics2D.gravity.y)) * Time.deltaTime;
+            rigid.AddForce(Vector2.up * jumpForce);
 		}
 	}
 
