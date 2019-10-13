@@ -9,11 +9,13 @@ public class Dash : MonoBehaviour {
     [SerializeField]
     float lockMovementDuration = .25f;
     [SerializeField]
-    float dashCooldown = 1;
+    float dashCooldown = 0.5f;
 
     Rigidbody2D rigid;
     bool dashAvailable = true;
     float localGravity;
+
+    bool dashingOnGround = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,95 +24,95 @@ public class Dash : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 
         //Player direction for dash
         var HorizontalInput = Input.GetAxisRaw("Horizontal");
         var VerticalInput = Input.GetAxisRaw("Vertical");
 
+        // Récupération du dash
+        if (Jump.isGrounded && !dashingOnGround) dashAvailable = true;
+
         if (dashAvailable)
         {
             #region Test direction
-            //Dash in player's direction if he doesn't move
+            //Dash dans la direction du joueur s'il dash sans bouger
             if (Input.GetButtonDown("Dash") && (HorizontalInput == 0 && VerticalInput == 0))
             {
 				ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
             }
 
-            //Dash right
+            if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0)
+            {
+                dashAvailable = false;
+                dashingOnGround = true;
+                Invoke("DashCooldown", dashCooldown);
+            }
+
+            //Dash dans la direction du joueur s'il essaye de dasher vers le haut
+            if (Input.GetButtonDown("Dash") && (VerticalInput > 0.0f))
+            {
+                ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
+            }
+
+            //Dash droite
             if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
             {
                 ApplyDash(new Vector2(1, 0));
             }
 
-            //Dash left
+            //Dash gauche
             if (Input.GetButtonDown("Dash") && (HorizontalInput < 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
             {
                 ApplyDash(new Vector2(-1, 0));
             }
 
-            //Dash top
-            if (Input.GetButtonDown("Dash") && (VerticalInput > 0.0f && HorizontalInput > -0.30f && HorizontalInput < 0.30f))
-            {
-                ApplyDash(new Vector2(0, 1));
-            }
-
-            //Dash bot
+            //Dash bas
             if (Input.GetButtonDown("Dash") && (VerticalInput < 0.0f && HorizontalInput > -0.30f && HorizontalInput < 0.30f))
             {
                 ApplyDash(new Vector2(0, -1));
             }
 
-            //Dash right up
-            if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.25f && VerticalInput < 1f && VerticalInput > 0.25f))
-            {
-                ApplyDash(new Vector2(1, 1));
-            }
-
-            //Dash right bot
+            //Dash bas-droite
             if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
             {
                 ApplyDash(new Vector2(1, -1));
             }
 
-            //Dash left up
-            if (Input.GetButtonDown("Dash") && (HorizontalInput < -0.25f && VerticalInput < 1f && VerticalInput > 0.25f))
-            {
-                ApplyDash(new Vector2(-1, 1));
-            }
-
-            //Dash left bot
+            //Dash bas-gauche
             if (Input.GetButtonDown("Dash") && (HorizontalInput < -0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
             {
                 ApplyDash(new Vector2(-1, -1));
             }
             #endregion
         }
-
     }
 
     //Lock player's movement, apply dash force then unlock the movement
     void ApplyDash(Vector2 direction)
     {
+        GetComponent<SpriteRenderer>().color = Color.red;
         PlayerMovement.lockMovement = true;
         dashAvailable = false;
         rigid.gravityScale = 0;
         rigid.velocity = Vector2.zero;
         rigid.velocity = direction * dashForce;
         Invoke("UnlockMovement", lockMovementDuration);
-        Invoke("RefreshDashCooldown", dashCooldown);
     }
 
     //Reset the gravity and the velocity, and let the player move again
     void UnlockMovement()
     {
         PlayerMovement.lockMovement = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
 		rigid.gravityScale = localGravity;
 		rigid.velocity = Vector2.zero;
     }
 
-    void RefreshDashCooldown()
+    void DashCooldown()
     {
         dashAvailable = true;
+        dashingOnGround = false;
     }
+
 }

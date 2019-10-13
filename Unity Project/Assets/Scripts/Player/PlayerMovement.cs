@@ -40,14 +40,14 @@ public class PlayerMovement : MonoBehaviour
                 playerDirection = -1;
             }
 
-            //Commencer un déplacement si un input horizontal est enregistré
+            //Commencer un déplacement si un input horizontal est enregistré (ACCELERATION)
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
                 float acceleration = Mathf.SmoothDamp(0, playerDirection * topSpeed, ref xVelocity, accelerationSmoothTime, topSpeed);
                 rigid.velocity = new Vector2(acceleration, rigid.velocity.y);
             }
 
-            //Arrêter le mouvement du personnage quand l'input est relâché
+            //Arrêter le mouvement du personnage quand l'input est relâché (DECELERATION)
             if (Input.GetAxisRaw("Horizontal") == 0)
             {
                 float deceleration = Mathf.SmoothDamp(rigid.velocity.x, 0, ref xVelocity, decelerationSmoothTime, topSpeed);
