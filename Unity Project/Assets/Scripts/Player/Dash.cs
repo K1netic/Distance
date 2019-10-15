@@ -91,7 +91,6 @@ public class Dash : MonoBehaviour {
     //Lock player's movement, apply dash force then unlock the movement
     void ApplyDash(Vector2 direction)
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
         PlayerMovement.lockMovement = true;
         dashAvailable = false;
         rigid.gravityScale = 0;
@@ -104,7 +103,6 @@ public class Dash : MonoBehaviour {
     void UnlockMovement()
     {
         PlayerMovement.lockMovement = false;
-        GetComponent<SpriteRenderer>().color = Color.white;
 		rigid.gravityScale = localGravity;
 		rigid.velocity = Vector2.zero;
     }
