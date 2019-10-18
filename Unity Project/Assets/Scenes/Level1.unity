@@ -1221,10 +1221,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 623089739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68196641f09879749a6df4bb1d092797, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ba2b9576c153f74ca7d43c84e100332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextBoardSpawnPoint: {fileID: 0}
+  fadeTexture: {fileID: 2800000, guid: ff6a100a075109a4497cffb5ec5dbd57, type: 3}
 --- !u!212 &623089742
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2138,7 +2138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041784892}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: SpawnPoint_B2
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2507,7 +2507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1257961526}
   m_Layer: 0
-  m_Name: SpawnPoint (1)
+  m_Name: SpawnPoint_B3
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3288,7 +3288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1619084216}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: SpawnPoint_B1
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -5040,11 +5040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4192082029294960, guid: ae6462bea2f25b44c80c7cf77e41b3a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.9
+      value: 547.8
       objectReference: {fileID: 0}
     - target: {fileID: 4192082029294960, guid: ae6462bea2f25b44c80c7cf77e41b3a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.4
+      value: -5.2
       objectReference: {fileID: 0}
     - target: {fileID: 4192082029294960, guid: ae6462bea2f25b44c80c7cf77e41b3a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5352,7 +5352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2074845244}
   m_Layer: 0
-  m_Name: ARRIEREPLAN
+  m_Name: BACKGROUND
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
