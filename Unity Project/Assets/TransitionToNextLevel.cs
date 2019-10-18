@@ -2,18 +2,37 @@
 using System.Collections.Generic;
 using UB.Simple2dWeatherEffects.Standard;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class TransitionToNextBoard : MonoBehaviour
+public class TransitionToNextLevel : MonoBehaviour
 {
+    string sceneToLoadName = "";
+    int currentSceneIndex;
+
     Camera cam;
     GameObject player;
-    [SerializeField] Transform nextBoardSpawnPoint;
-    float fogTransitionDuration = 1.5f;
+    float fogTransitionDuration = 3.0f;
+    SpriteRenderer fadeSprite;
+    float fadeSpeed = 0.2f;
+    int drawDepth = -1000;
+    
+    float alpha = 1.0f; 
+    float fadeDir = -1;
 
     void Start()
     {
+        currentSceneIndex = int.Parse(SceneManager.GetActiveScene().name.Substring(5,1));
+        // Si le niveau en cours n'est pas le dernier
+        if (currentSceneIndex + 1 < GameManager.numberOfLevels)
+        {
+            // On définit le prochain niveau dans le nom du niveau à charger
+            sceneToLoadName = "Level" + (currentSceneIndex +1).ToString();
+        }
+
         player = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        fadeSprite = GameObject.Find("FadeSprite").GetComponent<SpriteRenderer>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -29,12 +48,19 @@ public class TransitionToNextBoard : MonoBehaviour
             }
             //Charger l'animation de transition d'écran
             StartCoroutine(DisplayFog());
-            //Déplacer la caméra sur le nouveau tableau
-            cam.transform.position = new Vector3(cam.transform.position.x + 250, cam.transform.position.y, cam.transform.position.z);
-            //Déplacer le joueur sur le nouveau tableau
-            player.transform.position = new Vector3(nextBoardSpawnPoint.position.x, nextBoardSpawnPoint.position.y, 0);
+            //Fade To Black
+            // LeanTween.alpha(fadeSprite.gameObject, 255, 2.0f);
+            //Charger le prochain niveau
+            SceneManager.LoadScene(sceneToLoadName);
         }
     }
+
+    void OnGUI()
+    {
+        GUI.DrawTexture (new Rect (1920f/2f - 250, 700, 500, 50), emptyProgressBar);
+		GUI.DrawTexture (new Rect (1920f/2f - 250 , 700, 500 * (Time.time - timeAtBegin), 50), fullProgressBar);
+    }
+        
 
     IEnumerator DisplayFog()
     {

@@ -60,7 +60,7 @@ public class SkillsManagement : MonoBehaviour
         skills.Add(skillName);
     }
 
-    public void DeactivateSkill(string skillName)
+    public void LockSkillUse(string skillName)
     {
         switch(skillName)
         {
@@ -69,6 +69,22 @@ public class SkillsManagement : MonoBehaviour
                 break;
             case "dash":
                 dashScript.enabled = false;
+                break;
+            // Ajouter les cas des compétences développées
+            default:
+                break;
+        }
+    }
+
+    public void UnlockSkillUse(string skillName)
+    {
+        switch(skillName)
+        {
+            case "jump":
+                jumpScript.enabled = true;
+                break;
+            case "dash":
+                dashScript.enabled = true;
                 break;
             // Ajouter les cas des compétences développées
             default:
