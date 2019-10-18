@@ -38,7 +38,7 @@ public class SkillsManagement : MonoBehaviour
             break;
         }
 
-        // Action du script correspondant au skill activé
+        // Activation du script correspondant au skill activé
         switch(skillName)
         {
             case "jump":
@@ -58,5 +58,21 @@ public class SkillsManagement : MonoBehaviour
 
         characterSprite.color = new Color(rColor, gColor, bColor);
         skills.Add(skillName);
+    }
+
+    public void DeactivateSkill(string skillName)
+    {
+        switch(skillName)
+        {
+            case "jump":
+                jumpScript.enabled = false;
+                break;
+            case "dash":
+                dashScript.enabled = false;
+                break;
+            // Ajouter les cas des compétences développées
+            default:
+                break;
+        }
     }
 }
