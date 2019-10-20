@@ -10,38 +10,23 @@ public class Jump : MonoBehaviour {
 	public LayerMask groundLayer;
     Rigidbody2D rigid;
 
-	[SerializeField] float jumpForce;
+	[SerializeField] public float jumpForce = 70f;
 	float yVelocity = 0f;
-	[SerializeField] float jumpVelocityThreshold;
-
-	// Saut dans l'air
-	bool airJumpUnlocked = true;
-	float airJumpForce;
-	bool airJumpAvailable = false;
+	[SerializeField] float jumpVelocityThreshold = 15f;
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-		airJumpForce = jumpForce * 0.66f;
     }
 
     void Update () {
         // Test si le personnage est au sol
         isGrounded = checkIfGrounded();
-		if (isGrounded) airJumpUnlocked = true;
 
         // Saut
-        if (isGrounded && Input.GetButton("Jump") && rigid.velocity.y < jumpVelocityThreshold)
+        if (isGrounded && Input.GetButtonDown("Jump") && rigid.velocity.y < jumpVelocityThreshold)
 		{
 			float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
-            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-		}
-
-		// Saut II : le retour
-		if (airJumpUnlocked && !isGrounded && Input.GetButton("Jump") && !airJumpUnlocked)
-		{
-			float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
-			airJumpUnlocked = false;
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
 		}
 	}
