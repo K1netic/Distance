@@ -1224,17 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba2b9576c153f74ca7d43c84e100332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoadName: 
-  currentSceneIndex: 0
-  cam: {fileID: 0}
-  player: {fileID: 0}
-  fogTransitionDuration: 3
   fadeTexture: {fileID: 2800000, guid: ff6a100a075109a4497cffb5ec5dbd57, type: 3}
-  fadeSpeed: 0.2
-  drawDepth: -1000
-  alpha: 1
-  fadeDir: -1
-  fadeToBlack: 0
 --- !u!212 &623089742
 SpriteRenderer:
   m_ObjectHideFlags: 0

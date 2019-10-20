@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 float acceleration = Mathf.SmoothDamp(0, playerDirection * topSpeed, ref xVelocity, accelerationSmoothTime, topSpeed);
                 rigid.velocity = new Vector2(acceleration, rigid.velocity.y);
-                Debug.Log(rigid.velocity.y);
             }
 
             //Arrêter le mouvement du personnage quand l'input est relâché (DECELERATION)

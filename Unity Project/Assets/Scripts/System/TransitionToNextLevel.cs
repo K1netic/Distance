@@ -13,20 +13,21 @@ public class TransitionToNextLevel : MonoBehaviour
     Camera cam;
     GameObject player;
     float fogTransitionDuration = 3.0f;
+
+    // Fade to black
     [SerializeField] Texture2D fadeTexture;
     float fadeSpeed = 0.2f;
     int drawDepth = -1000;
-    
     float alpha = 1.0f; 
     float fadeDir = -1;
 
-    float timeAtBegin;
+    bool fadeToBlack = false;
 
     void Start()
     {
         currentSceneIndex = int.Parse(SceneManager.GetActiveScene().name.Substring(5,1));
         // Si le niveau en cours n'est pas le dernier
-        if (currentSceneIndex + 1 < GameManager.numberOfLevels)
+        if (currentSceneIndex < GameManager.numberOfLevels)
         {
             // On définit le prochain niveau dans le nom du niveau à charger
             sceneToLoadName = "Level" + (currentSceneIndex +1).ToString();
@@ -40,7 +41,6 @@ public class TransitionToNextLevel : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            timeAtBegin = Time.time;
             //Bloquer les mouvements du joueur 
             PlayerMovement.lockMovement = true;
             //Bloquer l'utilisation de compétences
@@ -48,19 +48,30 @@ public class TransitionToNextLevel : MonoBehaviour
             {
                 player.GetComponent<SkillsManagement>().LockSkillUse(skill);
             }
+            fadeToBlack = true;
+            alpha = 0f;
             //Charger l'animation de transition d'écran
             StartCoroutine(DisplayFog());
-            //Fade To Black
-            // LeanTween.alpha(fadeSprite.gameObject, 255, 2.0f);
-            //Charger le prochain niveau
-            SceneManager.LoadScene(sceneToLoadName);
         }
     }
 
     void OnGUI()
     {
-		GUI.DrawTexture(new Rect(0,0,1920f,1080f),fadeTexture);
-        
+        //Fade to white
+        alpha += fadeDir * fadeSpeed * Time.deltaTime;
+        alpha = Mathf.Clamp01(alpha);
+        GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
+        GUI.depth = drawDepth;
+        GUI.DrawTexture(new Rect(0,0,1920f,1080f),fadeTexture);
+
+        if (fadeToBlack)
+        {
+            alpha -= fadeDir * fadeSpeed * Time.deltaTime;
+            alpha = Mathf.Clamp01(alpha);
+            GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
+            GUI.depth = drawDepth;
+            GUI.DrawTexture(new Rect(0,0,1920f,1080f),fadeTexture);
+        }
     }
 
     IEnumerator DisplayFog()
@@ -81,5 +92,7 @@ public class TransitionToNextLevel : MonoBehaviour
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
         }
+        //Charger le prochain niveau
+        SceneManager.LoadScene(sceneToLoadName);
     }
 }
