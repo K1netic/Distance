@@ -33,6 +33,7 @@ public class TransitionToNextBoard : MonoBehaviour
             cam.transform.position = new Vector3(cam.transform.position.x + 250, cam.transform.position.y, cam.transform.position.z);
             //Déplacer le joueur sur le nouveau tableau
             player.transform.position = new Vector3(nextBoardSpawnPoint.position.x, nextBoardSpawnPoint.position.y, 0);
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 
