@@ -6,6 +6,27 @@ public class GameManager : MonoBehaviour
 {
     public static int numberOfLevels = 2;
     public const float timeBeforeRespawn = 0.5f;
+
+    private static GameManager instance;
+
+	public static GameManager Instance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				instance = GameObject.FindObjectOfType<GameManager> ();
+			}
+
+			return instance;
+		}
+	}
+
+    void Awake()
+    {
+        DontDestroyOnLoad (gameObject);
+    }
+    
     // Start is called before the first frame update
     void Start()
     {

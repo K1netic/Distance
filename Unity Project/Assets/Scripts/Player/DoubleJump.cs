@@ -17,7 +17,7 @@ public class DoubleJump : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         jumpScript = gameObject.GetComponent<Jump>();
-        airJumpForce = jumpScript.jumpForce * 0.66f;
+        airJumpForce = jumpScript.jumpForce;
     }
 
     // Update is called once per frame

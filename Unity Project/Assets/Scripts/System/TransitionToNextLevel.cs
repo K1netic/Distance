@@ -35,6 +35,9 @@ public class TransitionToNextLevel : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        alpha = 0f;
+        // fadeToBlack = true;
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -48,8 +51,8 @@ public class TransitionToNextLevel : MonoBehaviour
             {
                 player.GetComponent<SkillsManagement>().LockSkillUse(skill);
             }
-            fadeToBlack = true;
             alpha = 0f;
+            fadeToBlack = true;
             //Charger l'animation de transition d'écran
             StartCoroutine(DisplayFog());
         }
@@ -57,7 +60,7 @@ public class TransitionToNextLevel : MonoBehaviour
 
     void OnGUI()
     {
-        //Fade to white
+        // Fade to white
         alpha += fadeDir * fadeSpeed * Time.deltaTime;
         alpha = Mathf.Clamp01(alpha);
         GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
@@ -66,6 +69,7 @@ public class TransitionToNextLevel : MonoBehaviour
 
         if (fadeToBlack)
         {
+            Debug.Log("jej");
             alpha -= fadeDir * fadeSpeed * Time.deltaTime;
             alpha = Mathf.Clamp01(alpha);
             GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);

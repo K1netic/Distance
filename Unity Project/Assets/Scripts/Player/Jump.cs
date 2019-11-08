@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class Jump : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class Jump : MonoBehaviour {
 	[SerializeField] public float jumpForce = 70f;
 	float yVelocity = 0f;
 	[SerializeField] float jumpVelocityThreshold = 15f;
+
+	bool floorTest = false;
 
     private void Start()
     {
@@ -28,6 +31,14 @@ public class Jump : MonoBehaviour {
 		{
 			float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+			StartCoroutine(RefreshFloorTest());
+		}
+
+		// Check if falling on floor
+		if (checkIfGrounded() && !floorTest)
+		{
+        	StartCoroutine(CancelVibration (Vibrations.PlayVibration("FallingOnFloor")));
+			floorTest = true;
 		}
 	}
 
@@ -62,6 +73,19 @@ public class Jump : MonoBehaviour {
 
 		return false;
 	}
+
+	IEnumerator CancelVibration(float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		GamePad.SetVibration(0,0,0);
+	}
+
+	IEnumerator RefreshFloorTest()
+	{
+		yield return new WaitForSeconds(0.1f);
+		floorTest = false;
+	}
+
 
 }
 	

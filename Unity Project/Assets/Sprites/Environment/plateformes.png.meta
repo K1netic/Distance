@@ -1,0 +1,797 @@
+fileFormatVersion: 2
+guid: 1a8c7250d8d150a4590850e267a10116
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1237123989112444640
+    second: plateformes_0
+  - first:
+      213: -8450567472779356229
+    second: plateformes_1
+  - first:
+      213: 5267924601773587743
+    second: plateformes_2
+  - first:
+      213: -2717278499763406245
+    second: plateformes_3
+  - first:
+      213: 3395204365586721813
+    second: plateformes_4
+  - first:
+      213: -1851203289828476655
+    second: plateformes_5
+  - first:
+      213: -3976592570324488214
+    second: plateformes_6
+  - first:
+      213: -8270305270559344465
+    second: plateformes_7
+  - first:
+      213: -3999552227397039764
+    second: plateformes_8
+  - first:
+      213: -2211428938245111332
+    second: plateformes_9
+  - first:
+      213: -7011092932294207398
+    second: plateformes_10
+  - first:
+      213: -8112369503197137567
+    second: plateformes_11
+  - first:
+      213: -5562191799428008238
+    second: plateformes_12
+  - first:
+      213: 3428867084754703145
+    second: plateformes_13
+  - first:
+      213: -1084962222331216109
+    second: plateformes_14
+  - first:
+      213: -724285821047653768
+    second: plateformes_15
+  - first:
+      213: -8511085075543150217
+    second: plateformes_16
+  - first:
+      213: 4483949855401866536
+    second: plateformes_17
+  - first:
+      213: 222100972265086628
+    second: plateformes_18
+  - first:
+      213: 8731872702505312496
+    second: plateformes_19
+  - first:
+      213: -1472894348432656609
+    second: plateformes_20
+  - first:
+      213: -5828674978484850135
+    second: plateformes_21
+  - first:
+      213: 6200319552007564494
+    second: plateformes_22
+  - first:
+      213: 4681234186597776025
+    second: plateformes_23
+  - first:
+      213: 4756897656920012745
+    second: plateformes_24
+  - first:
+      213: 2041671745359997726
+    second: plateformes_25
+  - first:
+      213: -3472932665256318671
+    second: plateformes_26
+  - first:
+      213: 9037508874959315674
+    second: plateformes_27
+  - first:
+      213: 3318951142457817544
+    second: plateformes_28
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: plateformes_0
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1759
+        width: 296
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 567d6bb153e91ed46a014c76e4411d56
+      internalID: 1237123989112444640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_1
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1850
+        width: 282
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d3a5d3aad99a4548ac995aea88bd161
+      internalID: -8450567472779356229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_2
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 1649
+        width: 288
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e55db9624448bd5469abe83a2d2c8e30
+      internalID: 5267924601773587743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_3
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 1440
+        width: 284
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e28f549b9b086249afea8b5a1ebfa3f
+      internalID: -2717278499763406245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_4
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1544
+        width: 298
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2519f8c13cc7ce4381cd50674bffda3
+      internalID: 3395204365586721813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_5
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 1409
+        width: 302
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2497a065ff1f68842ba26c6f982d46d3
+      internalID: -1851203289828476655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_6
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1186
+        width: 308
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f4780f20afca974690c4a14082f7afc
+      internalID: -3976592570324488214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1191
+        width: 297
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4522d755de3b70b45a5987b26341508f
+      internalID: -8270305270559344465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_8
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 970
+        width: 292
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5813d62992470b46b852e6071208d3f
+      internalID: -3999552227397039764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_9
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 970
+        width: 289
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ec767e442bd79f4f8b5f9d4227debd4
+      internalID: -2211428938245111332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_10
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 835
+        width: 296
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15395d7f3a6827342a10eef174ee1d35
+      internalID: -7011092932294207398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_11
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 834
+        width: 293
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d7789957bc36448844eabb1fe8f60a
+      internalID: -8112369503197137567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_12
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 707
+        width: 293
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc424f1409b0cc04e85839a6e448eca7
+      internalID: -5562191799428008238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_13
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 706
+        width: 295
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e8138193dce6d14095e411f58ea45b1
+      internalID: 3428867084754703145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_14
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 449
+        width: 284
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee4cca6b6ef86454db4d7418dd6c8de4
+      internalID: -1084962222331216109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_15
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 495
+        width: 287
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33269d0e44e1df4fb12d0e513433145
+      internalID: -724285821047653768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_16
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 229
+        width: 283
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 826b4ad251868324882c0b59403338d0
+      internalID: -8511085075543150217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_17
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 10
+        width: 283
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a371d61b1c7b4c4d8cd2666e5080c19
+      internalID: 4483949855401866536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_18
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 366
+        width: 290
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3925df3571534d498eb48ffef0c0778
+      internalID: 222100972265086628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_19
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 236
+        width: 299
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6103d6a83a306fd49b2687c49b7363a8
+      internalID: 8731872702505312496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_20
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 146
+        width: 299
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8ecde6705733445949b33a80b21da5
+      internalID: -1472894348432656609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_21
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 59
+        width: 296
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfe244a9fac2fad4c974cc525c11f0c7
+      internalID: -5828674978484850135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_22
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 528
+        width: 280
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 683a2529255060747b9fab66be749a87
+      internalID: 6200319552007564494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_23
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 439
+        width: 285
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 773d68900a9e15f4cba0b4c236772bac
+      internalID: 4681234186597776025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_24
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 362
+        width: 286
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d853c63b28e0e74f92e8629d0f6e522
+      internalID: 4756897656920012745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_25
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 283
+        width: 292
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bfd479ec719a141a81d4c64def4292
+      internalID: 2041671745359997726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_26
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 207
+        width: 276
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d68483c0f02b4da49a4776ab1a537a60
+      internalID: -3472932665256318671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_27
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 124
+        width: 266
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f736a23cfbdbe64c8a504b704d5131c
+      internalID: 9037508874959315674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plateformes_28
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 30
+        width: 297
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3662069137f7546ad54db08bc72cef
+      internalID: 3318951142457817544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 4a7ca5aade30a724f9b95175b0fd70c5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

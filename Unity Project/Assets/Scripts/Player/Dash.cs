@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class Dash : MonoBehaviour {
 
@@ -96,6 +97,7 @@ public class Dash : MonoBehaviour {
         rigid.gravityScale = 0;
         rigid.velocity = Vector2.zero;
         rigid.velocity = direction * dashForce;
+        StartCoroutine(CancelVibration (Vibrations.PlayVibration("Dash")));
         Invoke("UnlockMovement", lockMovementDuration);
     }
 
@@ -112,5 +114,11 @@ public class Dash : MonoBehaviour {
         dashAvailable = true;
         dashingOnGround = false;
     }
+
+    public IEnumerator CancelVibration(float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		GamePad.SetVibration(0,0,0);
+	}
 
 }

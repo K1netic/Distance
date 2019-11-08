@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UB.Simple2dWeatherEffects.Standard;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class TransitionToNextBoard : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class TransitionToNextBoard : MonoBehaviour
             }
             //Charger l'animation de transition d'écran
             StartCoroutine(DisplayFog());
+            //Vibrations
+		    StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextBoard")));
             //Déplacer la caméra sur le nouveau tableau
             cam.transform.position = new Vector3(cam.transform.position.x + 250, cam.transform.position.y, cam.transform.position.z);
             //Déplacer le joueur sur le nouveau tableau
@@ -44,6 +47,7 @@ public class TransitionToNextBoard : MonoBehaviour
             fogScript.enabled = true;
         }
         yield return new WaitForSeconds(fogTransitionDuration);
+
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = false;
@@ -56,4 +60,10 @@ public class TransitionToNextBoard : MonoBehaviour
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
         }
     }
+
+	public IEnumerator CancelVibration(float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		GamePad.SetVibration(0,0,0);
+	}
 }
