@@ -5,8 +5,18 @@ using UnityEngine;
 public class SkillsManagement : MonoBehaviour
 {
     SpriteRenderer characterSprite;
-    [SerializeField] Dash dashScript;
+
+    // Jump scripts
     [SerializeField] Jump jumpScript;
+    [SerializeField] WallJump wallJumpScript;
+    [SerializeField] DoubleJump doubleJumpScript;
+
+    // Dash scripts
+    [SerializeField] Dash dashScript;
+    // [SerializeField] HeavyDash heavyDashScript;
+    // [SerializeField] Blink blinkScript;
+
+
     public static List<string> skills = new List<string>();
     [SerializeField] float colorAmountToChange = 100;
 
@@ -51,6 +61,18 @@ public class SkillsManagement : MonoBehaviour
                 bColor = 255;
                 dashScript.enabled = true;
                 break;
+            case "j_wallJump":
+                wallJumpScript.enabled = true;
+                break;
+            case "j_doubleJump":
+                doubleJumpScript.enabled = true;
+                break;
+            // case "d_heavyDash":
+            //     heavyDashScript.enabled = true;
+            //     break;
+            // case "d_blink":
+            //     blinkScript.enabled = true;
+            //     break;
             // Ajouter les cas des compétences développées
             default:
                 break;
@@ -70,7 +92,18 @@ public class SkillsManagement : MonoBehaviour
             case "dash":
                 dashScript.enabled = false;
                 break;
-            // Ajouter les cas des compétences développées
+            case "j_wallJump":
+                dashScript.enabled = false;
+                break;
+            case "j_doubleJump":
+                doubleJumpScript.enabled = false;
+                break;
+            // case "d_heavyDash":
+            //     heavyDashScript.enabled = false;
+            //     break;
+            // case "d_blink":
+            //     blinkScript.enabled = false;
+            //     break;
             default:
                 break;
         }
@@ -86,7 +119,18 @@ public class SkillsManagement : MonoBehaviour
             case "dash":
                 dashScript.enabled = true;
                 break;
-            // Ajouter les cas des compétences développées
+            case "j_wallJump":
+                dashScript.enabled = true;
+                break;
+            case "j_doubleJump":
+                doubleJumpScript.enabled = false;
+                break;
+            // case "d_heavyDash":
+            //     heavyDashScript.enabled = false;
+            //     break;
+            // case "d_blink":
+            //     blinkScript.enabled = false;
+            //     break;
             default:
                 break;
         }

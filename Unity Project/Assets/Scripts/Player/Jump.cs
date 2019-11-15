@@ -29,7 +29,7 @@ public class Jump : MonoBehaviour {
         // Saut
         if (isGrounded && Input.GetButtonDown("Jump") && rigid.velocity.y < jumpVelocityThreshold)
 		{
-			float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
+			// float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
 			StartCoroutine(RefreshFloorTest());
 		}

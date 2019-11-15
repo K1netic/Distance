@@ -11,11 +11,11 @@ public class WallJump : MonoBehaviour
     bool isOnLeftWall = false;
     bool isOnRightWall = false;
     Jump jumpScript;
-    float yVelocity = 0f;
     Rigidbody2D rigid;
-    float wallJumpHorizontalForce = 40f;
-    float wallJumpVerticalForce = 50f;
-    float jumpDuration = 0.3f;
+    float wallJumpVerticalForce = 60f;
+    float lockWallCheckDuration = 0.75f;
+    bool lockLeftWallCheck = false;
+    bool lockRightWallCheck = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,38 +27,36 @@ public class WallJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isOnLeftWall = checkIfOnLeftWall();
-        isOnRightWall = checkIfOnRightWall();
+        if (!lockLeftWallCheck) isOnLeftWall = checkIfOnLeftWall();
+        
+        if (!lockRightWallCheck) isOnRightWall = checkIfOnRightWall();
 
-        //Si collé à un mur à gauche
-        if ((Input.GetAxisRaw("Horizontal") < 0) && isOnLeftWall)
+        if (isOnLeftWall)
         {
-            //Anim perso qui regarde vers la droite
-            //Faire glisser perso + son frottements
+            lockRightWallCheck = false;
         }
 
+        if (isOnRightWall)
+        {
+            lockLeftWallCheck = false;
+        }
+
+        //Saut vers la droite en étant collé à un mur à gauche
         if(Input.GetButtonDown("Jump") && isOnLeftWall)
         {
-            Debug.Log("diagonal jump");
-            PlayerMovement.lockMovement = true;
-            // float acceleration = Mathf.SmoothDamp(0, 1 * wallJumpHorizontalForce, ref yVelocity, jumpDuration, wallJumpHorizontalForce);
-            rigid.velocity = new Vector2(wallJumpHorizontalForce, wallJumpVerticalForce);
-            transform.localScale = new Vector3(1, 1, 0);
-            StartCoroutine(UnLockMovement());
+            rigid.velocity = new Vector2(rigid.velocity.x, wallJumpVerticalForce);
+            lockLeftWallCheck = true;
+            Invoke("UnlockLeftWallCheck", lockWallCheckDuration);
+            isOnLeftWall = false;
         }
 
-        //Si collé à un mur à droite
-        if ((Input.GetAxisRaw("Horizontal") > 0) && isOnRightWall)
-        {
-            //Anim perso qui regarde vers la gauche
-            //Faire glisser perso + son frottements
-        }
-
-        // Saut en diagonal
+        //Saut vers la gauche en étant collé à un mur à droite
         if(Input.GetButtonDown("Jump") && isOnRightWall)
         {
-            float acceleration = Mathf.SmoothDamp(0, 1 * wallJumpVerticalForce, ref yVelocity, jumpDuration, wallJumpVerticalForce);
-            rigid.velocity = new Vector2(-wallJumpHorizontalForce, wallJumpVerticalForce);
+            rigid.velocity = new Vector2(rigid.velocity.x, wallJumpVerticalForce);
+            lockRightWallCheck = true;
+            Invoke("UnlockRightWallCheck", lockWallCheckDuration);
+            isOnRightWall = false;
         }
     }
 
@@ -103,10 +101,14 @@ public class WallJump : MonoBehaviour
         return false;
     }
 
-    IEnumerator UnLockMovement()
+    void UnlockLeftWallCheck()
     {
-        yield return new WaitUntil(() => rigid.velocity.x == 0);
-        PlayerMovement.lockMovement = false;
+        lockLeftWallCheck = false;
+    }
+
+    void UnlockRightWallCheck()
+    {
+        lockRightWallCheck = false;
     }
 
 }

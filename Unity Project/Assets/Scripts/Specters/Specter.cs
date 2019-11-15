@@ -22,6 +22,7 @@ public class Specter : MonoBehaviour
                 // Animation transfert de compétences
                 player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
                 // Disparition du fantôme
+                this.gameObject.SetActive(false);
             }
         }
     }

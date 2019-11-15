@@ -6,11 +6,11 @@ using XInputDotNetPure;
 public class Dash : MonoBehaviour {
 
     [SerializeField]
-    float dashForce = 25;
+    public float dashForce = 25;
     [SerializeField]
-    float lockMovementDuration = .25f;
+    public float lockMovementDuration = .25f;
     [SerializeField]
-    float dashCooldown = 0.5f;
+    public float dashCooldown = 0.5f;
 
     Rigidbody2D rigid;
     bool dashAvailable = true;
@@ -18,74 +18,77 @@ public class Dash : MonoBehaviour {
 
     bool dashingOnGround = false;
 
-	// Use this for initialization
+    public bool lockNormalDash = false;
+
 	void Start () {
         rigid = GetComponent<Rigidbody2D>();
         localGravity = rigid.gravityScale;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
-        //Player direction for dash
-        var HorizontalInput = Input.GetAxisRaw("Horizontal");
-        var VerticalInput = Input.GetAxisRaw("Vertical");
-
-        // Récupération du dash
-        if (Jump.isGrounded && !dashingOnGround) dashAvailable = true;
-
-        if (dashAvailable)
+        if (!lockNormalDash)
         {
-            #region Test direction
-            //Dash dans la direction du joueur s'il dash sans bouger
-            if (Input.GetButtonDown("Dash") && (HorizontalInput == 0 && VerticalInput == 0))
-            {
-				ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
-            }
+            //Direction de l'input pour le dash
+            var HorizontalInput = Input.GetAxisRaw("Horizontal");
+            var VerticalInput = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0)
-            {
-                dashAvailable = false;
-                dashingOnGround = true;
-                Invoke("DashCooldown", dashCooldown);
-            }
+            // Récupération du dash
+            if (Jump.isGrounded && !dashingOnGround) dashAvailable = true;
 
-            //Dash dans la direction du joueur s'il essaye de dasher vers le haut
-            if (Input.GetButtonDown("Dash") && (VerticalInput > 0.0f))
+            if (dashAvailable)
             {
-                ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
-            }
+                #region Test direction
+                //Dash dans la direction du joueur s'il dash sans bouger
+                if (Input.GetButtonDown("Dash") && (HorizontalInput == 0 && VerticalInput == 0))
+                {
+                    ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
+                }
 
-            //Dash droite
-            if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
-            {
-                ApplyDash(new Vector2(1, 0));
-            }
+                if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0)
+                {
+                    dashAvailable = false;
+                    dashingOnGround = true;
+                    Invoke("DashCooldown", dashCooldown);
+                }
 
-            //Dash gauche
-            if (Input.GetButtonDown("Dash") && (HorizontalInput < 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
-            {
-                ApplyDash(new Vector2(-1, 0));
-            }
+                //Dash dans la direction du joueur s'il essaye de dasher vers le haut
+                if (Input.GetButtonDown("Dash") && (VerticalInput > 0.0f))
+                {
+                    ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
+                }
 
-            //Dash bas
-            if (Input.GetButtonDown("Dash") && (VerticalInput < 0.0f && HorizontalInput > -0.30f && HorizontalInput < 0.30f))
-            {
-                ApplyDash(new Vector2(0, -1));
-            }
+                //Dash droite
+                if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
+                {
+                    ApplyDash(new Vector2(1, 0));
+                }
 
-            //Dash bas-droite
-            if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
-            {
-                ApplyDash(new Vector2(1, -1));
-            }
+                //Dash gauche
+                if (Input.GetButtonDown("Dash") && (HorizontalInput < 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
+                {
+                    ApplyDash(new Vector2(-1, 0));
+                }
 
-            //Dash bas-gauche
-            if (Input.GetButtonDown("Dash") && (HorizontalInput < -0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
-            {
-                ApplyDash(new Vector2(-1, -1));
+                //Dash bas
+                if (Input.GetButtonDown("Dash") && (VerticalInput < 0.0f && HorizontalInput > -0.30f && HorizontalInput < 0.30f))
+                {
+                    ApplyDash(new Vector2(0, -1));
+                }
+
+                //Dash bas-droite
+                if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
+                {
+                    ApplyDash(new Vector2(1, -1));
+                }
+
+                //Dash bas-gauche
+                if (Input.GetButtonDown("Dash") && (HorizontalInput < -0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
+                {
+                    ApplyDash(new Vector2(-1, -1));
+                }
+                #endregion
             }
-            #endregion
         }
     }
 
@@ -95,7 +98,7 @@ public class Dash : MonoBehaviour {
         PlayerMovement.lockMovement = true;
         dashAvailable = false;
         rigid.gravityScale = 0;
-        rigid.velocity = Vector2.zero;
+        // rigid.velocity = Vector2.zero;
         rigid.velocity = direction * dashForce;
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("Dash")));
         Invoke("UnlockMovement", lockMovementDuration);
@@ -120,5 +123,4 @@ public class Dash : MonoBehaviour {
 		yield return new WaitForSeconds (delay);
 		GamePad.SetVibration(0,0,0);
 	}
-
 }
