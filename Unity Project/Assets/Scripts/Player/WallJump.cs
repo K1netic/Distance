@@ -6,6 +6,7 @@ public class WallJump : MonoBehaviour
 {
     float detectDistance = 0.5f;
     float detectRange = 1.5f;
+    float topBottomHitsDistance = 1.5f;
     public LayerMask wallLayer;
 
     bool isOnLeftWall = false;
@@ -66,11 +67,31 @@ public class WallJump : MonoBehaviour
 		Vector2 leftDirection = Vector2.left;
 		Debug.DrawRay (new Vector2(position.x - detectRange, position.y), leftDirection * detectDistance, Color.red, 5f);
 		RaycastHit2D[] leftHits = Physics2D.RaycastAll(new Vector2(position.x - detectRange, position.y), leftDirection, detectDistance, wallLayer);
+        RaycastHit2D[] topLeftHits = Physics2D.RaycastAll(new Vector2(position.x - detectRange, position.y + topBottomHitsDistance), leftDirection, detectDistance, wallLayer);
+		RaycastHit2D[] bottomLeftHits = Physics2D.RaycastAll(new Vector2(position.x - detectRange, position.y - topBottomHitsDistance), leftDirection, detectDistance, wallLayer);
 
 		for (int i = 0; i < leftHits.Length; i++)
 		{
 			RaycastHit2D leftHit = leftHits [i];
 			if (leftHit.collider != null)
+			{
+				return true;
+			}
+		}
+
+        for (int i = 0; i < topLeftHits.Length; i++)
+		{
+			RaycastHit2D topLeftHit = topLeftHits [i];
+			if (topLeftHit.collider != null)
+			{
+				return true;
+			}
+		}
+
+        for (int i = 0; i < bottomLeftHits.Length; i++)
+		{
+			RaycastHit2D bottomLeftHit = bottomLeftHits [i];
+			if (bottomLeftHit.collider != null)
 			{
 				return true;
 			}
@@ -85,14 +106,36 @@ public class WallJump : MonoBehaviour
         Vector2 rightDirection = Vector2.right;
 
 		Debug.DrawRay (new Vector2(position.x + detectRange, position.y), rightDirection * detectDistance, Color.red, 5f);
+        Debug.DrawRay (new Vector2(position.x + detectRange, position.y + topBottomHitsDistance), rightDirection * detectDistance, Color.red, 5f);
+		Debug.DrawRay (new Vector2(position.x + detectRange, position.y - topBottomHitsDistance), rightDirection * detectDistance, Color.red, 5f);
+
 		//Raycasts
 		RaycastHit2D[] rightHits = Physics2D.RaycastAll(new Vector2(position.x + detectRange, position.y), rightDirection, detectDistance, wallLayer);
-
+		RaycastHit2D[] topRightHits = Physics2D.RaycastAll(new Vector2(position.x + detectRange, position.y + topBottomHitsDistance), rightDirection, detectDistance, wallLayer);
+		RaycastHit2D[] bottomRightHits = Physics2D.RaycastAll(new Vector2(position.x + detectRange, position.y - topBottomHitsDistance), rightDirection, detectDistance, wallLayer);
 
 		for (int i = 0; i < rightHits.Length; i++)
 		{
 			RaycastHit2D rightHit = rightHits [i];
 			if (rightHit.collider != null)
+			{
+				return true;
+			}
+		}
+
+        for (int i = 0; i < topRightHits.Length; i++)
+		{
+			RaycastHit2D topRightHit = topRightHits [i];
+			if (topRightHit.collider != null)
+			{
+				return true;
+			}
+		}
+        
+        for (int i = 0; i < bottomRightHits.Length; i++)
+		{
+			RaycastHit2D bottomRightHit = bottomRightHits [i];
+			if (bottomRightHit.collider != null)
 			{
 				return true;
 			}

@@ -17,6 +17,7 @@ public class HeavyDash : MonoBehaviour
     Dash dashScript;
 
     bool dashing = false;
+    Animator playerAnimator;
 
     void Awake()
     {
@@ -36,6 +37,7 @@ public class HeavyDash : MonoBehaviour
         dashCooldown = dashScript.dashCooldown;
         rigid = GetComponent<Rigidbody2D>();
         localGravity = rigid.gravityScale;
+        playerAnimator = gameObject.GetComponent<Animator>();
     }
 	
 	void Update () {
@@ -105,6 +107,7 @@ public class HeavyDash : MonoBehaviour
     //Lock player's movement, apply dash force then unlock the movement
     void ApplyDash(Vector2 direction)
     {
+        playerAnimator.SetBool("dashing", true);
         PlayerMovement.lockMovement = true;
         dashAvailable = false;
         rigid.gravityScale = 0;
@@ -118,6 +121,7 @@ public class HeavyDash : MonoBehaviour
     //Reset the gravity and the velocity, and let the player move again
     void UnlockMovement()
     {
+        playerAnimator.SetBool("dashing", false);
         PlayerMovement.lockMovement = false;
 		rigid.gravityScale = localGravity;
 		rigid.velocity = Vector2.zero;

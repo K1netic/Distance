@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SpawnPoint
   - Pushable
+  - MovingPlatform
+  - Projectile
   layers:
   - Default
   - TransparentFX

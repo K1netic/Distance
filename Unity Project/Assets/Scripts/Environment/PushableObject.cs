@@ -10,9 +10,10 @@ public class PushableObject : MonoBehaviour
         rigid = this.GetComponent<Rigidbody2D>();
         rigid.isKinematic = true;
     }
+
     public void Pushed()
     {
         rigid.isKinematic = false;
-        rigid.velocity = new Vector2(50f,-50f);
+        rigid.velocity = new Vector2(200f,-200f);
     }
 }

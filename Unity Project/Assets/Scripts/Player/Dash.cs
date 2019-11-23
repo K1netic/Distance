@@ -20,13 +20,15 @@ public class Dash : MonoBehaviour {
 
     public bool lockNormalDash = false;
 
+    Animator playerAnimator;
+
 	void Start () {
         rigid = GetComponent<Rigidbody2D>();
         localGravity = rigid.gravityScale;
+        playerAnimator = gameObject.GetComponent<Animator>();
 	}
 	
 	void Update () {
-
         if (!lockNormalDash)
         {
             //Direction de l'input pour le dash
@@ -45,7 +47,8 @@ public class Dash : MonoBehaviour {
                     ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
                 }
 
-                if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0)
+                //Dash au sol
+                if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0 && Jump.isGrounded)
                 {
                     dashAvailable = false;
                     dashingOnGround = true;
@@ -95,6 +98,7 @@ public class Dash : MonoBehaviour {
     //Lock player's movement, apply dash force then unlock the movement
     void ApplyDash(Vector2 direction)
     {
+        playerAnimator.SetBool("dashing", true);
         PlayerMovement.lockMovement = true;
         dashAvailable = false;
         rigid.gravityScale = 0;
@@ -107,6 +111,7 @@ public class Dash : MonoBehaviour {
     //Reset the gravity and the velocity, and let the player move again
     void UnlockMovement()
     {
+        playerAnimator.SetBool("dashing", false);
         PlayerMovement.lockMovement = false;
 		rigid.gravityScale = localGravity;
 		rigid.velocity = Vector2.zero;

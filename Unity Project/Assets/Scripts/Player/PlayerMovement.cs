@@ -16,11 +16,13 @@ public class PlayerMovement : MonoBehaviour
 
     // Utilisé pour bloquer le mouvement du personnage
 	public static bool lockMovement;
+    Animator playerAnimator;
 
     // Use this for initialization 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        playerAnimator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame 
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             //Commencer un déplacement si un input horizontal est enregistré (ACCELERATION)
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
+                playerAnimator.SetBool("running", true);
                 float acceleration = Mathf.SmoothDamp(0, playerDirection * topSpeed, ref xVelocity, accelerationSmoothTime, topSpeed);
                 rigid.velocity = new Vector2(acceleration, rigid.velocity.y);
             }
@@ -50,9 +53,20 @@ public class PlayerMovement : MonoBehaviour
             //Arrêter le mouvement du personnage quand l'input est relâché (DECELERATION)
             if (Input.GetAxisRaw("Horizontal") == 0)
             {
+                playerAnimator.SetBool("running", false);
                 float deceleration = Mathf.SmoothDamp(rigid.velocity.x, 0, ref xVelocity, decelerationSmoothTime, topSpeed);
                 rigid.velocity = new Vector2(deceleration, rigid.velocity.y);
             }
         }
     }
+
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+		if (coll.gameObject.tag == "MovingPlatform") transform.parent = coll.transform;
+	}
+
+	void OnCollisionExit2D(Collision2D coll)
+	{
+		if (coll.gameObject.tag == "MovingPlatform") transform.parent = null;
+	}
 }

@@ -17,9 +17,12 @@ public class Jump : MonoBehaviour {
 
 	bool floorTest = false;
 
+	Animator playerAnimator;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+		playerAnimator = gameObject.GetComponent<Animator>();
     }
 
     void Update () {
@@ -29,6 +32,7 @@ public class Jump : MonoBehaviour {
         // Saut
         if (isGrounded && Input.GetButtonDown("Jump") && rigid.velocity.y < jumpVelocityThreshold)
 		{
+			playerAnimator.SetBool("jumping", true);
 			// float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
 			StartCoroutine(RefreshFloorTest());
@@ -37,9 +41,12 @@ public class Jump : MonoBehaviour {
 		// Check if falling on floor
 		if (checkIfGrounded() && !floorTest)
 		{
+			playerAnimator.SetBool("jumping", false);
+			playerAnimator.SetBool("falling", false);
         	StartCoroutine(CancelVibration (Vibrations.PlayVibration("FallingOnFloor")));
 			floorTest = true;
 		}
+
 	}
 
     bool checkIfGrounded() 
