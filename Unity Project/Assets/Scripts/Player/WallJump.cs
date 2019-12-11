@@ -18,6 +18,8 @@ public class WallJump : MonoBehaviour
     bool lockLeftWallCheck = false;
     bool lockRightWallCheck = false;
 
+    [SerializeField] GameObject JumpRing;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,7 @@ public class WallJump : MonoBehaviour
             lockLeftWallCheck = true;
             Invoke("UnlockLeftWallCheck", lockWallCheckDuration);
             isOnLeftWall = false;
+            PopParticle(-1.25f);
         }
 
         //Saut vers la gauche en étant collé à un mur à droite
@@ -58,6 +61,7 @@ public class WallJump : MonoBehaviour
             lockRightWallCheck = true;
             Invoke("UnlockRightWallCheck", lockWallCheckDuration);
             isOnRightWall = false;
+            PopParticle(1.25f);
         }
     }
 
@@ -152,6 +156,13 @@ public class WallJump : MonoBehaviour
     void UnlockRightWallCheck()
     {
         lockRightWallCheck = false;
+    }
+
+    void PopParticle(float xPosition)
+    {
+        GameObject instantiated = Instantiate(JumpRing,new Vector3(gameObject.transform.position.x + xPosition, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
+        instantiated.transform.Rotate(new Vector3(-180,-90,90),Space.Self);
+        Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
     }
 
 }

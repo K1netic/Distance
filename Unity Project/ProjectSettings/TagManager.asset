@@ -57,6 +57,9 @@ TagManager:
   - name: Protagonist
     uniqueID: 3620664283
     locked: 0
+  - name: Particles
+    uniqueID: 3495644173
+    locked: 0
   - name: Tools
     uniqueID: 904786115
     locked: 0

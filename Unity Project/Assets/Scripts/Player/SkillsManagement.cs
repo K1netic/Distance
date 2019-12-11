@@ -9,16 +9,15 @@ public class SkillsManagement : MonoBehaviour
     // Jump scripts
     [SerializeField] Jump jumpScript;
     [SerializeField] WallJump wallJumpScript;
-    [SerializeField] DoubleJump doubleJumpScript;
+    // [SerializeField] DoubleJump doubleJumpScript;
 
     // Dash scripts
     [SerializeField] Dash dashScript;
-    // [SerializeField] HeavyDash heavyDashScript;
+    [SerializeField] HeavyDash heavyDashScript;
     // [SerializeField] Blink blinkScript;
 
-
     public static List<string> skills = new List<string>();
-    [SerializeField] float colorAmountToChange = 100;
+    float colorAmountToChange = 0.25f;
 
     void Start()
     {
@@ -27,9 +26,9 @@ public class SkillsManagement : MonoBehaviour
 
     public void ActivateSkill(string skillName)
     {
-        float rColor = 255;
-        float gColor = 0;
-        float bColor = 255;
+        float rColor = 1f;
+        float gColor = 0.5f;
+        float bColor = 1f;
         string hashedSkillName = skillName.Substring(0,2);
 
         // Changement de couleur du perso en fonction du type de skill activé
@@ -40,11 +39,12 @@ public class SkillsManagement : MonoBehaviour
                 break;
             case "d_":
                 rColor = characterSprite.color.r - colorAmountToChange;
+                Debug.Log("ddddd");
                 break;
             default:
-                rColor = 255;
-                gColor = 0;
-                bColor = 255;
+                rColor = 1f;
+                gColor = 0.5f;
+                bColor = 1f;
             break;
         }
 
@@ -52,24 +52,24 @@ public class SkillsManagement : MonoBehaviour
         switch(skillName)
         {
             case "jump":
-                rColor = 255;
-                bColor = 0;
+                rColor = 1;
+                bColor = 0.5f;
                 jumpScript.enabled = true;
                 break;
             case "dash":
-                rColor = 255;
-                bColor = 255;
+                rColor = 1f;
+                bColor = 1f;
                 dashScript.enabled = true;
                 break;
             case "j_wallJump":
                 wallJumpScript.enabled = true;
                 break;
-            case "j_doubleJump":
-                doubleJumpScript.enabled = true;
-                break;
-            // case "d_heavyDash":
-            //     heavyDashScript.enabled = true;
+            // case "j_doubleJump":
+            //     doubleJumpScript.enabled = true;
             //     break;
+            case "d_heavyDash":
+                heavyDashScript.enabled = true;
+                break;
             // case "d_blink":
             //     blinkScript.enabled = true;
             //     break;
@@ -95,12 +95,12 @@ public class SkillsManagement : MonoBehaviour
             case "j_wallJump":
                 dashScript.enabled = false;
                 break;
-            case "j_doubleJump":
-                doubleJumpScript.enabled = false;
-                break;
-            // case "d_heavyDash":
-            //     heavyDashScript.enabled = false;
+            // case "j_doubleJump":
+            //     doubleJumpScript.enabled = false;
             //     break;
+            case "d_heavyDash":
+                heavyDashScript.enabled = false;
+                break;
             // case "d_blink":
             //     blinkScript.enabled = false;
             //     break;
@@ -122,12 +122,12 @@ public class SkillsManagement : MonoBehaviour
             case "j_wallJump":
                 dashScript.enabled = true;
                 break;
-            case "j_doubleJump":
-                doubleJumpScript.enabled = false;
-                break;
-            // case "d_heavyDash":
-            //     heavyDashScript.enabled = false;
+            // case "j_doubleJump":
+            //     doubleJumpScript.enabled = false;
             //     break;
+            case "d_heavyDash":
+                heavyDashScript.enabled = false;
+                break;
             // case "d_blink":
             //     blinkScript.enabled = false;
             //     break;

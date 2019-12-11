@@ -4,12 +4,12 @@ using UB.Simple2dWeatherEffects.Standard;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using XInputDotNetPure;
 
 public class TransitionToNextLevel : MonoBehaviour
 {
-    string sceneToLoadName = "";
+    [SerializeField] string sceneToLoadName = "";
     int currentSceneIndex;
-
     Camera cam;
     GameObject player;
     float fogTransitionDuration = 3.0f;
@@ -22,22 +22,28 @@ public class TransitionToNextLevel : MonoBehaviour
     float fadeDir = -1;
 
     bool fadeToBlack = false;
+    bool fogActivated = false;
 
     void Start()
     {
-        currentSceneIndex = int.Parse(SceneManager.GetActiveScene().name.Substring(5,1));
-        // Si le niveau en cours n'est pas le dernier
-        if (currentSceneIndex < GameManager.numberOfLevels)
-        {
-            // On définit le prochain niveau dans le nom du niveau à charger
-            sceneToLoadName = "Level" + (currentSceneIndex +1).ToString();
-        }
-
+        // currentSceneIndex = int.Parse(SceneManager.GetActiveScene().name.Substring(5,1));
         player = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         alpha = 0f;
         // fadeToBlack = true;
 
+    }
+
+    void Update()
+    {
+        if (fogActivated)
+        {
+            D2FogsPE[] fogs = cam.GetComponents<D2FogsPE>();
+            for(int i = 0; i < 2; i ++)
+            {
+                FogTransition(fogs[i], i);
+            }
+        }        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -51,10 +57,12 @@ public class TransitionToNextLevel : MonoBehaviour
             {
                 player.GetComponent<SkillsManagement>().LockSkillUse(skill);
             }
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             alpha = 0f;
             fadeToBlack = true;
             //Charger l'animation de transition d'écran
             StartCoroutine(DisplayFog());
+            StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextLevel")));
         }
     }
 
@@ -69,7 +77,6 @@ public class TransitionToNextLevel : MonoBehaviour
 
         if (fadeToBlack)
         {
-            Debug.Log("jej");
             alpha -= fadeDir * fadeSpeed * Time.deltaTime;
             alpha = Mathf.Clamp01(alpha);
             GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
@@ -78,13 +85,22 @@ public class TransitionToNextLevel : MonoBehaviour
         }
     }
 
+	public IEnumerator CancelVibration(float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		GamePad.SetVibration(0,0,0);
+	}
+    
     IEnumerator DisplayFog()
     {
+        fogActivated = true;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = true;
         }
         yield return new WaitForSeconds(fogTransitionDuration);
+
+        fogActivated = false;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = false;
@@ -96,7 +112,32 @@ public class TransitionToNextLevel : MonoBehaviour
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
         }
-        //Charger le prochain niveau
-        SceneManager.LoadScene(sceneToLoadName);
+    }
+
+    float currentTime = 0f;
+    float maxDensity;
+    float animationTime;
+    void FogTransition(D2FogsPE fogScript, int index) {
+        animationTime = fogTransitionDuration * 2.0f;
+        if (index == 0) maxDensity = 5f;
+        else if (index == 1) maxDensity = 3f;
+
+        if (currentTime <= (animationTime))
+        {
+            currentTime += Time.deltaTime;
+            fogScript.Density = Mathf.Lerp(0.2f, maxDensity, currentTime / animationTime);
+        }
+        else SceneManager.LoadScene(sceneToLoadName);
+
+        // else if (currentTime <= animationTime)
+        // {
+        //     currentTime += Time.deltaTime;
+        //     fogScript.Density = Mathf.Lerp(maxDensity, 0.2f, currentTime / animationTime);
+        // }
+        // else
+        // {
+        //     fogScript.Density = maxDensity;
+        //     currentTime = 0f;
+        // }
     }
 }

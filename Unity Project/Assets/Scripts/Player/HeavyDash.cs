@@ -47,7 +47,7 @@ public class HeavyDash : MonoBehaviour
         var VerticalInput = Input.GetAxisRaw("Vertical");
 
         // Récupération du dash
-        if (Jump.isGrounded && !dashingOnGround) dashAvailable = true;
+        if (GroundCheck.isGrounded && !dashingOnGround) dashAvailable = true;
 
         if (dashAvailable)
         {

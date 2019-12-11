@@ -16,7 +16,14 @@ public class PlayerMovement : MonoBehaviour
 
     // Utilisé pour bloquer le mouvement du personnage
 	public static bool lockMovement;
+    
     Animator playerAnimator;
+    public GameObject DeathParticles;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Use this for initialization 
     void Start()
@@ -33,12 +40,12 @@ public class PlayerMovement : MonoBehaviour
             //Gérer la direction de mouvement
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
-                transform.localScale = new Vector3(1, 1, 0);
+                transform.localScale = new Vector3(1, 1, 1);
                 playerDirection = 1;
             }
             if (Input.GetAxisRaw("Horizontal") < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 0);
+                transform.localScale = new Vector3(-1, 1, 1);
                 playerDirection = -1;
             }
 

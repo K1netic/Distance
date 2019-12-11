@@ -6,9 +6,19 @@ public class Specter : MonoBehaviour
 {
     [SerializeField] int specterIndex;
     [SerializeField] string associatedSkillName;
+    [SerializeField] GameObject associatedExit;
+    [SerializeField] GameObject otherSpecter;
 
     bool displayInteraction = false;
     GameObject player;
+
+    [SerializeField] bool tutorialSpecter = false; 
+
+    void Start()
+    {
+        if (!tutorialSpecter)
+            associatedExit.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -23,6 +33,11 @@ public class Specter : MonoBehaviour
                 player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
                 // Disparition du fantôme
                 this.gameObject.SetActive(false);
+                if (!tutorialSpecter)
+                {
+                    associatedExit.SetActive(true);
+                    otherSpecter.SetActive(false);
+                }
             }
         }
     }
