@@ -7,19 +7,62 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2634934677844326855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fa03e5d29c405541a3735ed3d8cf62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitBeforeStart: 0
-  timeBeforeStart: 0
-  node1: {fileID: 7858633638849407053}
-  node2: {fileID: 7858633638883367347}
+  Node1: {fileID: 0}
+  Node2: {fileID: 0}
+  startMovingType: 0
+  timeBeforeStopMoving: 1
+  threeNodesActivate: 0
   moveSpeed: 10
-  waitingTime: 0
-  inverseMovement: 0
-  fullVerticalMovement: 0
+--- !u!61 &983255544
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634934677844326855}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.2079139}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.8, y: 2.68}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 12.8, y: 0.6625068}
+  m_EdgeRadius: 0
+--- !u!114 &983255543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634934677844326855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4294ef0cc737be440988b48e6532e3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Node1: {fileID: 7858633638849407053}
+  Node2: {fileID: 7858633638883367347}
+  Node3: {fileID: 0}
+  startMovingType: 0
+  timeBeforeStopMoving: 1
+  threeNodesActivate: 0
+  moveSpeed: 10
 --- !u!1 &7858633638171946751
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +168,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 5304768160020914783, guid: 40ab2c0f71f09de4b87f8fdcb2e09d18,
+        type: 3}
+      propertyPath: m_TagString
+      value: MovingPlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 5304768160020914778, guid: 40ab2c0f71f09de4b87f8fdcb2e09d18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -179,11 +227,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304768160020914779, guid: 40ab2c0f71f09de4b87f8fdcb2e09d18,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5304768160020914779, guid: 40ab2c0f71f09de4b87f8fdcb2e09d18,
         type: 3}

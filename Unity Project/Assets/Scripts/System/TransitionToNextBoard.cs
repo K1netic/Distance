@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UB.Simple2dWeatherEffects.Standard;
 using UnityEngine;
@@ -11,10 +11,13 @@ public class TransitionToNextBoard : MonoBehaviour
     [SerializeField] Transform nextBoardSpawnPoint;
     float fogTransitionDuration = 0.75f;
     bool fogActivated = false;
+    GameObject spawnLight;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        spawnLight = player.transform.GetChild(0).gameObject;
+        spawnLight.SetActive(false);
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
     
@@ -27,7 +30,7 @@ public class TransitionToNextBoard : MonoBehaviour
             {
                 FogTransition(fogs[i], i);
             }
-        }        
+        }    
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -37,25 +40,24 @@ public class TransitionToNextBoard : MonoBehaviour
             //Bloquer les mouvements du joueur 
             PlayerMovement.lockMovement = true;
             player.GetComponent<Rigidbody2D>().isKinematic = true;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             //Bloquer l'utilisation de compétences
             foreach(string skill in SkillsManagement.skills)
             {
                 player.GetComponent<SkillsManagement>().LockSkillUse(skill);
             }
             //Charger l'animation de transition d'écran
-            StartCoroutine(DisplayFog());
+            StartCoroutine(Transition());
             //Vibrations
 		    StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextBoard")));
-            //Déplacer la caméra sur le nouveau tableau
-            cam.transform.position = new Vector3(cam.transform.position.x + 250, cam.transform.position.y, cam.transform.position.z);
-            //Déplacer le joueur sur le nouveau tableau
-            player.transform.position = new Vector3(nextBoardSpawnPoint.position.x, nextBoardSpawnPoint.position.y, 0);
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 
-    IEnumerator DisplayFog()
+    IEnumerator Transition()
     {
+        //Déplacer la caméra sur le nouveau tableau
+        cam.transform.position = new Vector3(cam.transform.position.x + 250, cam.transform.position.y, cam.transform.position.z);
+        //Afficher le brouillard
         fogActivated = true;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
@@ -77,6 +79,13 @@ public class TransitionToNextBoard : MonoBehaviour
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
         }
+        //Déplacer le joueur sur le nouveau tableau
+        player.transform.position = new Vector3(nextBoardSpawnPoint.position.x, nextBoardSpawnPoint.position.y, 0);
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        //FX de spawn
+        spawnLight.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        spawnLight.SetActive(false);
     }
 
 	public IEnumerator CancelVibration(float delay)

@@ -16,8 +16,10 @@ public class HeavyDash : MonoBehaviour
     bool dashingOnGround = false;
     Dash dashScript;
 
-    bool dashing = false;
     Animator playerAnimator;
+    [SerializeField] GameObject HeavyDashParticles;
+    [SerializeField] GameObject HeavyDashTrail;
+    [SerializeField] GameObject HeavyDashShockwave;
 
     void Awake()
     {
@@ -41,8 +43,7 @@ public class HeavyDash : MonoBehaviour
     }
 	
 	void Update () {
-
-        //Player direction for dash
+        //Direction de l'input pour le dash
         var HorizontalInput = Input.GetAxisRaw("Horizontal");
         var VerticalInput = Input.GetAxisRaw("Vertical");
 
@@ -55,10 +56,12 @@ public class HeavyDash : MonoBehaviour
             //Dash dans la direction du joueur s'il dash sans bouger
             if (Input.GetButtonDown("Dash") && (HorizontalInput == 0 && VerticalInput == 0))
             {
-				ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
+                ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
+                PopParticleWithoutKnowingDirection();
             }
 
-            if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0)
+            // Récupération du dash dans le cas d'une utilisation au sol
+            if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0 && GroundCheck.isGrounded)
             {
                 dashAvailable = false;
                 dashingOnGround = true;
@@ -69,36 +72,52 @@ public class HeavyDash : MonoBehaviour
             if (Input.GetButtonDown("Dash") && (VerticalInput > 0.0f))
             {
                 ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
+                PopParticleWithoutKnowingDirection();
             }
 
             //Dash droite
             if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
             {
                 ApplyDash(new Vector2(1, 0));
+                PopParticle(HeavyDashParticles, 0.5f, 0, -90);
+                PopParticle(HeavyDashTrail, 0.5f, 0, -90);
+                PopParticle(HeavyDashShockwave, 4f, 0, -90);
             }
 
             //Dash gauche
             if (Input.GetButtonDown("Dash") && (HorizontalInput < 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
             {
                 ApplyDash(new Vector2(-1, 0));
+                PopParticle(HeavyDashParticles, -0.5f, 0, 90);
+                PopParticle(HeavyDashTrail, -0.5f, 0, 90);
+                PopParticle(HeavyDashShockwave, -4f, 0, 90);
             }
 
             //Dash bas
             if (Input.GetButtonDown("Dash") && (VerticalInput < 0.0f && HorizontalInput > -0.30f && HorizontalInput < 0.30f))
             {
                 ApplyDash(new Vector2(0, -1));
+                PopParticle(HeavyDashParticles, 0f, -90, -90);
+                PopParticle(HeavyDashTrail, 0f, -90, -90);
+                PopParticle(HeavyDashShockwave, 0f, -90, -90);
             }
 
             //Dash bas-droite
             if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
             {
                 ApplyDash(new Vector2(1, -1));
+                PopParticle(HeavyDashParticles, 0f, -45, -90);
+                PopParticle(HeavyDashTrail, 0f, -45, -90);
+                PopParticle(HeavyDashShockwave, 0f, -45, -90);
             }
 
             //Dash bas-gauche
             if (Input.GetButtonDown("Dash") && (HorizontalInput < -0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
             {
                 ApplyDash(new Vector2(-1, -1));
+                PopParticle(HeavyDashParticles, 0f, -135, -90);
+                PopParticle(HeavyDashTrail, 0f, -135, -90);
+                PopParticle(HeavyDashShockwave, 0f, -135, -90);
             }
             #endregion
         }
@@ -114,7 +133,6 @@ public class HeavyDash : MonoBehaviour
         // rigid.velocity = Vector2.zero;
         rigid.velocity = direction * dashForce;
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("HeavyDash")));
-        dashing = true;
         Invoke("UnlockMovement", lockMovementDuration);
     }
 
@@ -125,7 +143,6 @@ public class HeavyDash : MonoBehaviour
         PlayerMovement.lockMovement = false;
 		rigid.gravityScale = localGravity;
 		rigid.velocity = Vector2.zero;
-        dashing = false;
     }
 
     void DashCooldown()
@@ -140,9 +157,36 @@ public class HeavyDash : MonoBehaviour
 		GamePad.SetVibration(0,0,0);
 	}
 
+    void PopParticle(GameObject particleToPop, float xPosition, float xRotationAngle, float yRotationAngle)
+    {
+        GameObject instantiated = Instantiate(particleToPop,new Vector3(gameObject.transform.position.x + xPosition, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
+        instantiated.transform.Rotate(new Vector3(xRotationAngle,yRotationAngle,0),Space.Self);
+        if (particleToPop != HeavyDashShockwave) instantiated.transform.parent = gameObject.transform;
+        instantiated.transform.localScale = new Vector3(1,1,1);
+        instantiated.GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color ;//new Color(gameObject.GetComponent<SpriteRenderer>().color.r, gameObject.GetComponent<SpriteRenderer>().color.g, gameObject.GetComponent<SpriteRenderer>().color.b, gameObject.GetComponent<SpriteRenderer>().color.a);
+        Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
+    }
+
+    void PopParticleWithoutKnowingDirection()
+    {
+        if (PlayerMovement.playerDirection == 1) 
+        {
+            PopParticle(HeavyDashParticles, 0.5f, 0, -90);
+            PopParticle(HeavyDashTrail, 0.5f, 0, -90);
+            PopParticle(HeavyDashShockwave, 4f, 0, -90);
+        }
+
+        else if (PlayerMovement.playerDirection == -1)
+        {
+            PopParticle(HeavyDashParticles, -0.5f, 0, 90);
+            PopParticle(HeavyDashTrail, -0.5f, 0, 90);
+            PopParticle(HeavyDashShockwave, -4f, 0, 90);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Pushable" && dashing)
+        if (other.gameObject.tag == "Pushable" && playerAnimator.GetBool("dashing"))
         {
             other.gameObject.GetComponent<PushableObject>().Pushed();
         }

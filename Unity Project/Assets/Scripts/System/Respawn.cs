@@ -16,11 +16,6 @@ public class Respawn : MonoBehaviour
         }
     }
 
-    public void SendFeedbacks()
-	{
-		StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
-	}
-
 	public IEnumerator CancelVibration(float delay)
 	{
 		yield return new WaitForSeconds (delay);
@@ -29,16 +24,37 @@ public class Respawn : MonoBehaviour
 
     IEnumerator RespawnPlayer(GameObject player)
     {
-        SendFeedbacks();
-        playerAnimator = player.gameObject.GetComponent<Animator>();
-        GameObject particles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
-        playerAnimator.SetBool("dead", true);
-        Instantiate(particles, player.transform.position, new Quaternion(0,0,0,0));
-        yield return new WaitForSeconds(GameManager.timeBeforeRespawn);
-        playerAnimator.SetBool("dead", false);
-        // Destroy(particles);
-        // playerAnimator.SetBool("respawn", true);
+        //Vibrations
+        StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
+        //Arrêter le mouvement
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        //Animations
+        playerAnimator = player.gameObject.GetComponent<Animator>();
+        playerAnimator.SetBool("dead", true);
+        //Particules
+        GameObject DeathParticles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
+        GameObject RespawnParticles = player.gameObject.GetComponent<PlayerMovement>().RespawnParticles;
+        GameObject instantiatedDeathParticles = Instantiate(DeathParticles, player.transform.position, new Quaternion(0,0,0,0));
+
+        yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
+
+        GameObject instantiatedRespawnParticles = Instantiate(RespawnParticles, spawnPoint.transform.position, new Quaternion(0,0,0,0));
+
+        yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
+
+        playerAnimator.SetBool("dead", false);
+        //Déplacer le personnage au point de respawn
         player.transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y);
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.GetComponent<Rigidbody2D>().isKinematic = true;
+
+        yield return new WaitForSeconds(0.2f);
+        //Redonner la capacité de bouger
+        player.GetComponent<Rigidbody2D>().isKinematic = false;
+
+        yield return new WaitForSeconds(0.8f);
+        //Détruire les particules instanciées
+        Destroy(instantiatedDeathParticles);
+        Destroy(instantiatedRespawnParticles);
     }
 }

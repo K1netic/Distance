@@ -2,115 +2,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class MovingPlatform : MonoBehaviour {
 
-    [SerializeField]
-    bool waitBeforeStart;
-    [SerializeField]
-    float timeBeforeStart;
-    [SerializeField]
-    GameObject node1;
-    [SerializeField]
-    GameObject node2;
-    [SerializeField]
-    float moveSpeed;
-    [SerializeField]
-    float waitingTime;
-    [SerializeField]
-    bool inverseMovement;
-    [SerializeField]
-    bool fullVerticalMovement;
+	[SerializeField] GameObject Node1;
+	[SerializeField] GameObject Node2;
 
-    Vector2 target;
-    Vector2 node1pos;
-    Vector2 node2pos;
+    enum startMoving
+	{
+		ON_START,
+		ON_TRIGGER
+	}
+	[SerializeField] startMoving startMovingType;
+    [SerializeField] float timeBeforeStopMoving = 1;
+    [SerializeField] bool threeNodesActivate;
+	[SerializeField] float moveSpeed;
+	float step;
+	Vector2 target;
+	bool triggered = false;
+	
+	// Update is called once per frame
+	void FixedUpdate () 
+	{
+		step = moveSpeed * Time.fixedDeltaTime;
 
-    Rigidbody2D rigid;
+		switch(startMovingType)
+		{
+		case startMoving.ON_START:
+			ChooseTargetAndMove ();
+			break;
+		case startMoving.ON_TRIGGER:
+			if (triggered) 
+			{
+				ChooseTargetAndMove ();
+			}
+			break;
+		}
+	}
 
-    bool waiting;
-    bool startMoving;
+	void ChooseTargetAndMove()
+	{
+        if ((Vector2)this.transform.position == (Vector2)Node1.transform.position)
+            target = (Vector2)Node2.transform.position;
+        else if ((Vector2)this.transform.position == (Vector2)Node2.transform.position)
+            target = (Vector2)Node1.transform.position;
+        this.transform.position = Vector2.MoveTowards(this.transform.position, target, step);
+	}
 
-    float timer;
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if(other.gameObject.tag == "Player")
+        {
+            if(!triggered)
+                triggered = true;
+            if(other.transform.parent != this.transform)
+                other.transform.parent = this.transform;
+        }	
+	}
 
-    private void Start()
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if(other.gameObject.tag == "Player")
+        {
+            Invoke("StopMoving", timeBeforeStopMoving);
+            other.transform.parent = null;
+        }
+	}
+    
+    void StopMoving()
     {
-        if (fullVerticalMovement)
-        {
-            if (node1.transform.position.y < node2.transform.position.y)
-            {
-                node1pos = (Vector2)node1.transform.position;
-                node2pos = (Vector2)node2.transform.position;
-            }
-            else
-            {
-                node1pos = (Vector2)node2.transform.position;
-                node2pos = (Vector2)node1.transform.position;
-            }
-        }
-        else
-        {
-            if (node1.transform.position.x < node2.transform.position.x)
-            {
-                node1pos = (Vector2)node1.transform.position;
-                node2pos = (Vector2)node2.transform.position;
-            }
-            else
-            {
-                node1pos = (Vector2)node2.transform.position;
-                node2pos = (Vector2)node1.transform.position;
-            }
-        }
-
-        if (!inverseMovement)
-            target = node1pos - (Vector2)transform.position;
-        else
-            target = node2pos - (Vector2)transform.position;
-
-        rigid = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        if (waitBeforeStart)
-        {
-            timer += Time.deltaTime;
-            if(timer > timeBeforeStart)
-                waitBeforeStart = false;
-        }
-        else
-        {
-            if (fullVerticalMovement)
-            {
-                if (transform.position.y > node1pos.y && transform.position.y < node2pos.y && startMoving)
-                    startMoving = false;
-                if (transform.position.y <= node1pos.y && !startMoving && !waiting)
-                    StartCoroutine(NewTarget(node2pos));
-                else if (transform.position.y >= node2pos.y && !startMoving && !waiting)
-                    StartCoroutine(NewTarget(node1pos));
-            }
-            else
-            {
-                if (transform.position.x > node1pos.x && transform.position.x < node2pos.x && startMoving)
-                    startMoving = false;
-                if (transform.position.x <= node1pos.x && !startMoving && !waiting)
-                    StartCoroutine(NewTarget(node2pos));
-                else if (transform.position.x >= node2pos.x && !startMoving && !waiting)
-                    StartCoroutine(NewTarget(node1pos));
-            }
-            if (!waiting && rigid.velocity == Vector2.zero)
-                rigid.velocity = moveSpeed * target.normalized;
-        }
-    }
-
-    IEnumerator NewTarget(Vector2 targetPos)
-    {
-        waiting = true;
-        rigid.velocity = Vector2.zero;
-        target = targetPos - (Vector2)transform.position;
-        yield return new WaitForSeconds(waitingTime);
-        startMoving = true;
-        waiting = false;
+        triggered = false;
     }
 }
-

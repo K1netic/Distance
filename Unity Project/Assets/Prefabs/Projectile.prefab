@@ -98,6 +98,8 @@ MonoBehaviour:
   smoothTime: 0.3
   xVelocity: 10
   direction: 1
+  respawnPoint: {fileID: 0}
+  projectileThrower: {fileID: 0}
 --- !u!50 &1734369556056244029
 Rigidbody2D:
   serializedVersion: 4
@@ -106,7 +108,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734369557322237445}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

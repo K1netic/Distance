@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     
     Animator playerAnimator;
     public GameObject DeathParticles;
+    public GameObject RespawnParticles;
 
     void Awake()
     {
