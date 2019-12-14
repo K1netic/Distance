@@ -9,6 +9,8 @@ public class Specter : MonoBehaviour
     [SerializeField] GameObject associatedExit;
     [SerializeField] GameObject otherSpecter;
 
+    [SerializeField] GameObject disappearParticles;
+
     bool displayInteraction = false;
     GameObject player;
 
@@ -32,12 +34,13 @@ public class Specter : MonoBehaviour
                 // Animation transfert de compétences
                 player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
                 // Disparition du fantôme
-                this.gameObject.SetActive(false);
+                PopParticle(disappearParticles);
                 if (!tutorialSpecter)
                 {
                     associatedExit.SetActive(true);
                     otherSpecter.SetActive(false);
                 }
+                gameObject.SetActive(false);
             }
         }
     }
@@ -49,5 +52,14 @@ public class Specter : MonoBehaviour
             displayInteraction = true;
             player = other.gameObject;
         }
+    }
+
+    void PopParticle(GameObject particleToPop)
+    {
+        GameObject instantiated = Instantiate(particleToPop,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
+        instantiated.transform.Rotate(new Vector3(0,0,0),Space.Self);
+        // instantiated.transform.parent = gameObject.transform;
+        instantiated.transform.localScale = new Vector3(1,1,1);
+        Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
     }
 }
