@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UB.Simple2dWeatherEffects.Standard;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelStart : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class LevelStart : MonoBehaviour
     GameObject player;
     float fogTransitionDuration = 2.0f;
     bool fogActivated = false;
+    string sceneName = "";
     
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,7 @@ public class LevelStart : MonoBehaviour
 
     void Update()
     {
+        sceneName = SceneManager.GetActiveScene().name;
         if (fogActivated)
         {
             D2FogsPE[] fogs = cam.GetComponents<D2FogsPE>();
@@ -40,6 +43,23 @@ public class LevelStart : MonoBehaviour
                 FogTransition(fogs[i], i);
             }
         }
+
+        // Jouer une musique en fonction du niveau
+        switch(sceneName)
+        {
+            case "TUTO":
+                MusicManager.triggerTutoMusic = true;
+                break;
+            case "D":
+                MusicManager.triggerDashMusic = true;
+                break;
+            case "J":
+                MusicManager.triggerJumpMusic = true;
+                break;
+            default :
+                break;
+        }
+
     }
 
     IEnumerator DisplayFog()

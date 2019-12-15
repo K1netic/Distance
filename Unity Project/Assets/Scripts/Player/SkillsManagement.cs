@@ -88,8 +88,17 @@ public class SkillsManagement : MonoBehaviour
 
         FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         characterSprite.color = new Color(rColor, gColor, bColor);
+        //Bloquer les mouvements du joueur 
+        PlayerMovement.lockMovement = true;
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        //Bloquer l'utilisation de compétences
+        foreach(string skill in SkillsManagement.skills)
+        {
+            LockSkillUse(skill);
+        }
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("NewSkillGain")));
         skills.Add(skillName);
+
     }
 
     public void LockSkillUse(string skillName)
@@ -159,5 +168,13 @@ public class SkillsManagement : MonoBehaviour
 	{
 		yield return new WaitForSeconds (delay);
 		GamePad.SetVibration(0,0,0);
+        //Débloquer les mouvements du joueur 
+        PlayerMovement.lockMovement = false;
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        //Bloquer l'utilisation de compétences
+        foreach(string skill in SkillsManagement.skills)
+        {
+            UnlockSkillUse(skill);
+        }
 	}
 }
