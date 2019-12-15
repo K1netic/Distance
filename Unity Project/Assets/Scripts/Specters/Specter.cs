@@ -8,6 +8,7 @@ public class Specter : MonoBehaviour
     [SerializeField] string associatedSkillName;
     [SerializeField] GameObject associatedExit;
     [SerializeField] GameObject otherSpecter;
+    Specter otherSpecterScript;
     [SerializeField] GameObject disappearParticles;
     [SerializeField] GameObject interactionButton;
     [SerializeField] GameObject bubble;
@@ -27,6 +28,8 @@ public class Specter : MonoBehaviour
     {
         if (!tutorialSpecter)
             associatedExit.SetActive(false);
+        if (!tutorialSpecter)
+            otherSpecterScript = otherSpecter.GetComponent<Specter>();
     }
 
     // Update is called once per frame

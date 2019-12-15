@@ -9,6 +9,7 @@ public class TransitionToNextBoard : MonoBehaviour
     Camera cam;
     GameObject player;
     [SerializeField] Transform nextBoardSpawnPoint;
+    [SerializeField] float newCameraPosition;
     float fogTransitionDuration = 0.75f;
     bool fogActivated = false;
     GameObject spawnLight;
@@ -59,7 +60,7 @@ public class TransitionToNextBoard : MonoBehaviour
     IEnumerator Transition()
     {
         //Déplacer la caméra sur le nouveau tableau
-        cam.transform.position = new Vector3(cam.transform.position.x + 250, cam.transform.position.y, cam.transform.position.z);
+        cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
         //Afficher le brouillard
         fogActivated = true;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
@@ -68,6 +69,7 @@ public class TransitionToNextBoard : MonoBehaviour
         }
 
         yield return new WaitForSeconds(fogTransitionDuration);
+        cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
 
         fogActivated = false;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
@@ -89,6 +91,7 @@ public class TransitionToNextBoard : MonoBehaviour
         spawnLight.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         spawnLight.SetActive(false);
+        // cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
     }
 
 	public IEnumerator CancelVibration(float delay)

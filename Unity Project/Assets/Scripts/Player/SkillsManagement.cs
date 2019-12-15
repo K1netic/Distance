@@ -41,11 +41,11 @@ public class SkillsManagement : MonoBehaviour
         {
             case "j_":
                 bColor = characterSprite.color.b - colorAmountToChange;
-                PopParticle(newSkillParticles, new Color(1,0,0,1));
+                StartCoroutine(PopNewSkillParticles(new Color(1,0,0,1)));
                 break;
             case "d_":
                 rColor = characterSprite.color.r - colorAmountToChange;
-                PopParticle(newSkillParticles, new Color(0,0,1,1));
+                StartCoroutine(PopNewSkillParticles(new Color(0,0,1,1)));
                 break;
             default:
                 rColor = 1f;
@@ -61,13 +61,13 @@ public class SkillsManagement : MonoBehaviour
                 rColor = 1;
                 bColor = 0.5f;
                 jumpScript.enabled = true;
-                PopParticle(newSkillParticles, new Color(1,0,0,1));
+                StartCoroutine(PopNewSkillParticles(new Color(1,0,0,1)));
                 break;
             case "dash":
                 rColor = 1f;
                 bColor = 1f;
                 dashScript.enabled = true;
-                PopParticle(newSkillParticles, new Color(0,0,1,1));
+                StartCoroutine(PopNewSkillParticles(new Color(0,0,1,1)));
                 break;
             case "j_wallJump":
                 wallJumpScript.enabled = true;
@@ -86,19 +86,15 @@ public class SkillsManagement : MonoBehaviour
                 break;
         }
 
+        skills.Add(skillName);
         FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         characterSprite.color = new Color(rColor, gColor, bColor);
         //Bloquer les mouvements du joueur 
         PlayerMovement.lockMovement = true;
         gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-        //Bloquer l'utilisation de compétences
-        foreach(string skill in SkillsManagement.skills)
-        {
-            LockSkillUse(skill);
-        }
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("NewSkillGain")));
-        skills.Add(skillName);
-
+        StartCoroutine(UnlockMove());
     }
 
     public void LockSkillUse(string skillName)
@@ -155,6 +151,13 @@ public class SkillsManagement : MonoBehaviour
         }
     }
 
+    IEnumerator PopNewSkillParticles(Color color)
+    {
+        PopParticle(newSkillParticles.transform.GetChild(0).gameObject, color);
+        yield return new WaitForSeconds(0.4f);
+        PopParticle(newSkillParticles.transform.GetChild(1).gameObject, color);
+    }
+
     void PopParticle(GameObject particleToPop, Color newColor)
     {
         GameObject instantiated = Instantiate(particleToPop,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
@@ -168,13 +171,14 @@ public class SkillsManagement : MonoBehaviour
 	{
 		yield return new WaitForSeconds (delay);
 		GamePad.SetVibration(0,0,0);
+        
+	}
+
+    IEnumerator UnlockMove()
+    {
+        yield return new WaitForSeconds(0.4f);
         //Débloquer les mouvements du joueur 
         PlayerMovement.lockMovement = false;
         gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-        //Bloquer l'utilisation de compétences
-        foreach(string skill in SkillsManagement.skills)
-        {
-            UnlockSkillUse(skill);
-        }
-	}
+    }
 }

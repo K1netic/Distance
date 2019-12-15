@@ -141,7 +141,7 @@ public class HeavyDash : MonoBehaviour
     }
 
     //Reset the gravity and the velocity, and let the player move again
-    void UnlockMovement()
+    public void UnlockMovement()
     {
         playerAnimator.SetBool("dashing", false);
         PlayerMovement.lockMovement = false;
