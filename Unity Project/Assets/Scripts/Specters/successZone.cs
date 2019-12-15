@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class successZone : MonoBehaviour
+public class SuccessZone : MonoBehaviour
 {
     [SerializeField] Specter specter;
     void OnTriggerEnter2D(Collider2D other)

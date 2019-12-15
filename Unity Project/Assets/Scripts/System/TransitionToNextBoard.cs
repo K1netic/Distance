@@ -50,6 +50,7 @@ public class TransitionToNextBoard : MonoBehaviour
             StartCoroutine(Transition());
             //Vibrations
 		    StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextBoard")));
+            //SOUND : Changement Tableau
         }
     }
 

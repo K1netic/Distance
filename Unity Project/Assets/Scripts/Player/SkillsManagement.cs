@@ -81,6 +81,7 @@ public class SkillsManagement : MonoBehaviour
                 break;
         }
 
+        //SOUND : Gain Compétence
         characterSprite.color = new Color(rColor, gColor, bColor);
         skills.Add(skillName);
     }

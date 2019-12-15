@@ -63,6 +63,7 @@ public class TransitionToNextLevel : MonoBehaviour
             //Charger l'animation de transition d'écran
             StartCoroutine(DisplayFog());
             StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextLevel")));
+            //SOUND : Changement Niveau
         }
     }
 

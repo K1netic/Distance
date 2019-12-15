@@ -52,6 +52,7 @@ public class WallJump : MonoBehaviour
             Invoke("UnlockLeftWallCheck", lockWallCheckDuration);
             isOnLeftWall = false;
             PopParticle(-1.25f);
+            //SOUND : WallJump
         }
 
         //Saut vers la gauche en étant collé à un mur à droite
@@ -62,6 +63,7 @@ public class WallJump : MonoBehaviour
             Invoke("UnlockRightWallCheck", lockWallCheckDuration);
             isOnRightWall = false;
             PopParticle(1.25f);
+            //SOUND : WallJump
         }
     }
 

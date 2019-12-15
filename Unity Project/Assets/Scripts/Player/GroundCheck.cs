@@ -37,6 +37,7 @@ public class GroundCheck : MonoBehaviour
 			playerAnimator.SetBool("jumping", false);
 			playerAnimator.SetBool("falling", false);
         	StartCoroutine(CancelVibration (Vibrations.PlayVibration("FallingOnFloor")));
+			//SOUND : Recovery Sol
 			floorTest = true;
 		}
         

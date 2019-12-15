@@ -35,10 +35,12 @@ public class Respawn : MonoBehaviour
         GameObject DeathParticles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
         GameObject RespawnParticles = player.gameObject.GetComponent<PlayerMovement>().RespawnParticles;
         GameObject instantiatedDeathParticles = Instantiate(DeathParticles, player.transform.position, new Quaternion(0,0,0,0));
+        //SOUND : Mort joueur
 
         yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
         GameObject instantiatedRespawnParticles = Instantiate(RespawnParticles, spawnPoint.transform.position, new Quaternion(0,0,0,0));
+        //SOUND : Respawn Joueur
 
         yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 

@@ -24,6 +24,7 @@ public class Jump : MonoBehaviour {
         if (GroundCheck.isGrounded && Input.GetButtonDown("Jump") && rigid.velocity.y < jumpVelocityThreshold)
 		{
 			playerAnimator.SetBool("jumping", true);
+			//SOUND : Jump normal
 			// float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
 			StartCoroutine(RefreshFloorTest());

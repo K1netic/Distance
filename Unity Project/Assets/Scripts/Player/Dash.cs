@@ -116,6 +116,7 @@ public class Dash : MonoBehaviour {
         rigid.velocity = direction * dashForce;
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("Dash")));
         Invoke("UnlockMovement", lockMovementDuration);
+        //SOUND : Dash Normal
     }
 
     //Reset the gravity and the velocity, and let the player move again

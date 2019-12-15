@@ -45,6 +45,7 @@ public class Specter : MonoBehaviour
 
     IEnumerator SpecterInteraction()
     {
+        //SOUND : Interaction Fantôme
         interactionButton.SetActive(false);
         // Animation transfert de compétences
         player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
@@ -60,6 +61,7 @@ public class Specter : MonoBehaviour
 
     IEnumerator SpecterDisappearance()
     {
+        //SOUND : Disparition Fantôme
         // Disparition du fantôme
         PopParticle(disappearParticles);
         bubble.GetComponent<Animator>().SetBool("disappeared", true);
