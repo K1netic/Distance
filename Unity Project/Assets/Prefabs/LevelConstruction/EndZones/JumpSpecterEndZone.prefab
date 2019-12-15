@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoadName: S
   fadeTexture: {fileID: 2800000, guid: ff6a100a075109a4497cffb5ec5dbd57, type: 3}
+  inputsound: event:/Events/ChangementNiveau
 --- !u!1 &8403381098860374701
 GameObject:
   m_ObjectHideFlags: 0
