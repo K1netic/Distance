@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5868306140724053988}
   m_Layer: 0
-  m_Name: JumpSpecter 1
+  m_Name: JumpSpecter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -635,6 +635,8 @@ MonoBehaviour:
   bubble: {fileID: 7604236958770353631}
   tutorialSpecter: 0
   testSucceed: 0
+  inputsoundSpecterTalk: event:/Events/InteractionFantome
+  inputsoundSpecterDisappear: event:/Events/DisparitionFantome
 --- !u!95 &4214090531139207431
 Animator:
   serializedVersion: 3

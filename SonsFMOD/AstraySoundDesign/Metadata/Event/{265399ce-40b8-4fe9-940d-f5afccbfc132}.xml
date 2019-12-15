@@ -92,6 +92,7 @@
 		<property name="length">
 			<value>6</value>
 		</property>
+		<property name="name" />
 		<relationship name="audioFile">
 			<destination>{13688b6d-5cd5-4c08-a809-657055f81354}</destination>
 		</relationship>
