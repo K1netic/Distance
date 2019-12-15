@@ -2518,15 +2518,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 2639684452036596958, guid: 6cbc8ee92816b6241b9b0c23b185db82,
-        type: 3}
-      propertyPath: nextBoardSpawnPoint
-      value: 
-      objectReference: {fileID: 320875686}
-    - target: {fileID: 2639684452036596928, guid: 6cbc8ee92816b6241b9b0c23b185db82,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 635845905, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2639684452036596931, guid: 6cbc8ee92816b6241b9b0c23b185db82,
         type: 3}
@@ -2548,6 +2542,16 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.7198142
       objectReference: {fileID: 0}
+    - target: {fileID: 2639684452036596928, guid: 6cbc8ee92816b6241b9b0c23b185db82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639684452036596958, guid: 6cbc8ee92816b6241b9b0c23b185db82,
+        type: 3}
+      propertyPath: nextBoardSpawnPoint
+      value: 
+      objectReference: {fileID: 320875686}
     - target: {fileID: 2639684453682565151, guid: 6cbc8ee92816b6241b9b0c23b185db82,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -2578,6 +2582,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -17.5
       objectReference: {fileID: 0}
+    - target: {fileID: 635845904, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2639684453682565150, guid: 6cbc8ee92816b6241b9b0c23b185db82,
         type: 3}
       propertyPath: m_Range
@@ -2592,14 +2600,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Intensity
       value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 635845905, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 635845904, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
@@ -9094,18 +9094,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 583725052}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &601959312 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6465660011396078313, guid: 09f0f929783d0b94399e077857048d3f,
-    type: 3}
-  m_PrefabInstance: {fileID: 561512787684220023}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05cb0439864bde941ac78b3c953a2575, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &636295463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11313,7 +11301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fe701a30d62294d97a91ab17260585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specter: {fileID: 601959312}
+  specter: {fileID: 0}
 --- !u!61 &1186462041
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12972,15 +12960,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2639684452036596958, guid: 6cbc8ee92816b6241b9b0c23b185db82,
-        type: 3}
-      propertyPath: nextBoardSpawnPoint
-      value: 
-      objectReference: {fileID: 2041064420}
-    - target: {fileID: 2639684452036596928, guid: 6cbc8ee92816b6241b9b0c23b185db82,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 635845905, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2639684452036596931, guid: 6cbc8ee92816b6241b9b0c23b185db82,
         type: 3}
@@ -12992,10 +12974,16 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 1.4763135
       objectReference: {fileID: 0}
-    - target: {fileID: 635845905, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+    - target: {fileID: 2639684452036596928, guid: 6cbc8ee92816b6241b9b0c23b185db82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2639684452036596958, guid: 6cbc8ee92816b6241b9b0c23b185db82,
+        type: 3}
+      propertyPath: nextBoardSpawnPoint
+      value: 
+      objectReference: {fileID: 2041064420}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
 --- !u!4 &1528209825 stripped
@@ -18869,15 +18857,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 2639684452036596958, guid: 6cbc8ee92816b6241b9b0c23b185db82,
-        type: 3}
-      propertyPath: nextBoardSpawnPoint
-      value: 
-      objectReference: {fileID: 375151749}
-    - target: {fileID: 2639684452036596928, guid: 6cbc8ee92816b6241b9b0c23b185db82,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 635845905, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2639684452036596931, guid: 6cbc8ee92816b6241b9b0c23b185db82,
         type: 3}
@@ -18889,6 +18871,16 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.2249285
       objectReference: {fileID: 0}
+    - target: {fileID: 2639684452036596928, guid: 6cbc8ee92816b6241b9b0c23b185db82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639684452036596958, guid: 6cbc8ee92816b6241b9b0c23b185db82,
+        type: 3}
+      propertyPath: nextBoardSpawnPoint
+      value: 
+      objectReference: {fileID: 375151749}
     - target: {fileID: 2639684453682565151, guid: 6cbc8ee92816b6241b9b0c23b185db82,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -18919,6 +18911,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -17.7
       objectReference: {fileID: 0}
+    - target: {fileID: 635845904, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2639684453682565150, guid: 6cbc8ee92816b6241b9b0c23b185db82,
         type: 3}
       propertyPath: m_Range
@@ -18933,14 +18929,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Intensity
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 635845905, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 635845904, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cbc8ee92816b6241b9b0c23b185db82, type: 3}
@@ -21548,37 +21536,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6282382284085072051, guid: 006c120e871b66044896e9292f6f139d,
         type: 3}
+    - target: {fileID: 2354263230399957894, guid: 56ce44235ab6c2b4291203e5818f2928,
+        type: 3}
+      propertyPath: inputSoundWood
+      value: event:/Player Interactions/MarcheBois
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354263230399957894, guid: 56ce44235ab6c2b4291203e5818f2928,
+        type: 3}
+      propertyPath: inputSoundGrass
+      value: event:/Player Interactions/MarcheTerre
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ce44235ab6c2b4291203e5818f2928, type: 3}
---- !u!1 &2394150488406585221 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2394270651698116672, guid: 56ce44235ab6c2b4291203e5818f2928,
-    type: 3}
-  m_PrefabInstance: {fileID: 2394150488406585220}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2394150488406585222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2394150488406585221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/Player Interactions/MarcheTerre
-  PlayEvent: 1
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 0
 --- !u!1001 &2426328189239940789
 PrefabInstance:
   m_ObjectHideFlags: 0
