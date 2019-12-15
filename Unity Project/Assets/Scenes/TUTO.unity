@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fe701a30d62294d97a91ab17260585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specter: {fileID: 2723923258476450525}
+  specter: {fileID: 7713920062092710295}
 --- !u!61 &63899606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 97985281}
   - component: {fileID: 97985283}
   - component: {fileID: 97985284}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 98564488}
   - component: {fileID: 98564490}
   - component: {fileID: 98564491}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1533,7 +1533,7 @@ GameObject:
   - component: {fileID: 197616467}
   - component: {fileID: 197616469}
   - component: {fileID: 197616470}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1635,7 +1635,7 @@ GameObject:
   - component: {fileID: 203433001}
   - component: {fileID: 203433004}
   - component: {fileID: 203433003}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9821,8 +9821,8 @@ GameObject:
   - component: {fileID: 759064295}
   - component: {fileID: 759064298}
   - component: {fileID: 759064297}
-  m_Layer: 8
-  m_Name: 5 (1)
+  m_Layer: 10
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12402,7 +12402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fe701a30d62294d97a91ab17260585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specter: {fileID: 7713920062092710295}
+  specter: {fileID: 2723923258476450525}
 --- !u!61 &1469280346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13104,7 +13104,7 @@ GameObject:
   - component: {fileID: 1555027308}
   - component: {fileID: 1555027310}
   - component: {fileID: 1555027311}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26222,6 +26222,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 0091a519a679668469859366ee4dc265, type: 2}
+    - target: {fileID: 2416914351260416510, guid: 56ce44235ab6c2b4291203e5818f2928,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2354329623072548998, guid: 56ce44235ab6c2b4291203e5818f2928,
         type: 3}
       propertyPath: m_Enabled

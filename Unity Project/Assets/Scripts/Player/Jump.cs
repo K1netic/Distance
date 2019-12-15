@@ -23,7 +23,7 @@ public class Jump : MonoBehaviour {
     void Update () {
 
         // Saut
-        if (GroundCheck.isGrounded && Input.GetButtonDown("Jump") && rigid.velocity.y < jumpVelocityThreshold)
+        if ((GroundCheck.isGrounded || GroundCheck.isOnGrass) && Input.GetButtonDown("Jump") && rigid.velocity.y < jumpVelocityThreshold)
 		{
 			playerAnimator.SetBool("jumping", true);
             FMODUnity.RuntimeManager.PlayOneShot(inputsound);

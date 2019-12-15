@@ -14,7 +14,8 @@ public class GroundCheck : MonoBehaviour
 	public LayerMask groundLayer;
     [FMODUnity.EventRef]
     public string inputsound;
-
+	public LayerMask grassLayer;
+	public static bool isOnGrass;
 
     void Start()
     {
@@ -24,17 +25,19 @@ public class GroundCheck : MonoBehaviour
     void Update()
     {
         // Test si le personnage est au sol
-        isGrounded = checkIfGrounded();
+        isGrounded = checkIfGrounded(groundLayer);
+		// Teste si le personnage marche sur de la terre
+		isOnGrass = checkIfGrounded(grassLayer);
 
         // Falling
-		if (!isGrounded) 
+		if (!isGrounded && !isOnGrass) 
 		{
 			playerAnimator.SetBool("falling", true);
 			StartCoroutine(RefreshFloorTest());
 		}
 
 		// Check if falling on floor
-		if (checkIfGrounded() && !floorTest)
+		if ((checkIfGrounded(groundLayer) || checkIfGrounded(grassLayer)) && !floorTest)
 		{
 			playerAnimator.SetBool("jumping", false);
 			playerAnimator.SetBool("falling", false);
@@ -42,10 +45,9 @@ public class GroundCheck : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot(inputsound);
             floorTest = true;
 		}
-        
     }
     
-    bool checkIfGrounded() 
+    bool checkIfGrounded(LayerMask layerToTest) 
 	{
 		Vector2 position = new Vector2(feetPos.position.x, feetPos.position.y);
 		Vector2 direction = Vector2.down;
@@ -53,8 +55,8 @@ public class GroundCheck : MonoBehaviour
 		Debug.DrawRay (new Vector2(position.x - groundDetectRange, position.y), direction * groundDetectDistance, Color.cyan);
 		Debug.DrawRay (new Vector2(position.x + groundDetectRange, position.y), direction * groundDetectDistance, Color.cyan);
 		//Raycasts
-		RaycastHit2D[] leftHits = Physics2D.RaycastAll(new Vector2(position.x - groundDetectRange, position.y), direction, groundDetectDistance, groundLayer);
-		RaycastHit2D[] rightHits = Physics2D.RaycastAll(new Vector2(position.x + groundDetectRange, position.y), direction, groundDetectDistance, groundLayer);
+		RaycastHit2D[] leftHits = Physics2D.RaycastAll(new Vector2(position.x - groundDetectRange, position.y), direction, groundDetectDistance, layerToTest);
+		RaycastHit2D[] rightHits = Physics2D.RaycastAll(new Vector2(position.x + groundDetectRange, position.y), direction, groundDetectDistance, layerToTest);
 
 		for (int i = 0; i < leftHits.Length; i++)
 		{

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float topSpeed = 20f;
     [SerializeField] float decelerationSmoothTime = 0.1f;
     float xVelocity = 0.0f;
+    [FMODUnity.EventRef] public string inputSoundWood;
+    [FMODUnity.EventRef] public string inputSoundGrass;
 
     Rigidbody2D rigid;
 
@@ -20,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     Animator playerAnimator;
     public GameObject DeathParticles;
     public GameObject RespawnParticles;
+
+    bool moving = false;
 
     void Awake()
     {
@@ -31,6 +35,19 @@ public class PlayerMovement : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         playerAnimator = gameObject.GetComponent<Animator>();
+        InvokeRepeating("CallFootsteps", 0, 0.2f);
+    }
+
+    void CallFootsteps()
+    {
+        if (moving)
+        {
+            if (GroundCheck.isGrounded)
+                FMODUnity.RuntimeManager.PlayOneShot(inputSoundWood);
+            else if (GroundCheck.isOnGrass)
+                FMODUnity.RuntimeManager.PlayOneShot(inputSoundGrass);
+            
+        }
     }
 
     // Update is called once per frame 
@@ -56,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimator.SetBool("running", true);
                 float acceleration = Mathf.SmoothDamp(0, playerDirection * topSpeed, ref xVelocity, accelerationSmoothTime, topSpeed);
                 rigid.velocity = new Vector2(acceleration, rigid.velocity.y);
+                moving = true;
             }
 
             //Arrêter le mouvement du personnage quand l'input est relâché (DECELERATION)
@@ -64,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimator.SetBool("running", false);
                 float deceleration = Mathf.SmoothDamp(rigid.velocity.x, 0, ref xVelocity, decelerationSmoothTime, topSpeed);
                 rigid.velocity = new Vector2(deceleration, rigid.velocity.y);
+                moving = false;
             }
         }
     }
