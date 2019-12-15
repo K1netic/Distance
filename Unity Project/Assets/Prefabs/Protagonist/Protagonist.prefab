@@ -108,7 +108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1798871609
 Transform:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 1006430338848709}
   - component: {fileID: 1006430338848710}
   m_Layer: 10
-  m_Name: Protagonist 1
+  m_Name: Protagonist
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,13 +304,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2394270651698116672}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e882d061b40c44390fc5bafc236d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 70
   jumpVelocityThreshold: 15
+  inputsound: event:/Player Interactions/Saut
 --- !u!114 &2354263230399957894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +338,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2394270651698116672}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88e462876369a624583dc33d6d3b4871, type: 3}
   m_Name: 
@@ -350,6 +351,7 @@ MonoBehaviour:
     type: 3}
   DashTrail: {fileID: 8406504499633238086, guid: fa1e77d64183b6a4681fe4007df98701,
     type: 3}
+  inputsound: event:/Player Interactions/Dash
 --- !u!61 &2441327076288323454
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -564,6 +566,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef047de97a4bd3b4abc61542e710c48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HeavyDashParticles: {fileID: 4279697298362378454, guid: 69618e794de5e1440b14fc98cc4c99c5,
+    type: 3}
+  HeavyDashTrail: {fileID: 205101813986860819, guid: e3756ff72f78ffc409d523e96307411b,
+    type: 3}
+  HeavyDashShockwave: {fileID: 6629715829845813505, guid: 9c483889ca82cfa479c70ec4a2b54242,
+    type: 3}
+  inputsound: event:/Player Interactions/HeavyDash
 --- !u!114 &2394150489523585507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +588,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
+  inputsound: event:/Player Interactions/RebondMur
   JumpRing: {fileID: 5664975291283169563, guid: ff355ee76d7199b40a25534f86220091,
     type: 3}
 --- !u!114 &2394150489523585518
@@ -597,6 +607,9 @@ MonoBehaviour:
   wallJumpScript: {fileID: 2394150489523585507}
   dashScript: {fileID: 2354875169527554554}
   heavyDashScript: {fileID: 2394150489523585505}
+  newSkillParticles: {fileID: 6282382284085072051, guid: 006c120e871b66044896e9292f6f139d,
+    type: 3}
+  inputsound: "event:/Events/GainComp\xE9tence"
 --- !u!114 &1006430338848709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,6 +640,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  inputsound: event:/Player Interactions/RecoverySol
 --- !u!1 &2394925971628894990
 GameObject:
   m_ObjectHideFlags: 0

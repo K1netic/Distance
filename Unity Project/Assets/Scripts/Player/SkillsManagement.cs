@@ -21,6 +21,8 @@ public class SkillsManagement : MonoBehaviour
 
     public static List<string> skills = new List<string>();
     float colorAmountToChange = 0.25f;
+    [FMODUnity.EventRef]
+    public string inputsound;
 
     void Start()
     {
@@ -84,7 +86,7 @@ public class SkillsManagement : MonoBehaviour
                 break;
         }
 
-        //SOUND : Gain Compétence
+        FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         characterSprite.color = new Color(rColor, gColor, bColor);
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("NewSkillGain")));
         skills.Add(skillName);

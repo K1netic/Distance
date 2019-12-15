@@ -12,6 +12,8 @@ public class GroundCheck : MonoBehaviour
 	float groundDetectRange = 0.8f;
 	public Transform feetPos;
 	public LayerMask groundLayer;
+    [FMODUnity.EventRef]
+    public string inputsound;
 
 
     void Start()
@@ -37,8 +39,8 @@ public class GroundCheck : MonoBehaviour
 			playerAnimator.SetBool("jumping", false);
 			playerAnimator.SetBool("falling", false);
         	StartCoroutine(CancelVibration (Vibrations.PlayVibration("FallingOnFloor")));
-			//SOUND : Recovery Sol
-			floorTest = true;
+            FMODUnity.RuntimeManager.PlayOneShot(inputsound);
+            floorTest = true;
 		}
         
     }

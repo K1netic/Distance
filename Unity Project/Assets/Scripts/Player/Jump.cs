@@ -9,8 +9,10 @@ public class Jump : MonoBehaviour {
 	[SerializeField] public float jumpForce = 70f;
 	float yVelocity = 0f;
 	[SerializeField] float jumpVelocityThreshold = 15f;
+    [FMODUnity.EventRef]
+    public string inputsound;
 
-	Animator playerAnimator;
+    Animator playerAnimator;
 
     private void Start()
     {
@@ -24,8 +26,8 @@ public class Jump : MonoBehaviour {
         if (GroundCheck.isGrounded && Input.GetButtonDown("Jump") && rigid.velocity.y < jumpVelocityThreshold)
 		{
 			playerAnimator.SetBool("jumping", true);
-			//SOUND : Jump normal
-			// float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
+            FMODUnity.RuntimeManager.PlayOneShot(inputsound);
+            // float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
 			StartCoroutine(RefreshFloorTest());
 		}

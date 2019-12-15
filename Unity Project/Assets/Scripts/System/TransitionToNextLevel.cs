@@ -23,6 +23,8 @@ public class TransitionToNextLevel : MonoBehaviour
 
     bool fadeToBlack = false;
     bool fogActivated = false;
+    [FMODUnity.EventRef]
+    public string inputsound;
 
     void Start()
     {
@@ -63,7 +65,7 @@ public class TransitionToNextLevel : MonoBehaviour
             //Charger l'animation de transition d'écran
             StartCoroutine(DisplayFog());
             StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextLevel")));
-            //SOUND : Changement Niveau
+            FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         }
     }
 

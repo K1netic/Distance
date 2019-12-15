@@ -12,6 +12,8 @@ public class TransitionToNextBoard : MonoBehaviour
     float fogTransitionDuration = 0.75f;
     bool fogActivated = false;
     GameObject spawnLight;
+    [FMODUnity.EventRef]
+    public string inputsound;
 
     void Start()
     {
@@ -50,7 +52,7 @@ public class TransitionToNextBoard : MonoBehaviour
             StartCoroutine(Transition());
             //Vibrations
 		    StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextBoard")));
-            //SOUND : Changement Tableau
+            FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         }
     }
 

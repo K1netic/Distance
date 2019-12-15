@@ -17,6 +17,8 @@ public class WallJump : MonoBehaviour
     float lockWallCheckDuration = 0.75f;
     bool lockLeftWallCheck = false;
     bool lockRightWallCheck = false;
+    [FMODUnity.EventRef]
+    public string inputsound;
 
     [SerializeField] GameObject JumpRing;
 
@@ -63,7 +65,7 @@ public class WallJump : MonoBehaviour
             Invoke("UnlockRightWallCheck", lockWallCheckDuration);
             isOnRightWall = false;
             PopParticle(1.25f);
-            //SOUND : WallJump
+            FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         }
     }
 

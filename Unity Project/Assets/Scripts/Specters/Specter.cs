@@ -18,6 +18,10 @@ public class Specter : MonoBehaviour
     [SerializeField] bool tutorialSpecter = false; 
     public bool testSucceed = false;
     bool interacted = false;
+    [FMODUnity.EventRef]
+    public string inputsoundSpecterTalk;
+    [FMODUnity.EventRef]
+    public string inputsoundSpecterDisappear;
 
     void Start()
     {
@@ -45,7 +49,7 @@ public class Specter : MonoBehaviour
 
     IEnumerator SpecterInteraction()
     {
-        //SOUND : Interaction Fantôme
+        FMODUnity.RuntimeManager.PlayOneShot(inputsoundSpecterTalk);
         interactionButton.SetActive(false);
         // Animation transfert de compétences
         player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
@@ -61,7 +65,7 @@ public class Specter : MonoBehaviour
 
     IEnumerator SpecterDisappearance()
     {
-        //SOUND : Disparition Fantôme
+        FMODUnity.RuntimeManager.PlayOneShot(inputsoundSpecterDisappear);
         // Disparition du fantôme
         PopParticle(disappearParticles);
         bubble.GetComponent<Animator>().SetBool("disappeared", true);

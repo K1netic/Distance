@@ -19,8 +19,10 @@ public class Dash : MonoBehaviour {
     Animator playerAnimator;
     [SerializeField] GameObject DashParticles;
     [SerializeField] GameObject DashTrail;
+    [FMODUnity.EventRef]
+    public string inputsound;
 
-	void Start () {
+    void Start () {
         rigid = GetComponent<Rigidbody2D>();
         localGravity = rigid.gravityScale;
         playerAnimator = gameObject.GetComponent<Animator>();
@@ -116,7 +118,7 @@ public class Dash : MonoBehaviour {
         rigid.velocity = direction * dashForce;
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("Dash")));
         Invoke("UnlockMovement", lockMovementDuration);
-        //SOUND : Dash Normal
+        FMODUnity.RuntimeManager.PlayOneShot(inputsound);
     }
 
     //Reset the gravity and the velocity, and let the player move again
