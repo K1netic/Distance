@@ -1,0 +1,401 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8161812449704890328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/RecoverySol
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/RecoverySol
+  guid: 80cbc37b209d0048a52d14012fe1f1db
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 125
+--- !u!114 &-2456774621114528565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/Lucas/Documents/FMOD Studio/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637120072688289642
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 317536
+  Exists: 1
+--- !u!114 &-293725581754915766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/Dash
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/Dash
+  guid: 5bf6d241ad43e845b642a61b7249b354
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1483
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 6956649334042659132}
+  - {fileID: -2456774621114528565}
+  EditorEvents:
+  - {fileID: 6378353547620549619}
+  - {fileID: 6300478428387041507}
+  - {fileID: 5238106518660290307}
+  - {fileID: 1730805799799874741}
+  - {fileID: -293725581754915766}
+  - {fileID: -8161812449704890328}
+  - {fileID: 6250712514742359907}
+  - {fileID: 305900653579345714}
+  - {fileID: 8335018256549442568}
+  - {fileID: 6270576212878891840}
+  - {fileID: 7789902367847158649}
+  - {fileID: 9077402405918107}
+  - {fileID: 2710034500474256478}
+  - {fileID: 8179424255116531157}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -2456774621114528565}
+  StringsBanks:
+  - {fileID: 6956649334042659132}
+  stringsBankWriteTime: 637120072688319685
+  cacheVersion: 3
+--- !u!114 &9077402405918107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/MortJoueur
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/MortJoueur
+  guid: e9820756f0cb154ebb07b87d194d6328
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
+--- !u!114 &305900653579345714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/MarcheBois
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/MarcheBois
+  guid: cdd25f3372289643a0b0918b860a1087
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 160
+--- !u!114 &1730805799799874741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/MarcheTerre
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/MarcheTerre
+  guid: 36d18809ab54dd49827461bd5bf784b9
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 180
+--- !u!114 &2710034500474256478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/HeavyDash
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/HeavyDash
+  guid: ec46cdcffb55194d84309b8667b15b8d
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1483
+--- !u!114 &5238106518660290307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/RebondMur
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/RebondMur
+  guid: 277e144d9864a24eb5cd42adcac7271f
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 203
+--- !u!114 &6250712514742359907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/DisparitionFantome
+  m_EditorClassIdentifier: 
+  Path: event:/Events/DisparitionFantome
+  guid: 83d3b62bf5fae642aeda8d249a8f2701
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1719
+--- !u!114 &6270576212878891840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/ChangementTableau
+  m_EditorClassIdentifier: 
+  Path: event:/Events/ChangementTableau
+  guid: dc904e1b121cbe45a2d6263deafb4f3f
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4000
+--- !u!114 &6300478428387041507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/InteractionFantome
+  m_EditorClassIdentifier: 
+  Path: event:/Events/InteractionFantome
+  guid: 2647d9012c403948b6c4992e16df60c6
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2625
+--- !u!114 &6378353547620549619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/Saut
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/Saut
+  guid: 11790a2b8e5a2846a41a75ce714e001e
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 203
+--- !u!114 &6956649334042659132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/Lucas/Documents/FMOD Studio/AstraySoundDesign/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637120072688319685
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1384
+  Exists: 1
+--- !u!114 &7789902367847158649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Interactions/Re-SpawnJoueur
+  m_EditorClassIdentifier: 
+  Path: event:/Player Interactions/Re-SpawnJoueur
+  guid: e0becac4af749b459f8714f53fc71ab4
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 500
+--- !u!114 &8179424255116531157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Events/GainComp\xE9tence"
+  m_EditorClassIdentifier: 
+  Path: "event:/Events/GainComp\xE9tence"
+  guid: edfc98fc4357234099ee0696784bab2d
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2375
+--- !u!114 &8335018256549442568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/ChangementNiveau
+  m_EditorClassIdentifier: 
+  Path: event:/Events/ChangementNiveau
+  guid: ce995326b840e94f940df5afccbfc132
+  Banks:
+  - {fileID: -2456774621114528565}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6000
