@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{a15fe79c-e7ff-409a-af66-54376fbaeddf}">
+		<property name="assetPath">
+			<value>WalkWood2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.3125170068027211</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{990c4652-ff02-4f1c-aa5e-aba370d79e00}</destination>
+		</relationship>
+	</object>
+</objects>

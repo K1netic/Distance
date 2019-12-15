@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 102853099260863197}
   m_Layer: 0
-  m_Name: DashSpecter 1
+  m_Name: DashSpecter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -538,6 +538,8 @@ MonoBehaviour:
   bubble: {fileID: 4150819359620821222}
   tutorialSpecter: 0
   testSucceed: 0
+  inputsoundSpecterTalk: event:/Events/InteractionFantome
+  inputsoundSpecterDisappear: event:/Events/DisparitionFantome
 --- !u!95 &7666943012370900030
 Animator:
   serializedVersion: 3

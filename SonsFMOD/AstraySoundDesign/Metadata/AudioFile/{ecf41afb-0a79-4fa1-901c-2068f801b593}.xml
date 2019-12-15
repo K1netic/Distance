@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{ecf41afb-0a79-4fa1-901c-2068f801b593}">
+		<property name="assetPath">
+			<value>Wall Jump.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.20312925170068027</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{990c4652-ff02-4f1c-aa5e-aba370d79e00}</destination>
+		</relationship>
+	</object>
+</objects>

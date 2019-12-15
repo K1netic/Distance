@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{e7c05954-29cb-4135-9f17-cde78c87ddda}">
+		<property name="assetPath">
+			<value>Dash Normal.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.4833560090702949</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{990c4652-ff02-4f1c-aa5e-aba370d79e00}</destination>
+		</relationship>
+	</object>
+</objects>

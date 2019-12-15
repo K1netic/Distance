@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{4d1feb7d-a969-4765-8148-b654eb3db6a4}">
+		<property name="assetPath">
+			<value>WalkMud2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.37501133786848073</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{990c4652-ff02-4f1c-aa5e-aba370d79e00}</destination>
+		</relationship>
+	</object>
+</objects>
