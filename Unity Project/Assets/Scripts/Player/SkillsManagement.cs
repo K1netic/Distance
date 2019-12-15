@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class SkillsManagement : MonoBehaviour
 {
@@ -60,11 +61,13 @@ public class SkillsManagement : MonoBehaviour
                 rColor = 1;
                 bColor = 0.5f;
                 jumpScript.enabled = true;
+                PopParticle(newSkillParticles, new Color(1,0,0,1));
                 break;
             case "dash":
                 rColor = 1f;
                 bColor = 1f;
                 dashScript.enabled = true;
+                PopParticle(newSkillParticles, new Color(0,0,1,1));
                 break;
             case "j_wallJump":
                 wallJumpScript.enabled = true;
@@ -85,6 +88,7 @@ public class SkillsManagement : MonoBehaviour
 
         FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         characterSprite.color = new Color(rColor, gColor, bColor);
+        StartCoroutine(CancelVibration (Vibrations.PlayVibration("NewSkillGain")));
         skills.Add(skillName);
     }
 
@@ -150,4 +154,10 @@ public class SkillsManagement : MonoBehaviour
         // instantiated.GetComponent<ParticleSystem>().startColor = color;
         Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
     }
+
+    public IEnumerator CancelVibration(float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		GamePad.SetVibration(0,0,0);
+	}
 }

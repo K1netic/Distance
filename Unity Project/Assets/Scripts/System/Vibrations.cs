@@ -54,13 +54,16 @@ public class Vibrations : MonoBehaviour {
 			GamePad.SetVibration (0, 0, Vibrations.lightVibration);
 			duration = Vibrations.shortVibrationDuration;
 			return duration;
-		//Done
 		case "Death":
 			ScreenShake.Instance.ApplyScreenShake (0.2f, 1f);
 			GamePad.SetVibration (0, Vibrations.mediumRumble, 0);
 			duration = Vibrations.mediumVibrationDuration;
 			return duration;
-		
+		case "NewSkillGain":
+			ScreenShake.Instance.ApplyScreenShake (0.1f, 1f);
+			GamePad.SetVibration (0, Vibrations.lightRumble, Vibrations.mediumVibration);
+			duration = Vibrations.mediumVibrationDuration;
+			return duration;
 		default:
 			return 0f;
 		}
