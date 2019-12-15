@@ -16,6 +16,8 @@ public class SkillsManagement : MonoBehaviour
     [SerializeField] HeavyDash heavyDashScript;
     // [SerializeField] Blink blinkScript;
 
+    [SerializeField] GameObject newSkillParticles;
+
     public static List<string> skills = new List<string>();
     float colorAmountToChange = 0.25f;
 
@@ -36,10 +38,11 @@ public class SkillsManagement : MonoBehaviour
         {
             case "j_":
                 bColor = characterSprite.color.b - colorAmountToChange;
+                PopParticle(newSkillParticles, new Color(1,0,0,1));
                 break;
             case "d_":
                 rColor = characterSprite.color.r - colorAmountToChange;
-                Debug.Log("ddddd");
+                PopParticle(newSkillParticles, new Color(0,0,1,1));
                 break;
             default:
                 rColor = 1f;
@@ -134,5 +137,14 @@ public class SkillsManagement : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void PopParticle(GameObject particleToPop, Color newColor)
+    {
+        GameObject instantiated = Instantiate(particleToPop,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
+        instantiated.transform.Rotate(new Vector3(0,0,90),Space.Self);
+        instantiated.transform.localScale = new Vector3(1,1,1);
+        // instantiated.GetComponent<ParticleSystem>().startColor = color;
+        Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
     }
 }

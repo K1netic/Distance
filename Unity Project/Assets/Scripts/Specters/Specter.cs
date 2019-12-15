@@ -8,13 +8,16 @@ public class Specter : MonoBehaviour
     [SerializeField] string associatedSkillName;
     [SerializeField] GameObject associatedExit;
     [SerializeField] GameObject otherSpecter;
-
     [SerializeField] GameObject disappearParticles;
+    [SerializeField] GameObject interactionButton;
+    [SerializeField] GameObject bubble;
 
     bool displayInteraction = false;
     GameObject player;
 
     [SerializeField] bool tutorialSpecter = false; 
+    public bool testSucceed = false;
+    bool interacted = false;
 
     void Start()
     {
@@ -27,22 +30,42 @@ public class Specter : MonoBehaviour
     {
         if (displayInteraction)
         {
-            // Afficher explication bouton à appuyer
-            if (Input.GetButtonDown("Interact"))
+            if (Input.GetButtonDown("Interact") && !interacted)
             {
-                // Afficher bulles de dialogue
-                // Animation transfert de compétences
-                player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
-                // Disparition du fantôme
-                PopParticle(disappearParticles);
-                if (!tutorialSpecter)
-                {
-                    associatedExit.SetActive(true);
-                    otherSpecter.SetActive(false);
-                }
-                gameObject.SetActive(false);
+                StartCoroutine(SpecterInteraction());
+                interacted = true;
             }
         }
+
+        if (testSucceed)
+        {
+            StartCoroutine(SpecterDisappearance());
+        }
+    }
+
+    IEnumerator SpecterInteraction()
+    {
+        interactionButton.SetActive(false);
+        // Animation transfert de compétences
+        player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
+        yield return new WaitForSeconds(0.5f);
+        bubble.SetActive(true);
+
+        if (!tutorialSpecter)
+        {
+            associatedExit.SetActive(true);
+            otherSpecter.SetActive(false);
+        }
+    }
+
+    IEnumerator SpecterDisappearance()
+    {
+        // Disparition du fantôme
+        PopParticle(disappearParticles);
+        bubble.GetComponent<Animator>().SetBool("disappeared", true);
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.15f);
+        bubble.SetActive(false);
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -51,7 +74,13 @@ public class Specter : MonoBehaviour
         {
             displayInteraction = true;
             player = other.gameObject;
+            if (!interacted) interactionButton.SetActive(true);
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        interactionButton.SetActive(false);
     }
 
     void PopParticle(GameObject particleToPop)
