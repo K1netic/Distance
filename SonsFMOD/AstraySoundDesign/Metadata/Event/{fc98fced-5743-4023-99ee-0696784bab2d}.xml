@@ -92,18 +92,25 @@
 		<property name="length">
 			<value>2.3750113378684805</value>
 		</property>
+		<property name="startOffset">
+			<value>31.5</value>
+		</property>
 		<property name="volume">
-			<value>-5</value>
+			<value>-9</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{9d060108-65b0-4282-959e-3a031e2c72a4}</destination>
 			<destination>{8313f2f9-d723-48bb-a446-65bb90e7c00d}</destination>
+			<destination>{f4610fe2-1986-415a-8252-a948e1fd7853}</destination>
 		</relationship>
 		<relationship name="audioFile">
 			<destination>{6209237c-e763-40d2-909f-84fa4696893c}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{d46ed5dc-02b0-4951-9575-48536d46ee28}">
+		<property name="volume">
+			<value>-1</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -128,21 +135,58 @@
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
 		</property>
-		<property name="amount">
-			<value>2</value>
-		</property>
 	</object>
 	<object class="RandomizerModulator" id="{8313f2f9-d723-48bb-a446-65bb90e7c00d}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
 		</property>
 	</object>
+	<object class="ADSRModulator" id="{f4610fe2-1986-415a-8252-a948e1fd7853}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>0.177776337</value>
+		</property>
+		<property name="decayTime">
+			<value>1576.92285</value>
+		</property>
+		<property name="sustainValue">
+			<value>-17.3333359</value>
+		</property>
+		<property name="releaseTime">
+			<value>4230.77002</value>
+		</property>
+		<property name="releaseShape">
+			<value>-0.0419623479</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{a71ba81e-81cf-4a21-915f-c4ed39e86eee}">
 		<relationship name="effects">
 			<destination>{2be96a72-ce14-448c-b148-6a29e6e39e94}</destination>
+			<destination>{56c1aa51-9a56-4b7a-a7e6-39c39113f1a1}</destination>
+			<destination>{290d027a-18bc-4074-9ffd-fa8307fa4baa}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7944a866-42a3-4ab3-aaf1-5e94a92495d8}" />
 	<object class="MixerBusFader" id="{97120d8e-68a4-476c-a766-bb966c7be1bb}" />
 	<object class="MixerBusFader" id="{2be96a72-ce14-448c-b148-6a29e6e39e94}" />
+	<object class="DelayEffect" id="{56c1aa51-9a56-4b7a-a7e6-39c39113f1a1}">
+		<property name="delay">
+			<value>480</value>
+		</property>
+		<property name="feedback">
+			<value>38</value>
+		</property>
+		<property name="level">
+			<value>-14.5</value>
+		</property>
+		<property name="dryLevel">
+			<value>-5.5</value>
+		</property>
+	</object>
+	<object class="FlangerEffect" id="{290d027a-18bc-4074-9ffd-fa8307fa4baa}" />
 </objects>
