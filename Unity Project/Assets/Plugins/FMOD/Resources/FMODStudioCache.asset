@@ -37,11 +37,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:/Users/Lucas/Documents/FMOD Studio/AstraySoundDesign/Build/Desktop/Master.bank
   SubDir: 
-  lastModified: 637120072688289642
+  lastModified: 637120119684423623
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 317536
+    Value: 317760
   Exists: 1
 --- !u!114 &-293725581754915766
 MonoBehaviour:
@@ -101,7 +101,7 @@ MonoBehaviour:
   - {fileID: -2456774621114528565}
   StringsBanks:
   - {fileID: 6956649334042659132}
-  stringsBankWriteTime: 637120072688319685
+  stringsBankWriteTime: 637120119684453745
   cacheVersion: 3
 --- !u!114 &9077402405918107
 MonoBehaviour:
@@ -125,7 +125,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 2000
+  Length: 400
 --- !u!114 &305900653579345714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:/Users/Lucas/Documents/FMOD Studio/AstraySoundDesign/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637120072688319685
+  lastModified: 637120119684453745
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -352,7 +352,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 500
+  Length: 300
 --- !u!114 &8179424255116531157
 MonoBehaviour:
   m_ObjectHideFlags: 0

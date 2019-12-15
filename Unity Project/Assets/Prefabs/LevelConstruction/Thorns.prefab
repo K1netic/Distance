@@ -120,3 +120,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
+  inputsoundforRespawn: event:/Player Interactions/Re-SpawnJoueur
+  inputsoundforDeath: event:/Player Interactions/MortJoueur

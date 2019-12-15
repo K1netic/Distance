@@ -21,6 +21,9 @@ public class HeavyDash : MonoBehaviour
     [SerializeField] GameObject HeavyDashTrail;
     [SerializeField] GameObject HeavyDashShockwave;
 
+    [FMODUnity.EventRef]
+    public string inputsound;
+
     void Awake()
     {
         dashScript = gameObject.GetComponent<Dash>();
@@ -134,7 +137,7 @@ public class HeavyDash : MonoBehaviour
         rigid.velocity = direction * dashForce;
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("HeavyDash")));
         Invoke("UnlockMovement", lockMovementDuration);
-        //SOUND : Heavy Dash
+        FMODUnity.RuntimeManager.PlayOneShot(inputsound);
     }
 
     //Reset the gravity and the velocity, and let the player move again
