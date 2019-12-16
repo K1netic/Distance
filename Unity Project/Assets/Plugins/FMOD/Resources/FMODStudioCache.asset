@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8942668412373584641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637121021469275759
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-8788709164639046913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +33,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/Saut
   guid: 11790a2b8e5a2846a41a75ce714e001e
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -23,6 +41,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 750
+--- !u!114 &-8760047791967421173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637121026781196302
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-8507399407889851002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,14 +74,32 @@ MonoBehaviour:
   Path: event:/Musics/InitialLoop
   guid: cbd858e69c28194b968d473859a33bb3
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 26181
+  Length: 53684
+--- !u!114 &-8372907008717466092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637121026364660217
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-8180034623460422945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +115,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/RebondMur
   guid: 277e144d9864a24eb5cd42adcac7271f
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -127,10 +181,10 @@ MonoBehaviour:
   Path: event:/Musics/AmbiantSound
   guid: 9d338ea0f214484f91993a02e6c2af91
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
@@ -150,14 +204,14 @@ MonoBehaviour:
   Path: event:/Musics/DashLevelLoop
   guid: f0aa82ff424a754b8a01f80877a9f8f2
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 26181
+  Length: 26500
 --- !u!114 &-4846153378871292429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +245,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/MortJoueur
   guid: e9820756f0cb154ebb07b87d194d6328
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -199,6 +253,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 400
+--- !u!114 &-4315437541268200816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637120423280732568
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-4008998381445915243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +286,7 @@ MonoBehaviour:
   Path: "event:/Events/GainComp\xE9tence"
   guid: edfc98fc4357234099ee0696784bab2d
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -237,7 +309,7 @@ MonoBehaviour:
   Path: event:/Events/ChangementNiveau
   guid: ce995326b840e94f940df5afccbfc132
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -260,7 +332,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/Re-SpawnJoueur
   guid: e0becac4af749b459f8714f53fc71ab4
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -337,7 +409,7 @@ MonoBehaviour:
   Path: event:/Events/ChangementTableau
   guid: dc904e1b121cbe45a2d6263deafb4f3f
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -398,7 +470,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/MarcheBois
   guid: cdd25f3372289643a0b0918b860a1087
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -421,6 +493,24 @@ MonoBehaviour:
   Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
   SubDir: 
   lastModified: 637120237488152381
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &-498471080931009259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637121037810721521
   LoadResult: 0
   FileSizes: []
   Exists: 0
@@ -487,7 +577,7 @@ MonoBehaviour:
   lastModified: 637120275366107195
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,7 +592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 3671090579878171439}
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   EditorEvents:
   - {fileID: -8788709164639046913}
   - {fileID: 7421018014940818154}
@@ -524,10 +614,10 @@ MonoBehaviour:
   - {fileID: -4887334834789799097}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   StringsBanks:
   - {fileID: 3671090579878171439}
-  stringsBankWriteTime: 637120275366137197
+  stringsBankWriteTime: 637121039909009436
   cacheVersion: 3
 --- !u!114 &9077402405918107
 MonoBehaviour:
@@ -593,6 +683,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &720394197072667400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637121039908989496
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &1730805799799874741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,14 +739,14 @@ MonoBehaviour:
   Path: event:/Player Interactions/RecoverySol
   guid: 80cbc37b209d0048a52d14012fe1f1db
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 181
+  Length: 187
 --- !u!114 &2517930716546308390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,14 +762,14 @@ MonoBehaviour:
   Path: event:/Player Interactions/Dash
   guid: 5bf6d241ad43e845b642a61b7249b354
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 1483
+  Length: 1000
 --- !u!114 &2641751528149802610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,7 +871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637120275366137197
+  lastModified: 637121039909009436
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -807,7 +915,7 @@ MonoBehaviour:
   Path: event:/Events/DisparitionFantome
   guid: 83d3b62bf5fae642aeda8d249a8f2701
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -948,6 +1056,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 750
+--- !u!114 &6754868382197162114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637121003116690857
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &6853441888227577788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,14 +1089,14 @@ MonoBehaviour:
   Path: event:/Musics/JumpLevelLoop
   guid: 3dff2a9aecbb7244b07626df3b152996
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 26181
+  Length: 52363
 --- !u!114 &6956649334042659132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,14 +1132,14 @@ MonoBehaviour:
   Path: event:/Player Interactions/HeavyDash
   guid: ec46cdcffb55194d84309b8667b15b8d
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 1483
+  Length: 875
 --- !u!114 &7263171861152438854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,7 +1173,7 @@ MonoBehaviour:
   Path: event:/Events/InteractionFantome
   guid: 2647d9012c403948b6c4992e16df60c6
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1116,7 +1242,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/MarcheTerre
   guid: 36d18809ab54dd49827461bd5bf784b9
   Banks:
-  - {fileID: -56947412085058922}
+  - {fileID: 720394197072667400}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
