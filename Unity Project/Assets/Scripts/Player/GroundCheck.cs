@@ -17,6 +17,10 @@ public class GroundCheck : MonoBehaviour
 	public LayerMask grassLayer;
 	public static bool isOnGrass;
 
+	//SOUND
+	//event:/Player Interactions/MarcheBois
+	private FMOD.Studio.EventInstance instance;
+
     void Start()
     {
         playerAnimator = gameObject.GetComponent<Animator>();
@@ -42,10 +46,22 @@ public class GroundCheck : MonoBehaviour
 			playerAnimator.SetBool("jumping", false);
 			playerAnimator.SetBool("falling", false);
         	StartCoroutine(CancelVibration (Vibrations.PlayVibration("FallingOnFloor")));
-            FMODUnity.RuntimeManager.PlayOneShot(inputsound);
+            // FMODUnity.RuntimeManager.PlayOneShot(inputsound);
+			if (PlaybackState(instance) != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+			{
+				instance = FMODUnity.RuntimeManager.CreateInstance(inputsound);
+				instance.start();
+			}
             floorTest = true;
 		}
     }
+
+	FMOD.Studio.PLAYBACK_STATE PlaybackState(FMOD.Studio.EventInstance instance)
+	{
+		FMOD.Studio.PLAYBACK_STATE pS;
+		instance.getPlaybackState(out pS);
+		return pS;
+	}
     
     bool checkIfGrounded(LayerMask layerToTest) 
 	{
