@@ -304,7 +304,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2394270651698116672}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e882d061b40c44390fc5bafc236d3a, type: 3}
   m_Name: 
@@ -327,6 +327,8 @@ MonoBehaviour:
   accelerationSmoothTime: 0.2
   topSpeed: 1500
   decelerationSmoothTime: 0.05
+  inputSoundWood: event:/Player Interactions/MarcheBois
+  inputSoundGrass: event:/Player Interactions/MarcheTerre
   DeathParticles: {fileID: 992325659916253205, guid: aac21002f54f7ac4da6af0cacb890a67,
     type: 3}
   RespawnParticles: {fileID: 8040383246351318115, guid: b0b2c5f6bed6736429f28ba3b7672ff5,
@@ -338,7 +340,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2394270651698116672}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88e462876369a624583dc33d6d3b4871, type: 3}
   m_Name: 
@@ -397,7 +399,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!60 &2394150489523585504
 PolygonCollider2D:
@@ -641,6 +643,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   inputsound: event:/Player Interactions/RecoverySol
+  grassLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &2394925971628894990
 GameObject:
   m_ObjectHideFlags: 0
