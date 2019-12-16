@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
             if (GroundCheck.isGrounded)
             {
                 FMODUnity.RuntimeManager.PlayOneShot(inputSoundWood);
-                Debug.Log("wood");
             }
             else if (GroundCheck.isOnGrass)
             {

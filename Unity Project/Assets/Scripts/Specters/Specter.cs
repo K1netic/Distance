@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +18,7 @@ public class Specter : MonoBehaviour
 
     [SerializeField] bool tutorialSpecter = false; 
     public bool testSucceed = false;
+    bool closeTest = false;
     bool interacted = false;
     [FMODUnity.EventRef]
     public string inputsoundSpecterTalk;
@@ -44,9 +45,10 @@ public class Specter : MonoBehaviour
             }
         }
 
-        if (testSucceed)
+        if (testSucceed && !closeTest)
         {
             StartCoroutine(SpecterDisappearance());
+            closeTest = true;
         }
     }
 
@@ -63,6 +65,7 @@ public class Specter : MonoBehaviour
         {
             associatedExit.SetActive(true);
             otherSpecter.SetActive(false);
+            FMODUnity.RuntimeManager.PlayOneShot(inputsoundSpecterDisappear);
         }
     }
 
@@ -72,9 +75,11 @@ public class Specter : MonoBehaviour
         // Disparition du fantôme
         PopParticle(disappearParticles);
         bubble.GetComponent<Animator>().SetBool("disappeared", true);
-        gameObject.SetActive(false);
+        gameObject.GetComponent<Animator>().SetBool("disappeared", true);
         yield return new WaitForSeconds(0.15f);
         bubble.SetActive(false);
+        yield return new WaitForSeconds(0.85f);
+        gameObject.SetActive(false);
     }
 
     void OnTriggerStay2D(Collider2D other)
