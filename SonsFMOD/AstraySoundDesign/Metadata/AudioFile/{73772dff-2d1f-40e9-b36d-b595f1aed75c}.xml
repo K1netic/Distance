@@ -5,13 +5,13 @@
 			<value>RecoverySol.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>44.0999985</value>
+			<value>192</value>
 		</property>
 		<property name="channelCount">
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.1818140589569161</value>
+			<value>0.1875</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{990c4652-ff02-4f1c-aa5e-aba370d79e00}</destination>
