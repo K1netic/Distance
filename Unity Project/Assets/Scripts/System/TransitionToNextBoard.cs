@@ -56,9 +56,16 @@ public class TransitionToNextBoard : MonoBehaviour
             StartCoroutine(Transition());
             //Vibrations
 		    StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextBoard")));
+            //Fade music
             FMODUnity.RuntimeManager.PlayOneShot(inputsound);
             if (zoneTransition)
                 musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //Start Calculating distances between specters and player
+            Specter[] specterScripts = FindObjectsOfType<Specter>();
+            foreach(Specter script in specterScripts)
+            {
+                script.calculateDistance = true;
+            }
         }
     }
 

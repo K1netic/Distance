@@ -9,6 +9,7 @@ public class Specter : MonoBehaviour
     [SerializeField] GameObject associatedExit;
     [SerializeField] GameObject otherSpecter;
     Specter otherSpecterScript;
+    SpriteRenderer otherSpecterSprite;
     [SerializeField] GameObject disappearParticles;
     [SerializeField] GameObject interactionButton;
     [SerializeField] GameObject bubble;
@@ -24,13 +25,23 @@ public class Specter : MonoBehaviour
     public string inputsoundSpecterTalk;
     [FMODUnity.EventRef]
     public string inputsoundSpecterDisappear;
+    float distanceWithPlayer;
+    public bool calculateDistance = false;
+    float distanceThreshold = 20f;
 
+    void Awake()
+    {
+        
+    }
     void Start()
     {
         if (!tutorialSpecter)
+        {
             associatedExit.SetActive(false);
-        if (!tutorialSpecter)
             otherSpecterScript = otherSpecter.GetComponent<Specter>();
+            otherSpecterSprite = otherSpecter.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        }
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -49,6 +60,21 @@ public class Specter : MonoBehaviour
         {
             StartCoroutine(SpecterDisappearance());
             closeTest = true;
+        }
+
+        if (!tutorialSpecter && calculateDistance)
+        {
+            distanceWithPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+            if (distanceWithPlayer <= distanceThreshold)
+            {
+                // otherSpecterSprite.color = new Color(otherSpecterSprite.color.r, otherSpecterSprite.color.g, otherSpecterSprite.color.b, distanceWithPlayer/distanceThreshold);
+                Color newColor = otherSpecterSprite.color;
+                newColor.r = distanceWithPlayer/distanceThreshold;
+                newColor.g = distanceWithPlayer/distanceThreshold;
+                newColor.b = distanceWithPlayer/distanceThreshold;
+                newColor.a = distanceWithPlayer/distanceThreshold;
+                otherSpecterSprite.color = newColor;
+            }
         }
     }
 
@@ -87,7 +113,7 @@ public class Specter : MonoBehaviour
         if (other.tag == "Player")
         {
             displayInteraction = true;
-            player = other.gameObject;
+            // player = other.gameObject;
             if (!interacted) interactionButton.SetActive(true);
         }
     }
