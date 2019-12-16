@@ -37,7 +37,9 @@ public class Respawn : MonoBehaviour
         playerAnimator.SetBool("dead", true);
         //Particules
         GameObject DeathParticles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
+        DeathParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
         GameObject RespawnParticles = player.gameObject.GetComponent<PlayerMovement>().RespawnParticles;
+        RespawnParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
         GameObject instantiatedDeathParticles = Instantiate(DeathParticles, player.transform.position, new Quaternion(0,0,0,0));
         FMODUnity.RuntimeManager.PlayOneShot(inputsoundforRespawn);
 
