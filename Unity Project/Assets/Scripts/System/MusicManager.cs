@@ -18,6 +18,8 @@ public class MusicManager : MonoBehaviour
     bool dashMusicPlayed = false;
     bool jumpMusicPlayed = false;
 
+    public FMOD.Studio.EventInstance currentInstance;
+
     void Start()
     {
         FMODUnity.RuntimeManager.PlayOneShot(ambientSounds);
@@ -27,19 +29,25 @@ public class MusicManager : MonoBehaviour
     {
         if (triggerTutoMusic && !tutoMusicPlayed)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(tutoMusic);
+            // FMODUnity.RuntimeManager.PlayOneShot(tutoMusic);
+            currentInstance = FMODUnity.RuntimeManager.CreateInstance(tutoMusic);
+            currentInstance.start();
             tutoMusicPlayed = true;
         }
 
         if (triggerDashMusic && !dashMusicPlayed)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(dashMusic);
+            // FMODUnity.RuntimeManager.PlayOneShot(dashMusic);
+            currentInstance = FMODUnity.RuntimeManager.CreateInstance(dashMusic);
+            currentInstance.start();
             dashMusicPlayed = true;
         }
 
         if (triggerJumpMusic && !jumpMusicPlayed) 
         {
-            FMODUnity.RuntimeManager.PlayOneShot(jumpMusic);
+            // FMODUnity.RuntimeManager.PlayOneShot(jumpMusic);
+            currentInstance = FMODUnity.RuntimeManager.CreateInstance(jumpMusic);
+            currentInstance.start();
             jumpMusicPlayed = true;
         }
     }

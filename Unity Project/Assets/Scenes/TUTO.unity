@@ -2510,6 +2510,11 @@ PrefabInstance:
       propertyPath: nextBoardSpawnPoint
       value: 
       objectReference: {fileID: 320875686}
+    - target: {fileID: 2639684452036596958, guid: 6cbc8ee92816b6241b9b0c23b185db82,
+        type: 3}
+      propertyPath: zoneTransition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2639684452036596928, guid: 6cbc8ee92816b6241b9b0c23b185db82,
         type: 3}
       propertyPath: m_Enabled

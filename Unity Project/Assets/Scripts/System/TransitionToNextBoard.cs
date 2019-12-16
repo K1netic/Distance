@@ -15,6 +15,8 @@ public class TransitionToNextBoard : MonoBehaviour
     GameObject spawnLight;
     [FMODUnity.EventRef]
     public string inputsound;
+    MusicManager musicManager;
+    [SerializeField] bool zoneTransition = false;
 
     void Start()
     {
@@ -22,6 +24,7 @@ public class TransitionToNextBoard : MonoBehaviour
         spawnLight = player.transform.GetChild(0).gameObject;
         spawnLight.SetActive(false);
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        musicManager = GameObject.FindObjectOfType<MusicManager>();
     }
     
     void Update()
@@ -54,6 +57,8 @@ public class TransitionToNextBoard : MonoBehaviour
             //Vibrations
 		    StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextBoard")));
             FMODUnity.RuntimeManager.PlayOneShot(inputsound);
+            if (zoneTransition)
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 
