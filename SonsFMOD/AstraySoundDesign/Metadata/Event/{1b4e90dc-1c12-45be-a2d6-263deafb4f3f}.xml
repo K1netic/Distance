@@ -73,7 +73,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{79c52da6-a80f-4804-a2c4-aca34e1e5525}">
 		<property name="volume">
-			<value>6</value>
+			<value>10</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{6ebc6d1f-5c88-47ba-a022-078cae057b1a}</destination>
@@ -183,6 +183,9 @@
 	<object class="DelayEffect" id="{11ea9645-024f-4518-8861-dba8ba116861}">
 		<property name="level">
 			<value>-17</value>
+		</property>
+		<property name="dryLevel">
+			<value>3</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{e990c67f-6f2e-4d61-a201-40f258c6b659}">
