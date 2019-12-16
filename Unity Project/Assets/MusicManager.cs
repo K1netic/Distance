@@ -18,6 +18,11 @@ public class MusicManager : MonoBehaviour
     bool dashMusicPlayed = false;
     bool jumpMusicPlayed = false;
 
+    void Start()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(ambientSounds);
+    }
+
     void Update()
     {
         if (triggerTutoMusic && !tutoMusicPlayed)

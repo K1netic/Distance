@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         playerAnimator = gameObject.GetComponent<Animator>();
-        InvokeRepeating("CallFootsteps", 0, 0.2f);
+        InvokeRepeating("CallFootsteps", 0, 0.4f);
     }
 
     void CallFootsteps()
@@ -43,9 +43,14 @@ public class PlayerMovement : MonoBehaviour
         if (moving)
         {
             if (GroundCheck.isGrounded)
+            {
                 FMODUnity.RuntimeManager.PlayOneShot(inputSoundWood);
+                Debug.Log("wood");
+            }
             else if (GroundCheck.isOnGrass)
+            {
                 FMODUnity.RuntimeManager.PlayOneShot(inputSoundGrass);
+            }
             
         }
     }
