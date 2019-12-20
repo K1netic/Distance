@@ -574,7 +574,8 @@ MonoBehaviour:
     type: 3}
   HeavyDashShockwave: {fileID: 6629715829845813505, guid: 9c483889ca82cfa479c70ec4a2b54242,
     type: 3}
-  inputsound: event:/Player Interactions/HeavyDash
+  heavyDashSound: event:/Player Interactions/HeavyDash
+  itemPushedSound: event:/Events/PushablePlatform
 --- !u!114 &2394150489523585507
 MonoBehaviour:
   m_ObjectHideFlags: 0
