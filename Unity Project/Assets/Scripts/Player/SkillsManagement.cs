@@ -41,11 +41,11 @@ public class SkillsManagement : MonoBehaviour
         {
             case "j_":
                 bColor = characterSprite.color.b - colorAmountToChange;
-                StartCoroutine(PopNewSkillParticles(new Color(1,0,0,1)));
+                StartCoroutine(PopNewSkillParticles(new Color(1,0.25f,0.25f,1)));
                 break;
             case "d_":
                 rColor = characterSprite.color.r - colorAmountToChange;
-                StartCoroutine(PopNewSkillParticles(new Color(0,0,1,1)));
+                StartCoroutine(PopNewSkillParticles(new Color(0,0.5f,1,1)));
                 break;
             default:
                 rColor = 1f;
@@ -61,13 +61,13 @@ public class SkillsManagement : MonoBehaviour
                 rColor = 1;
                 bColor = 0.5f;
                 jumpScript.enabled = true;
-                StartCoroutine(PopNewSkillParticles(new Color(1,0,0,1)));
+                StartCoroutine(PopNewSkillParticles(new Color(1,0.25f,0.25f,1)));
                 break;
             case "dash":
                 rColor = 1f;
                 bColor = 1f;
                 dashScript.enabled = true;
-                StartCoroutine(PopNewSkillParticles(new Color(0,0,1,1)));
+                StartCoroutine(PopNewSkillParticles(new Color(0,0.5f,1,1)));
                 break;
             case "j_wallJump":
                 wallJumpScript.enabled = true;
@@ -141,7 +141,7 @@ public class SkillsManagement : MonoBehaviour
             //     doubleJumpScript.enabled = false;
             //     break;
             case "d_heavyDash":
-                heavyDashScript.enabled = false;
+                heavyDashScript.enabled = true;
                 break;
             // case "d_blink":
             //     blinkScript.enabled = false;
@@ -163,7 +163,7 @@ public class SkillsManagement : MonoBehaviour
         GameObject instantiated = Instantiate(particleToPop,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
         instantiated.transform.Rotate(new Vector3(0,0,90),Space.Self);
         instantiated.transform.localScale = new Vector3(1,1,1);
-        // instantiated.GetComponent<ParticleSystem>().startColor = color;
+        instantiated.GetComponent<ParticleSystem>().startColor = newColor;
         Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
     }
 

@@ -1,5 +1,0 @@
-* boue
-* plateforme qui se brise quand on va dessus
-
-
-> Pour montrer que ronces = dangereux -> objet qui se détruit en allant dessus

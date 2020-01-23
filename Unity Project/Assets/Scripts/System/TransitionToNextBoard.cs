@@ -17,6 +17,8 @@ public class TransitionToNextBoard : MonoBehaviour
     public string inputsound;
     MusicManager musicManager;
     [SerializeField] bool zoneTransition = false;
+    bool moveCamera = false;
+    bool gdskhgkhdf = false;
 
     void Start()
     {
@@ -37,6 +39,12 @@ public class TransitionToNextBoard : MonoBehaviour
                 FogTransition(fogs[i], i);
             }
         }    
+
+        if (moveCamera && !gdskhgkhdf)
+        {
+            cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
+            gdskhgkhdf = true;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -71,8 +79,9 @@ public class TransitionToNextBoard : MonoBehaviour
 
     IEnumerator Transition()
     {
-        //Déplacer la caméra sur le nouveau tableau
-        cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
+        //Déplacer le joueur sur le nouveau tableau
+        player.transform.position = new Vector3(nextBoardSpawnPoint.position.x, nextBoardSpawnPoint.position.y, 0);
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         //Afficher le brouillard
         fogActivated = true;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
@@ -81,7 +90,7 @@ public class TransitionToNextBoard : MonoBehaviour
         }
 
         yield return new WaitForSeconds(fogTransitionDuration);
-        cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
+        // cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
 
         fogActivated = false;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
@@ -96,9 +105,6 @@ public class TransitionToNextBoard : MonoBehaviour
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
         }
-        //Déplacer le joueur sur le nouveau tableau
-        player.transform.position = new Vector3(nextBoardSpawnPoint.position.x, nextBoardSpawnPoint.position.y, 0);
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         //FX de spawn
         spawnLight.SetActive(true);
         yield return new WaitForSeconds(0.25f);
@@ -116,18 +122,20 @@ public class TransitionToNextBoard : MonoBehaviour
     float currentTime = 0f;
     float maxDensity;
     float animationTime;
+
     void FogTransition(D2FogsPE fogScript, int index) {
         animationTime = fogTransitionDuration * 2.0f;
         if (index == 0) maxDensity = 5f;
         else if (index == 1) maxDensity = 3f;
 
-        if (currentTime <= (animationTime/2.0f))
+        if (currentTime < (animationTime/2.0f))
         {
             currentTime += Time.deltaTime;
             fogScript.Density = Mathf.Lerp(0.2f, maxDensity, currentTime / animationTime);
         }
         else if (currentTime <= animationTime)
         {
+            moveCamera = true;
             currentTime += Time.deltaTime;
             fogScript.Density = Mathf.Lerp(maxDensity, 0.2f, currentTime / animationTime);
         }

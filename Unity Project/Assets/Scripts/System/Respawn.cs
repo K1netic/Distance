@@ -11,6 +11,16 @@ public class Respawn : MonoBehaviour
     public string inputsoundforRespawn;
     [FMODUnity.EventRef]
     public string inputsoundforDeath;
+    GameObject Player;
+    Rigidbody2D playerRigidbody;
+    SpriteRenderer playerSprite;
+
+    void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        playerRigidbody = Player.GetComponent<Rigidbody2D>();
+        playerSprite = Player.GetComponent<SpriteRenderer>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,13 +38,10 @@ public class Respawn : MonoBehaviour
 
     IEnumerator RespawnPlayer(GameObject player)
     {
-        //Vibrations
-        StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
         //Arrêter le mouvement
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        //Animations
-        playerAnimator = player.gameObject.GetComponent<Animator>();
-        playerAnimator.SetBool("dead", true);
+        playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.isKinematic = true;
+
         //Particules
         GameObject DeathParticles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
         DeathParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
@@ -43,6 +50,11 @@ public class Respawn : MonoBehaviour
         GameObject instantiatedDeathParticles = Instantiate(DeathParticles, player.transform.position, new Quaternion(0,0,0,0));
         FMODUnity.RuntimeManager.PlayOneShot(inputsoundforRespawn);
 
+        //Sprite
+        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0);
+
+        //Vibrations
+        StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
         yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
         GameObject instantiatedRespawnParticles = Instantiate(RespawnParticles, spawnPoint.transform.position, new Quaternion(0,0,0,0));
@@ -50,15 +62,15 @@ public class Respawn : MonoBehaviour
 
         yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
-        playerAnimator.SetBool("dead", false);
         //Déplacer le personnage au point de respawn
         player.transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y);
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.GetComponent<Rigidbody2D>().isKinematic = true;
+        playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.isKinematic = true;
 
         yield return new WaitForSeconds(0.2f);
+        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1);
         //Redonner la capacité de bouger
-        player.GetComponent<Rigidbody2D>().isKinematic = false;
+        playerRigidbody.isKinematic = false;
 
         yield return new WaitForSeconds(0.8f);
         //Détruire les particules instanciées

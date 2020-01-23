@@ -38,17 +38,21 @@ public class MusicManager : MonoBehaviour
         if (triggerDashMusic && !dashMusicPlayed)
         {
             // FMODUnity.RuntimeManager.PlayOneShot(dashMusic);
+            currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             currentInstance = FMODUnity.RuntimeManager.CreateInstance(dashMusic);
             currentInstance.start();
             dashMusicPlayed = true;
+            tutoMusicPlayed = false;
         }
 
         if (triggerJumpMusic && !jumpMusicPlayed) 
         {
             // FMODUnity.RuntimeManager.PlayOneShot(jumpMusic);
+            currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             currentInstance = FMODUnity.RuntimeManager.CreateInstance(jumpMusic);
             currentInstance.start();
             jumpMusicPlayed = true;
+            tutoMusicPlayed = false;
         }
     }
 

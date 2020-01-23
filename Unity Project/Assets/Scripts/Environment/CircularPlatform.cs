@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,6 @@ public class CircularPlatform : MonoBehaviour {
     bool clockWise = true;
     [SerializeField]
     bool randomDirection;
-
     Rigidbody2D rigid;
     Vector3 pivotPos;
     Vector3 vectorToTarget;
@@ -22,9 +21,13 @@ public class CircularPlatform : MonoBehaviour {
     float t;
     public bool startMoving = true;
 
+    [SerializeField] bool thornsAttached = false;
+
     void Awake () {
-        t = (12.565f * startPositionInDegree) / 180; //(NB pour Ben : 25.13 pour un tour complet. 0 en haut, 12.565 en bas, 6.2825 à droite et 18.8475 à gauche)
-        pivotPos = transform.parent.transform.position;
+        t = (12.565f * startPositionInDegree) / 180; //(NB : 25.13 pour un tour complet. 0 en haut, 12.565 en bas, 6.2825 à droite et 18.8475 à gauche)
+        if (thornsAttached)
+            pivotPos = new Vector3(transform.parent.transform.position.x, transform.parent.transform.position.y, 5);
+        else pivotPos = transform.parent.transform.position;
         rigid = GetComponent<Rigidbody2D>();
         radius = Vector2.Distance(pivotPos, transform.position);
 
@@ -54,6 +57,23 @@ public class CircularPlatform : MonoBehaviour {
             rigid.MoveRotation(angle);
         }
     }
+
+    void OnTriggerStay2D(Collider2D other)
+	{
+		if(other.gameObject.tag == "Player")
+        {
+            if(other.transform.parent != this.transform)
+                other.transform.parent = this.transform;
+        }	
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if(other.gameObject.tag == "Player")
+        {
+            other.transform.parent = null;
+        }
+	}
 }
 
 

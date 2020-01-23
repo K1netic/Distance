@@ -58,7 +58,8 @@ public class Specter : MonoBehaviour
 
         if (testSucceed && !closeTest)
         {
-            StartCoroutine(SpecterDisappearance());
+            // StartCoroutine(SpecterDisappearance());
+            transform.position = new Vector3(0,500,0);
             closeTest = true;
         }
 
@@ -95,18 +96,20 @@ public class Specter : MonoBehaviour
         }
     }
 
-    IEnumerator SpecterDisappearance()
-    {
-        FMODUnity.RuntimeManager.PlayOneShot(inputsoundSpecterDisappear);
-        // Disparition du fantôme
-        PopParticle(disappearParticles);
-        bubble.GetComponent<Animator>().SetBool("disappeared", true);
-        gameObject.GetComponent<Animator>().SetBool("disappeared", true);
-        yield return new WaitForSeconds(0.15f);
-        bubble.SetActive(false);
-        yield return new WaitForSeconds(0.85f);
-        gameObject.SetActive(false);
-    }
+    // IEnumerator SpecterDisappearance()
+    // {
+    //     FMODUnity.RuntimeManager.PlayOneShot(inputsoundSpecterDisappear);
+    //     // Disparition du fantôme
+    //     PopParticle(disappearParticles);
+    //     // bubble.GetComponent<Animator>().SetBool("disappeared", true);
+    //     // gameObject.GetComponent<Animator>().SetBool("disappeared", true);
+
+    //     yield return new WaitForSeconds(0.15f); //0.15f
+    //     bubble.SetActive(false);
+    //     gameObject.GetComponent<SpriteRenderer>().enabled = false;
+    //     yield return new WaitForSeconds(0.85f);
+    //     // gameObject.SetActive(false);
+    // }
 
     void OnTriggerStay2D(Collider2D other)
     {

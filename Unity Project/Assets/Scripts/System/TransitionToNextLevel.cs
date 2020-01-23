@@ -130,17 +130,18 @@ public class TransitionToNextLevel : MonoBehaviour
             currentTime += Time.deltaTime;
             fogScript.Density = Mathf.Lerp(0.2f, maxDensity, currentTime / animationTime);
         }
-        else SceneManager.LoadScene(sceneToLoadName);
 
-        // else if (currentTime <= animationTime)
-        // {
-        //     currentTime += Time.deltaTime;
-        //     fogScript.Density = Mathf.Lerp(maxDensity, 0.2f, currentTime / animationTime);
-        // }
-        // else
-        // {
-        //     fogScript.Density = maxDensity;
-        //     currentTime = 0f;
-        // }
+        if (fogScript.Density == maxDensity)
+        {
+            if (sceneToLoadName == "Menu")
+            {
+                for(int i =0; i < SkillsManagement.skills.Count; i ++)
+                {
+                    SkillsManagement.skills[i] = "";
+                }
+            }
+            SceneManager.LoadScene(sceneToLoadName);
+
+        }
     }
 }

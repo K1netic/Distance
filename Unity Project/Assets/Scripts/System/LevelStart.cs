@@ -20,10 +20,12 @@ public class LevelStart : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-
+        cam.transform.position = new Vector3(0,0,-10);
+        player.transform.position = GameObject.Find("SpawnPoint_B1").transform.position;
         //Bloquer les mouvements du joueur 
         PlayerMovement.lockMovement = true;
         player.GetComponent<Rigidbody2D>().isKinematic = true;
+
         //Bloquer l'utilisation de compétences
         foreach(string skill in SkillsManagement.skills)
         {

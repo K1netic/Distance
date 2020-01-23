@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1028706425}
   - component: {fileID: 1028706426}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: AmbientHalo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 1798871609}
   - component: {fileID: 1798871611}
   - component: {fileID: 1798871610}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SpawnLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,8 +223,10 @@ GameObject:
   - component: {fileID: 2394150489523585507}
   - component: {fileID: 2394150489523585518}
   - component: {fileID: 1006430338848709}
+  - component: {fileID: 3293584630170032527}
   - component: {fileID: 1006430338848710}
-  m_Layer: 10
+  - component: {fileID: 1945544879}
+  m_Layer: 0
   m_Name: Protagonist
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -627,6 +629,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpRing: {fileID: 5664975291283169563, guid: ff355ee76d7199b40a25534f86220091,
     type: 3}
+--- !u!114 &3293584630170032527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394270651698116672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2227fec858b7484481e4da0a381c54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputsoundforRespawn: event:/Player Interactions/Re-SpawnJoueur
+  inputsoundforDeath: event:/Player Interactions/MortJoueur
 --- !u!114 &1006430338848710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +663,20 @@ MonoBehaviour:
   grassLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &1945544879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394270651698116672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2227fec858b7484481e4da0a381c54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputsoundforRespawn: event:/Player Interactions/Re-SpawnJoueur
+  inputsoundforDeath: event:/Player Interactions/MortJoueur
 --- !u!1 &2394925971628894990
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2389406321770867878}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: FeetPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2389667776712609712}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: StartRaycastUnderPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

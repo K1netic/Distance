@@ -5,11 +5,13 @@ using XInputDotNetPure;
 
 public class Projectile : MonoBehaviour {
 
-	float acceleration;
-	[HideInInspector] public float maxSpeed = 50;
-	[SerializeField] float smoothTime = 0.3f;
-	[SerializeField] float xVelocity = 10.0f;
-	[SerializeField] float direction = 1f;
+	float xAcceleration;
+	float yAcceleration;
+	public float maxSpeed = 300f;
+	float smoothTime = 0.3f;
+	float xVelocity = 10.0f;
+	float yVelocity = 10.0f;
+	float rotation;
 	Rigidbody2D rigid;
 	[HideInInspector] public Transform respawnPoint;
 	Animator playerAnimator;
@@ -18,12 +20,54 @@ public class Projectile : MonoBehaviour {
 	void Start () 
 	{
 		rigid = this.GetComponent<Rigidbody2D> ();
+		switch(projectileThrower.GetComponent<ProjectileThrower>().orientation)
+		{
+			case "right":
+				rotation = -90f;
+				break;
+			case "left":
+				rotation = 90f;
+				break;
+			case "top":
+				rotation = -180f;
+				break;
+			case "bottom":
+				rotation = 180f;
+				break;
+			default:
+				rotation = -90f;
+				break;
+		}
+		transform.Rotate(new Vector3(0,0,rotation), Space.Self);
 	}
 
 	void FixedUpdate()
 	{
-		acceleration = Mathf.SmoothDamp(0, direction * maxSpeed, ref xVelocity, smoothTime);
-		rigid.velocity = new Vector2(acceleration, 0);
+		switch(projectileThrower.GetComponent<ProjectileThrower>().orientation)
+		{
+			case "right":
+				xAcceleration = Mathf.SmoothDamp(0, 1f * maxSpeed, ref xVelocity, smoothTime);
+				yAcceleration = 0f;
+				break;
+			case "left":
+				xAcceleration = Mathf.SmoothDamp(0, -1f * maxSpeed, ref xVelocity, smoothTime);
+				yAcceleration = 0f;
+				break;
+			case "top":
+				yAcceleration = Mathf.SmoothDamp(0, 1f * maxSpeed, ref yVelocity, smoothTime);
+				xAcceleration = 0f;
+				break;
+			case "bottom":
+				yAcceleration = Mathf.SmoothDamp(0, -1f * maxSpeed, ref yVelocity, smoothTime);
+				xAcceleration = 0f;
+				break;
+			default:
+				rotation = -90f;
+				break;
+		}
+
+		rigid.velocity = new Vector2(xAcceleration, yAcceleration);
+		
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)

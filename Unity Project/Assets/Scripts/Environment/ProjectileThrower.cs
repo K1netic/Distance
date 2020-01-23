@@ -14,14 +14,31 @@ public class ProjectileThrower : MonoBehaviour {
 	// A value of 1 will make the ammo fired's grow * the time of charge in seconds
 	[SerializeField] float scale = 1.0f;
 	[SerializeField] float projectileSpeed = 300f;
+	[SerializeField] public string orientation = "right";
+	float xOffset = 0f;
+	float yOffset = 0f;
 
 	[SerializeField] Transform respawnPoint;
 	GameObject player;
 	Animator playerAnimator;
+    Rigidbody2D playerRigidbody;
+    SpriteRenderer playerSprite;
+	    [FMODUnity.EventRef]
+    public string inputsoundforRespawn;
+    [FMODUnity.EventRef]
+    public string inputsoundforDeath;
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerRigidbody = player.GetComponent<Rigidbody2D>();
+        playerSprite = player.GetComponent<SpriteRenderer>();
+    }
 
 	// Update is called once per frame
 	void Start () 
 	{
+		// Faire varier la position et la rotation des 
 		player = GameObject.FindGameObjectWithTag("Player");
 		InvokeRepeating("Fire", startTime, cadency);
 	}
@@ -33,7 +50,26 @@ public class ProjectileThrower : MonoBehaviour {
 		FireBallGameObject.GetComponent<Projectile>().respawnPoint = respawnPoint;
 		FireBallGameObject.GetComponent<Projectile>().projectileThrower = gameObject;
 		// Tirer le projectile
-		Instantiate (FireBallGameObject, new Vector3(transform.position.x, transform.position.y, 0), new Quaternion(0,0,0,0));
+		switch(orientation)
+		{
+			case "right":
+				xOffset = 4.25f;
+				break;
+			case "left":
+				xOffset = -4.25f;
+				break;
+			case "top": 
+				yOffset = 4.25f;
+				break;
+			case "bottom":
+				yOffset = -4.25f;
+				break;
+			default:
+				xOffset = 0f;
+				yOffset = 0f;
+				break;
+		}
+		Instantiate (FireBallGameObject, new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, -1), new Quaternion(0,0,0,0));
 	}
 
 	public IEnumerator CancelVibration(float delay)
@@ -49,35 +85,39 @@ public class ProjectileThrower : MonoBehaviour {
 
     IEnumerator RespawnPlayer(GameObject player)
     {
-        //Vibrations
-        StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
         //Arrêter le mouvement
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        //Animations
-        playerAnimator = player.gameObject.GetComponent<Animator>();
-        playerAnimator.SetBool("dead", true);
+        playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.isKinematic = true;
+
         //Particules
         GameObject DeathParticles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
+        DeathParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
         GameObject RespawnParticles = player.gameObject.GetComponent<PlayerMovement>().RespawnParticles;
+        RespawnParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
         GameObject instantiatedDeathParticles = Instantiate(DeathParticles, player.transform.position, new Quaternion(0,0,0,0));
-		//SOUND : Mort Joueur
+        FMODUnity.RuntimeManager.PlayOneShot(inputsoundforRespawn);
 
+        //Sprite
+        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0);
+
+        //Vibrations
+        StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
         yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
         GameObject instantiatedRespawnParticles = Instantiate(RespawnParticles, respawnPoint.transform.position, new Quaternion(0,0,0,0));
-		//SOUND : Respawn Joueur
+        FMODUnity.RuntimeManager.PlayOneShot(inputsoundforDeath);
 
         yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
-        playerAnimator.SetBool("dead", false);
         //Déplacer le personnage au point de respawn
         player.transform.position = new Vector3(respawnPoint.position.x, respawnPoint.position.y);
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.GetComponent<Rigidbody2D>().isKinematic = true;
+        playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.isKinematic = true;
 
         yield return new WaitForSeconds(0.2f);
+        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1);
         //Redonner la capacité de bouger
-        player.GetComponent<Rigidbody2D>().isKinematic = false;
+        playerRigidbody.isKinematic = false;
 
         yield return new WaitForSeconds(0.8f);
         //Détruire les particules instanciées
