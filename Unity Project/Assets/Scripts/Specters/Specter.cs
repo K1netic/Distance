@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Specter : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Specter : MonoBehaviour
     [SerializeField] GameObject disappearParticles;
     [SerializeField] GameObject interactionButton;
     [SerializeField] GameObject bubble;
+    [SerializeField] GameObject[] bubbleButtons;
 
     bool displayInteraction = false;
     GameObject player;
@@ -21,20 +23,36 @@ public class Specter : MonoBehaviour
     public bool testSucceed = false;
     bool closeTest = false;
     bool interacted = false;
-    [FMODUnity.EventRef]
-    public string inputsoundSpecterTalk;
-    [FMODUnity.EventRef]
-    public string inputsoundSpecterDisappear;
+    [FMODUnity.EventRef] public string inputsoundSpecterTalk;
+    [FMODUnity.EventRef] public string inputsoundSpecterDisappear;
     float distanceWithPlayer;
     public bool calculateDistance = false;
     float distanceThreshold = 20f;
 
-    void Awake()
-    {
-        
-    }
+    // Dialogue management
+    [SerializeField] TextAsset csv;
+    [SerializeField] Text text;
+    [SerializeField] string dialogueToLoadKey;
+    string[,] dataArray;
+    string fullText;
+    string[] textLines;
+    int lineIndex = 0;
+    bool dialogueOver = false;
+    bool dialogueStarted = false;
+
+    CinematicBars cinematicBars;
+
     void Start()
     {
+        cinematicBars = FindObjectOfType<CinematicBars>();
+        if (bubbleButtons != null) 
+        {
+            foreach(GameObject button in bubbleButtons)
+            {
+                button.SetActive(false);
+            }
+        }
+
         if (!tutorialSpecter)
         {
             associatedExit.SetActive(false);
@@ -42,9 +60,14 @@ public class Specter : MonoBehaviour
             otherSpecterSprite = otherSpecter.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         }
         player = GameObject.FindGameObjectWithTag("Player");
+
+        //Loading text
+        dataArray = CSVReader.SplitCsvGrid(csv.text);
+        fullText = CSVReader.GetTextWithKey(dataArray, dialogueToLoadKey); 
+        textLines = CSVReader.SplitCsvLine(fullText);
+        text.text = textLines[lineIndex];
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (displayInteraction)
@@ -77,16 +100,34 @@ public class Specter : MonoBehaviour
                 otherSpecterSprite.color = newColor;
             }
         }
+
+        if (dialogueStarted)
+        {
+            DisplayLineByLine();
+        }
     }
 
     IEnumerator SpecterInteraction()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(inputsoundSpecterTalk);
         interactionButton.SetActive(false);
+        BlockPlayerActions();
+        cinematicBars.Show(150, 0.3f);
+        bubble.SetActive(true);
+        dialogueStarted = true;
+        yield return new WaitUntil(() => dialogueOver == true);
+        cinematicBars.Hide(0.3f);
+
         // Animation transfert de compétences
         player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
         yield return new WaitForSeconds(0.5f);
-        bubble.SetActive(true);
+        UnblockPlayerActions();
+        if (bubbleButtons != null) 
+        {
+            foreach(GameObject button in bubbleButtons)
+            {
+                button.SetActive(true);
+            }
+        }
 
         if (!tutorialSpecter)
         {
@@ -95,6 +136,8 @@ public class Specter : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot(inputsoundSpecterDisappear);
         }
     }
+
+    // The following code works in Editor but no on the build for mystical reasons
 
     // IEnumerator SpecterDisappearance()
     // {
@@ -110,6 +153,51 @@ public class Specter : MonoBehaviour
     //     yield return new WaitForSeconds(0.85f);
     //     // gameObject.SetActive(false);
     // }
+
+    void DisplayLineByLine()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(inputsoundSpecterTalk);
+            // Display next line of dialogue
+            if (lineIndex < textLines.Length - 1)
+            {
+                lineIndex ++;
+                text.text = textLines[lineIndex];
+            }
+
+            // If there are no more dialogue lines, erase all text
+            else
+            {
+                text.text = "";
+                dialogueOver = true;
+                dialogueStarted = false;
+            }
+        }
+    }
+
+    void BlockPlayerActions()
+    {
+        //Bloquer les mouvements du joueur 
+        PlayerMovement.lockMovement = true;
+        //Bloquer l'utilisation de compétences
+        foreach(string skill in SkillsManagement.skills)
+        {
+            player.GetComponent<SkillsManagement>().LockSkillUse(skill);
+        }
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
+    void UnblockPlayerActions()
+    {
+        //Activer les mouvements du joueur
+        PlayerMovement.lockMovement = false;
+        //Activer l'utilisation des skills du joueur
+        foreach(string skill in SkillsManagement.skills)
+        {
+            player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
+        }
+    }
 
     void OnTriggerStay2D(Collider2D other)
     {
