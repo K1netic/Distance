@@ -19,7 +19,10 @@ public class Specter : MonoBehaviour
     bool displayInteraction = false;
     GameObject player;
 
-    [SerializeField] bool tutorialSpecter = false; 
+    // Used for the particular case of tutorial specters
+    [SerializeField] bool tutorialSpecter = false;
+    // Used for the particular case of specters that don't give any skills
+    [SerializeField] bool noSkillSpecter = false; 
     public bool testSucceed = false;
     bool closeTest = false;
     bool interacted = false;
@@ -117,8 +120,8 @@ public class Specter : MonoBehaviour
         yield return new WaitUntil(() => dialogueOver == true);
         cinematicBars.Hide(0.3f);
 
-        // Animation transfert de compétences
-        player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
+        // Gain de compétence
+        if (!noSkillSpecter) player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
         yield return new WaitForSeconds(0.5f);
         UnblockPlayerActions();
         if (bubbleButtons != null) 

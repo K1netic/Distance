@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4675808419545463898}
   - component: {fileID: 4675808419545463899}
   m_Layer: 0
-  m_Name: Lucioles
+  m_Name: Fireflies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
