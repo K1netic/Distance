@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5438932523516770895, guid: b6e9e409d34e56649b05df882ab395b7,
         type: 3}
       propertyPath: m_Name
-      value: DSpecterDisappearParticles
+      value: IgnisDisappearParticles
       objectReference: {fileID: 0}
     - target: {fileID: 764768195696177803, guid: b6e9e409d34e56649b05df882ab395b7,
         type: 3}
@@ -67,20 +67,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2762077227337695571, guid: b6e9e409d34e56649b05df882ab395b7,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762077227337695571, guid: b6e9e409d34e56649b05df882ab395b7,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2762077227485138692, guid: b6e9e409d34e56649b05df882ab395b7,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2762077227485138692, guid: b6e9e409d34e56649b05df882ab395b7,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.45181608
+      value: 0.48748064
       objectReference: {fileID: 0}
     - target: {fileID: 2762077227485138692, guid: b6e9e409d34e56649b05df882ab395b7,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2762077227485138692, guid: b6e9e409d34e56649b05df882ab395b7,
         type: 3}
@@ -91,16 +101,6 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.radius.value
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2762077227337695571, guid: b6e9e409d34e56649b05df882ab395b7,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2762077227337695571, guid: b6e9e409d34e56649b05df882ab395b7,
-        type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6e9e409d34e56649b05df882ab395b7, type: 3}

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 992325659916253205, guid: aac21002f54f7ac4da6af0cacb890a67,
         type: 3}
       propertyPath: m_Name
-      value: JSpecterDisappearParticles
+      value: SeptimusDisappearParticles
       objectReference: {fileID: 0}
     - target: {fileID: 5486099170943414481, guid: aac21002f54f7ac4da6af0cacb890a67,
         type: 3}
@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 6983768163232746846, guid: aac21002f54f7ac4da6af0cacb890a67,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
+      value: 0.7830189
       objectReference: {fileID: 0}
     - target: {fileID: 6983768163232746846, guid: aac21002f54f7ac4da6af0cacb890a67,
         type: 3}
@@ -96,6 +96,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.radius.value
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983768163232746846, guid: aac21002f54f7ac4da6af0cacb890a67,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.01973311
       objectReference: {fileID: 0}
     - target: {fileID: 6983768163232746847, guid: aac21002f54f7ac4da6af0cacb890a67,
         type: 3}

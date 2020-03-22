@@ -24,6 +24,10 @@ public class SkillsManagement : MonoBehaviour
     [FMODUnity.EventRef]
     public string inputsound;
 
+    float rColor = 1f;
+    float gColor = 1f;
+    float bColor = 1f;
+
     void Start()
     {
         characterSprite = gameObject.GetComponent<SpriteRenderer>();
@@ -31,25 +35,23 @@ public class SkillsManagement : MonoBehaviour
 
     public void ActivateSkill(string skillName)
     {
-        float rColor = 1f;
-        float gColor = 0.5f;
-        float bColor = 1f;
+
         string hashedSkillName = skillName.Substring(0,2);
 
         // Changement de couleur du perso en fonction du type de skill activé
         switch (hashedSkillName)
         {
             case "j_":
-                bColor = characterSprite.color.b - colorAmountToChange;
-                StartCoroutine(PopNewSkillParticles(new Color(1,0.25f,0.25f,1)));
+                rColor = characterSprite.color.r - colorAmountToChange;
+                StartCoroutine(PopNewSkillParticles(new Color(0.5f,1,0,1)));
                 break;
             case "d_":
-                rColor = characterSprite.color.r - colorAmountToChange;
-                StartCoroutine(PopNewSkillParticles(new Color(0,0.5f,1,1)));
+                gColor = characterSprite.color.g - colorAmountToChange;
+                StartCoroutine(PopNewSkillParticles(new Color(1,0.5f,0,1)));
                 break;
             default:
                 rColor = 1f;
-                gColor = 0.5f;
+                gColor = 1f;
                 bColor = 1f;
             break;
         }
@@ -58,16 +60,18 @@ public class SkillsManagement : MonoBehaviour
         switch(skillName)
         {
             case "jump":
-                rColor = 1;
-                bColor = 0.5f;
+                rColor = 0.5f;
+                gColor = 1;
+                bColor = 0;
                 jumpScript.enabled = true;
-                StartCoroutine(PopNewSkillParticles(new Color(1,0.25f,0.25f,1)));
+                StartCoroutine(PopNewSkillParticles(new Color(0.5f,1,0,1)));
                 break;
             case "dash":
                 rColor = 1f;
-                bColor = 1f;
+                gColor = 1f;
+                bColor = 0;
                 dashScript.enabled = true;
-                StartCoroutine(PopNewSkillParticles(new Color(0,0.5f,1,1)));
+                StartCoroutine(PopNewSkillParticles(new Color(1,0.5f,0,1)));
                 break;
             case "j_wallJump":
                 wallJumpScript.enabled = true;
