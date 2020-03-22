@@ -5,7 +5,7 @@ using XInputDotNetPure;
 
 public class Respawn : MonoBehaviour
 {
-    [SerializeField] Transform spawnPoint;
+    Transform spawnPoint;
     Animator playerAnimator;
     [FMODUnity.EventRef]
     public string inputsoundforRespawn;

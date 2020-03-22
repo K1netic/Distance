@@ -47,18 +47,18 @@ public class WallJump : MonoBehaviour
         }
 
         //Saut vers la droite en étant collé à un mur à gauche
-        if(Input.GetButtonDown("Jump") && isOnLeftWall)
+        if(Input.GetButtonDown("Jump") && isOnLeftWall && !GroundCheck.isGrounded)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, wallJumpVerticalForce);
             lockLeftWallCheck = true;
             Invoke("UnlockLeftWallCheck", lockWallCheckDuration);
             isOnLeftWall = false;
             PopParticle(-1.25f);
-            //SOUND : WallJump
+            FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         }
 
         //Saut vers la gauche en étant collé à un mur à droite
-        if(Input.GetButtonDown("Jump") && isOnRightWall)
+        if(Input.GetButtonDown("Jump") && isOnRightWall && !GroundCheck.isGrounded)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, wallJumpVerticalForce);
             lockRightWallCheck = true;

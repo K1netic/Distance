@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 5458554599281560588}
   - component: {fileID: 5458554599281560589}
   - component: {fileID: 5458554599281560590}
-  - component: {fileID: 5458554599281560579}
   m_Layer: 0
   m_Name: HalfThorns
-  m_TagString: Untagged
+  m_TagString: Deadly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,18 +106,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.019264, y: 2.5982935}
   m_EdgeRadius: 0
---- !u!114 &5458554599281560579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5458554599281560591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39130892ff29c23469b9251c81a3c369, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
-  inputsoundforRespawn: event:/Player Interactions/MortJoueur
-  inputsoundforDeath: event:/Player Interactions/Re-SpawnJoueur
