@@ -36,7 +36,7 @@ public class Dash : MonoBehaviour {
             var VerticalInput = Input.GetAxisRaw("Vertical");
 
             // Récupération du dash
-            if (GroundCheck.isGrounded && !dashingOnGround) dashAvailable = true;
+            if ( (GroundCheck.isGrounded || GroundCheck.isOnGrass) && !dashingOnGround) dashAvailable = true;
 
             if (dashAvailable)
             {

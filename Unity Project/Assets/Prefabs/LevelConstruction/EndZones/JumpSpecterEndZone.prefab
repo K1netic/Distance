@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5781713244174958739}
   m_LocalRotation: {x: 0, y: -0.6427876, z: 0, w: 0.7660445}
-  m_LocalPosition: {x: 3.65, y: -0, z: -19.9}
+  m_LocalPosition: {x: 3.65, y: -0.042, z: -19.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5781713245885023312}
@@ -41,10 +41,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 0
-  m_Color: {r: 1, g: 0.15294118, b: 0, a: 1}
+  m_Color: {r: 0.06170094, g: 1, b: 0, a: 1}
   m_Intensity: 150
   m_Range: 70
-  m_SpotAngle: 35
+  m_SpotAngle: 40
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
@@ -117,7 +117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5781713245885023315}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -53.9, y: 40.7, z: 0}
   m_LocalScale: {x: 12, y: 100.00006, z: 1}
   m_Children:
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06246078, y: -0.0012495331}
+  m_Offset: {x: 0.06246078, y: -0.040134795}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -150,7 +150,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.87507844, y: 0.14256701}
+  m_Size: {x: 0.87507844, y: 0.22033753}
   m_EdgeRadius: 0
 --- !u!212 &5781713245885023311
 SpriteRenderer:
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba2b9576c153f74ca7d43c84e100332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoadName: S
+  sceneToLoadName: J
   fadeTexture: {fileID: 2800000, guid: ff6a100a075109a4497cffb5ec5dbd57, type: 3}
   inputsound: event:/Events/ChangementNiveau
 --- !u!1 &8403381098860374701
@@ -241,7 +241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8403381098860374701}
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalPosition: {x: -0, y: -0.04, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5781713245885023312}
@@ -437,7 +437,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0, a: 1}
+      maxColor: {r: 0.18177521, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -961,7 +961,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 5
+      value: 6
       mode: 0
       spread: 0
       speed:

@@ -47,18 +47,18 @@ public class WallJump : MonoBehaviour
         }
 
         //Saut vers la droite en étant collé à un mur à gauche
-        if(Input.GetButtonDown("Jump") && isOnLeftWall)
+        if(Input.GetButtonDown("Jump") && isOnLeftWall && !GroundCheck.isGrounded)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, wallJumpVerticalForce);
             lockLeftWallCheck = true;
             Invoke("UnlockLeftWallCheck", lockWallCheckDuration);
             isOnLeftWall = false;
             PopParticle(-1.25f);
-            //SOUND : WallJump
+            FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         }
 
         //Saut vers la gauche en étant collé à un mur à droite
-        if(Input.GetButtonDown("Jump") && isOnRightWall)
+        if(Input.GetButtonDown("Jump") && isOnRightWall && !GroundCheck.isGrounded)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, wallJumpVerticalForce);
             lockRightWallCheck = true;
@@ -164,12 +164,14 @@ public class WallJump : MonoBehaviour
 
     void PopParticle(float xPosition)
     {
+        Debug.Log("popParticle");
         GameObject instantiated = Instantiate(JumpRing,new Vector3(gameObject.transform.position.x + xPosition, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
         instantiated.transform.Rotate(new Vector3(-180,-90,90),Space.Self);
         if (xPosition > 0)
         {
             instantiated.transform.GetChild(0).transform.Rotate(new Vector3(-180,0,0), Space.Self);
         }
+        Debug.Log(gameObject.GetComponent<SpriteRenderer>().color);
         instantiated.GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
         instantiated.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
         Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);

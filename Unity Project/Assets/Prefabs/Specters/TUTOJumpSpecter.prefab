@@ -194,8 +194,8 @@ SpriteRenderer:
   m_SortingLayerID: 1863360331
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 69c3d5f3c1f1b7543b51cc23888e3d3a, type: 3}
-  m_Color: {r: 0.6226415, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: aed586bc922b6aa41b0b9b5c2c57e548, type: 3}
+  m_Color: {r: 0.12083001, g: 0.46226418, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -265,9 +265,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 2
-  m_Color: {r: 1, g: 0, b: 0.11425209, a: 1}
-  m_Intensity: 5
-  m_Range: 20
+  m_Color: {r: 0.3688958, g: 0.745283, b: 0, a: 1}
+  m_Intensity: 10
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -434,10 +434,16 @@ MonoBehaviour:
     type: 3}
   interactionButton: {fileID: 6659245561890890330}
   bubble: {fileID: 4328737610341719415}
+  bubbleButtons: []
   tutorialSpecter: 1
+  noSkillSpecter: 0
   testSucceed: 0
   inputsoundSpecterTalk: event:/Events/InteractionFantome
   inputsoundSpecterDisappear: event:/Events/DisparitionFantome
+  calculateDistance: 0
+  csv: {fileID: 0}
+  text: {fileID: 0}
+  dialogueToLoadKey: 
 --- !u!95 &8065414594422507951
 Animator:
   serializedVersion: 3

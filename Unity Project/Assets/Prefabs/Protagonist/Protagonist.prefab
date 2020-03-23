@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 1006430338848709}
   - component: {fileID: 3293584630170032527}
   - component: {fileID: 1006430338848710}
-  - component: {fileID: 1945544879}
+  - component: {fileID: 5217225532560185631}
   m_Layer: 0
   m_Name: Protagonist
   m_TagString: Player
@@ -663,7 +663,7 @@ MonoBehaviour:
   grassLayer:
     serializedVersion: 2
     m_Bits: 1024
---- !u!114 &1945544879
+--- !u!114 &5217225532560185631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2394270651698116672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2227fec858b7484481e4da0a381c54a, type: 3}
+  m_Script: {fileID: 11500000, guid: c8d138882da2cd8448451ec885bb2bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputsoundforRespawn: event:/Player Interactions/Re-SpawnJoueur
