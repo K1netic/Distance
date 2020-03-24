@@ -161,7 +161,7 @@ MonoBehaviour:
   Path: event:/Events/ChangementTableau
   guid: dc904e1b121cbe45a2d6263deafb4f3f
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637124453633809363
+  lastModified: 637133983736984992
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -295,7 +295,7 @@ MonoBehaviour:
   lastModified: 637124453633789423
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-6744231881055323164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/HeavyDash
   guid: ec46cdcffb55194d84309b8667b15b8d
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -357,7 +357,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/Re-SpawnJoueur
   guid: e0becac4af749b459f8714f53fc71ab4
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -403,7 +403,7 @@ MonoBehaviour:
   Path: event:/Musics/AmbiantSound
   guid: 9d338ea0f214484f91993a02e6c2af91
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   Path: event:/Events/DisparitionFantome
   guid: 83d3b62bf5fae642aeda8d249a8f2701
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -572,7 +572,7 @@ MonoBehaviour:
   Path: event:/Musics/JumpLevelLoop
   guid: 3dff2a9aecbb7244b07626df3b152996
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -641,7 +641,7 @@ MonoBehaviour:
   Path: event:/Musics/InitialLoop
   guid: cbd858e69c28194b968d473859a33bb3
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -664,7 +664,7 @@ MonoBehaviour:
   Path: event:/Events/InteractionFantome
   guid: 2647d9012c403948b6c4992e16df60c6
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -733,7 +733,7 @@ MonoBehaviour:
   Path: event:/Events/PushablePlatform
   guid: 12ccd63d07f09546817d824ee6311387
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -874,7 +874,7 @@ MonoBehaviour:
   Path: event:/Musics/DashLevelLoop
   guid: f0aa82ff424a754b8a01f80877a9f8f2
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -900,6 +900,24 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-2571669771589469120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../SonsFMOD/AstraySoundDesign/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637133983736884992
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-2456774621114528565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1058,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/MarcheTerre
   guid: 36d18809ab54dd49827461bd5bf784b9
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1226,7 +1244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -8002295754484290483}
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   EditorEvents:
   - {fileID: 6430081189594637188}
   - {fileID: -3531422817090438030}
@@ -1249,10 +1267,10 @@ MonoBehaviour:
   - {fileID: -3198215012389884434}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   StringsBanks:
   - {fileID: -8002295754484290483}
-  stringsBankWriteTime: 637124453633809363
+  stringsBankWriteTime: 637133983736984992
   cacheVersion: 3
 --- !u!114 &9077402405918107
 MonoBehaviour:
@@ -1433,7 +1451,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/RebondMur
   guid: 277e144d9864a24eb5cd42adcac7271f
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1625,7 +1643,7 @@ MonoBehaviour:
   Path: "event:/Events/GainComp\xE9tence"
   guid: edfc98fc4357234099ee0696784bab2d
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1823,7 +1841,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/MarcheBois
   guid: cdd25f3372289643a0b0918b860a1087
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1930,7 +1948,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/MortJoueur
   guid: e9820756f0cb154ebb07b87d194d6328
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1953,7 +1971,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/Dash
   guid: 5bf6d241ad43e845b642a61b7249b354
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2127,7 +2145,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/Saut
   guid: 11790a2b8e5a2846a41a75ce714e001e
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2252,7 +2270,7 @@ MonoBehaviour:
   Path: event:/Player Interactions/RecoverySol
   guid: 80cbc37b209d0048a52d14012fe1f1db
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2513,7 +2531,7 @@ MonoBehaviour:
   Path: event:/Events/ChangementNiveau
   guid: ce995326b840e94f940df5afccbfc132
   Banks:
-  - {fileID: -6965396434321016361}
+  - {fileID: -2571669771589469120}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

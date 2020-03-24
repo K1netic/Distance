@@ -164,14 +164,12 @@ public class WallJump : MonoBehaviour
 
     void PopParticle(float xPosition)
     {
-        Debug.Log("popParticle");
         GameObject instantiated = Instantiate(JumpRing,new Vector3(gameObject.transform.position.x + xPosition, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
         instantiated.transform.Rotate(new Vector3(-180,-90,90),Space.Self);
         if (xPosition > 0)
         {
             instantiated.transform.GetChild(0).transform.Rotate(new Vector3(-180,0,0), Space.Self);
         }
-        Debug.Log(gameObject.GetComponent<SpriteRenderer>().color);
         instantiated.GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
         instantiated.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
         Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
