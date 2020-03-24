@@ -77,7 +77,6 @@ public class Projectile : MonoBehaviour {
 		else if (coll.gameObject.tag == "Player")
 		{
 			Destroy(this.gameObject);
-			projectileThrower.GetComponent<ProjectileThrower>().RespawnFromProjectile();
 		}
 		else 
 		{

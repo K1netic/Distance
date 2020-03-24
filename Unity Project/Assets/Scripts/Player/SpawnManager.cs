@@ -37,6 +37,15 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // Used for deadly objects that have a non-trigger collider
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Deadly")
+        {
+            StartCoroutine(RespawnPlayer(gameObject));
+        }
+    }
+
     IEnumerator RespawnPlayer(GameObject player)
     {
         // Get the last spawnPoint registered

@@ -78,50 +78,50 @@ public class ProjectileThrower : MonoBehaviour {
 		GamePad.SetVibration(0,0,0);
 	}
 
-	public void RespawnFromProjectile()
-	{
-		StartCoroutine(RespawnPlayer(player));
-	}
+	// public void RespawnFromProjectile()
+	// {
+	// 	StartCoroutine(RespawnPlayer(player));
+	// }
 
-    IEnumerator RespawnPlayer(GameObject player)
-    {
-        //Arrêter le mouvement
-        playerRigidbody.velocity = Vector2.zero;
-        playerRigidbody.isKinematic = true;
+    // IEnumerator RespawnPlayer(GameObject player)
+    // {
+    //     //Arrêter le mouvement
+    //     playerRigidbody.velocity = Vector2.zero;
+    //     playerRigidbody.isKinematic = true;
 
-        //Particules
-        GameObject DeathParticles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
-        DeathParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
-        GameObject RespawnParticles = player.gameObject.GetComponent<PlayerMovement>().RespawnParticles;
-        RespawnParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
-        GameObject instantiatedDeathParticles = Instantiate(DeathParticles, player.transform.position, new Quaternion(0,0,0,0));
-        FMODUnity.RuntimeManager.PlayOneShot(inputsoundforRespawn);
+    //     //Particules
+    //     GameObject DeathParticles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
+    //     DeathParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
+    //     GameObject RespawnParticles = player.gameObject.GetComponent<PlayerMovement>().RespawnParticles;
+    //     RespawnParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
+    //     GameObject instantiatedDeathParticles = Instantiate(DeathParticles, player.transform.position, new Quaternion(0,0,0,0));
+    //     FMODUnity.RuntimeManager.PlayOneShot(inputsoundforRespawn);
 
-        //Sprite
-        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0);
+    //     //Sprite
+    //     playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0);
 
-        //Vibrations
-        StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
-        yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
+    //     //Vibrations
+    //     StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
+    //     yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
-        GameObject instantiatedRespawnParticles = Instantiate(RespawnParticles, respawnPoint.transform.position, new Quaternion(0,0,0,0));
-        FMODUnity.RuntimeManager.PlayOneShot(inputsoundforDeath);
+    //     GameObject instantiatedRespawnParticles = Instantiate(RespawnParticles, respawnPoint.transform.position, new Quaternion(0,0,0,0));
+    //     FMODUnity.RuntimeManager.PlayOneShot(inputsoundforDeath);
 
-        yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
+    //     yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
-        //Déplacer le personnage au point de respawn
-        player.transform.position = new Vector3(respawnPoint.position.x, respawnPoint.position.y);
-        playerRigidbody.velocity = Vector2.zero;
-        playerRigidbody.isKinematic = true;
+    //     //Déplacer le personnage au point de respawn
+    //     player.transform.position = new Vector3(respawnPoint.position.x, respawnPoint.position.y);
+    //     playerRigidbody.velocity = Vector2.zero;
+    //     playerRigidbody.isKinematic = true;
 
-        yield return new WaitForSeconds(0.2f);
-        playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1);
-        //Redonner la capacité de bouger
-        playerRigidbody.isKinematic = false;
+    //     yield return new WaitForSeconds(0.2f);
+    //     playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1);
+    //     //Redonner la capacité de bouger
+    //     playerRigidbody.isKinematic = false;
 
-        yield return new WaitForSeconds(0.8f);
-        //Détruire les particules instanciées
-        Destroy(instantiatedDeathParticles);
-        Destroy(instantiatedRespawnParticles);
-    }
+    //     yield return new WaitForSeconds(0.8f);
+    //     //Détruire les particules instanciées
+    //     Destroy(instantiatedDeathParticles);
+    //     Destroy(instantiatedRespawnParticles);
+    // }
 }

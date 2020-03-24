@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Specter : MonoBehaviour
 {
-    [SerializeField] int specterIndex;
     [SerializeField] string associatedSkillName;
     [SerializeField] GameObject associatedExit;
     [SerializeField] GameObject otherSpecter;
