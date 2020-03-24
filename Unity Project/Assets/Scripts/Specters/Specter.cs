@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class Specter : MonoBehaviour
 {
     [SerializeField] string associatedSkillName;
-    [SerializeField] GameObject associatedExit;
-    [SerializeField] GameObject otherSpecter;
     Specter otherSpecterScript;
     SpriteRenderer otherSpecterSprite;
     [SerializeField] GameObject disappearParticles;
@@ -17,11 +15,13 @@ public class Specter : MonoBehaviour
 
     bool displayInteraction = false;
     GameObject player;
-
+    [SerializeField] GameObject associatedExit;
+    [SerializeField] GameObject otherSpecter;
     // Used for the particular case of tutorial specters
     [SerializeField] bool tutorialSpecter = false;
     // Used for the particular case of specters that don't give any skills
-    [SerializeField] bool noSkillSpecter = false; 
+    [SerializeField] bool noSkillSpecter = false;
+
     public bool testSucceed = false;
     bool closeTest = false;
     bool interacted = false;
