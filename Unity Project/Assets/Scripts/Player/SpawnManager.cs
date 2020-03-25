@@ -90,6 +90,7 @@ public class SpawnManager : MonoBehaviour
         // Get movement back
         playerRigidbody.isKinematic = false;
         PlayerMovement.lockMovement = false;
+        player.transform.rotation = new Quaternion(0,0,0,0);
 
         yield return new WaitForSeconds(0.8f);
         // Destroy instantiated particles

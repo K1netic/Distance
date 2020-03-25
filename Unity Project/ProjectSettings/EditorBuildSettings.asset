@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/J.unity
     guid: 058868595079409479f435f374be5f5e
+  - enabled: 1
+    path: Assets/Scenes/JJ.unity
+    guid: e11f0201d3117bd4da01212d365083de
   m_configObjects: {}
