@@ -18,21 +18,13 @@ public class ProjectileThrower : MonoBehaviour {
 	float xOffset = 0f;
 	float yOffset = 0f;
 
-	[SerializeField] Transform respawnPoint;
 	GameObject player;
-	Animator playerAnimator;
-    Rigidbody2D playerRigidbody;
-    SpriteRenderer playerSprite;
-	    [FMODUnity.EventRef]
-    public string inputsoundforRespawn;
-    [FMODUnity.EventRef]
-    public string inputsoundforDeath;
+	[FMODUnity.EventRef] public string inputsoundforRespawn;
+    [FMODUnity.EventRef]public string inputsoundforDeath;
 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerRigidbody = player.GetComponent<Rigidbody2D>();
-        playerSprite = player.GetComponent<SpriteRenderer>();
     }
 
 	void Start () 
@@ -47,7 +39,6 @@ public class ProjectileThrower : MonoBehaviour {
 		// Setup projectile properties
 		FireBallGameObject.GetComponent<Projectile>().maxSpeed = projectileSpeed;
 		FireBallGameObject.transform.localScale = new Vector3(scale, scale, 0);
-		FireBallGameObject.GetComponent<Projectile>().respawnPoint = respawnPoint;
 		FireBallGameObject.GetComponent<Projectile>().projectileThrower = gameObject;
 		// Fire projectile on edge of the canon
 		switch(orientation)
