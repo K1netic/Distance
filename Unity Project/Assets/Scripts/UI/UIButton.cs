@@ -28,6 +28,7 @@ public class UIButton : MonoBehaviour
 
     void Update()
     {
+        // Activate fog transition
         if (fogActivated)
         {
             D2FogsPE[] fogs = cam.GetComponents<D2FogsPE>();
@@ -38,12 +39,11 @@ public class UIButton : MonoBehaviour
         }
     }
 
+    // Launch game, fade screen to black and play a fog transition
     public void LaunchGame()
     {
         alpha = 0f;
         fadeToBlack = true;
-
-        //Charger l'animation de transition d'écran
         StartCoroutine(DisplayFog());
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextLevel")));
         FMODUnity.RuntimeManager.PlayOneShot(inputsound);
@@ -73,6 +73,7 @@ public class UIButton : MonoBehaviour
         GUI.depth = drawDepth;
         GUI.DrawTexture(new Rect(0,0,1920f,1080f),fadeTexture);
 
+        // Fade to black
         if (fadeToBlack)
         {
             alpha -= fadeDir * fadeSpeed * Time.deltaTime;
@@ -105,20 +106,30 @@ public class UIButton : MonoBehaviour
         }
     }
 
+    // variables needed to manage fog density over time
     float currentTime = 0f;
     float maxDensity;
     float animationTime;
-    void FogTransition(D2FogsPE fogScript, int index) {
+
+    // Change fog density over time to display it smoothly
+    // Two D2FogsPE scripts are used, each having one color
+    void FogTransition(D2FogsPE fogScript, int index) 
+    {
+        // Total animation time
         animationTime = fogTransitionDuration * 2.0f;
+        // Fog 1 max density
         if (index == 0) maxDensity = 5f;
+        // Fog 2 max density
         else if (index == 1) maxDensity = 3f;
 
+        // Lerp fog density from nearly none to its max for the whole animation time
         if (currentTime <= (animationTime))
         {
             currentTime += Time.deltaTime;
             fogScript.Density = Mathf.Lerp(0.2f, maxDensity, currentTime / animationTime);
         }
 
+        // When the fog has reached its max density, load TUTORIAL level
         if (fogScript.Density == maxDensity)
         {
             SceneManager.LoadScene("TUTO");

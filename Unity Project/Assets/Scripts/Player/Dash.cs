@@ -5,22 +5,20 @@ using XInputDotNetPure;
 
 public class Dash : MonoBehaviour {
 
-    [SerializeField]
-    public float dashForce = 25;
-    [SerializeField]
-    public float lockMovementDuration = .25f;
-    [SerializeField]
-    public float dashCooldown = 0.5f;
+    [SerializeField] public float dashForce = 25;
+    [SerializeField] public float lockMovementDuration = .25f;
+    [SerializeField] public float dashCooldown = 0.5f;
     Rigidbody2D rigid;
     bool dashAvailable = true;
     float localGravity;
     bool dashingOnGround = false;
     public bool lockNormalDash = false;
     Animator playerAnimator;
+    // Particles
     [SerializeField] GameObject DashParticles;
     [SerializeField] GameObject DashTrail;
-    [FMODUnity.EventRef]
-    public string inputsound;
+    // Sounds
+    [FMODUnity.EventRef] public string inputsound;
 
     void Start () {
         rigid = GetComponent<Rigidbody2D>();
@@ -31,24 +29,24 @@ public class Dash : MonoBehaviour {
 	void Update () {
         if (!lockNormalDash)
         {
-            //Direction de l'input pour le dash
+            // Input direction for dash
             var HorizontalInput = Input.GetAxisRaw("Horizontal");
             var VerticalInput = Input.GetAxisRaw("Vertical");
 
-            // Récupération du dash
+            // Dash recovery
             if ( (GroundCheck.isGrounded || GroundCheck.isOnGrass) && !dashingOnGround) dashAvailable = true;
 
             if (dashAvailable)
             {
                 #region Test direction
-                //Dash dans la direction du joueur s'il dash sans bouger
+                // Dash in the direction the player is facing if they dash without moving
                 if (Input.GetButtonDown("Dash") && (HorizontalInput == 0 && VerticalInput == 0))
                 {
                     ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
                     PopParticleWithoutKnowingDirection();
                 }
 
-                // Récupération du dash dans le cas d'une utilisation au sol
+                // Dash recovery management if it used on the floor
                 if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0 && GroundCheck.isGrounded)
                 {
                     dashAvailable = false;
@@ -56,14 +54,14 @@ public class Dash : MonoBehaviour {
                     Invoke("DashCooldown", dashCooldown);
                 }
 
-                //Dash dans la direction du joueur s'il essaye de dasher vers le haut
+                // Dash in player's direction if trying to dash upward
                 if (Input.GetButtonDown("Dash") && (VerticalInput > 0.0f))
                 {
                     ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
                     PopParticleWithoutKnowingDirection();
                 }
 
-                //Dash droite
+                // Dash right
                 if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
                 {
                     ApplyDash(new Vector2(1, 0));
@@ -71,7 +69,7 @@ public class Dash : MonoBehaviour {
                     PopParticle(DashTrail, 0.5f, 0, -90);
                 }
 
-                //Dash gauche
+                // Dash left
                 if (Input.GetButtonDown("Dash") && (HorizontalInput < 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
                 {
                     ApplyDash(new Vector2(-1, 0));
@@ -79,7 +77,7 @@ public class Dash : MonoBehaviour {
                     PopParticle(DashTrail, -0.5f, 0, 90);
                 }
 
-                //Dash bas
+                // Dash downwards
                 if (Input.GetButtonDown("Dash") && (VerticalInput < 0.0f && HorizontalInput > -0.30f && HorizontalInput < 0.30f))
                 {
                     ApplyDash(new Vector2(0, -1));
@@ -87,7 +85,7 @@ public class Dash : MonoBehaviour {
                     PopParticle(DashTrail, 0f, -90, -90);
                 }
 
-                //Dash bas-droite
+                // Dash downard-right
                 if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
                 {
                     ApplyDash(new Vector2(1, -1));
@@ -95,7 +93,7 @@ public class Dash : MonoBehaviour {
                     PopParticle(DashTrail, 0f, -45, -90);
                 }
 
-                //Dash bas-gauche
+                // Dash downard-left
                 if (Input.GetButtonDown("Dash") && (HorizontalInput < -0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
                 {
                     ApplyDash(new Vector2(-1, -1));
@@ -107,21 +105,20 @@ public class Dash : MonoBehaviour {
         }
     }
 
-    //Lock player's movement, apply dash force then unlock the movement
+    // Lock player's movement, apply dash force then unlock the movement
     void ApplyDash(Vector2 direction)
     {
         playerAnimator.SetBool("dashing", true);
         PlayerMovement.lockMovement = true;
         dashAvailable = false;
         rigid.gravityScale = 0;
-        // rigid.velocity = Vector2.zero;
         rigid.velocity = direction * dashForce;
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("Dash")));
         Invoke("UnlockMovement", lockMovementDuration);
         FMODUnity.RuntimeManager.PlayOneShot(inputsound);
     }
 
-    //Reset the gravity and the velocity, and let the player move again
+    // Reset the gravity and the velocity, and let the player move again
     public void UnlockMovement()
     {
         playerAnimator.SetBool("dashing", false);
@@ -148,7 +145,7 @@ public class Dash : MonoBehaviour {
         instantiated.transform.Rotate(new Vector3(xRotationAngle,yRotationAngle,0),Space.Self);
         instantiated.transform.parent = gameObject.transform;
         instantiated.transform.localScale = new Vector3(1,1,1);
-        instantiated.GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color ;//new Color(gameObject.GetComponent<SpriteRenderer>().color.r, gameObject.GetComponent<SpriteRenderer>().color.g, gameObject.GetComponent<SpriteRenderer>().color.b, gameObject.GetComponent<SpriteRenderer>().color.a);
+        instantiated.GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color ;
         Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
     }
 

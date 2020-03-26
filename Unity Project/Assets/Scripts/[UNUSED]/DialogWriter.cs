@@ -10,7 +10,6 @@ public class DialogWriter : MonoBehaviour {
 	string message;
 	Text textComp;
 
-	// Use this for initialization
 	void Start () {
 		textComp = GetComponent<Text>();
 		message = textComp.text;

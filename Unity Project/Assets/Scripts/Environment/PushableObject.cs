@@ -6,6 +6,7 @@ public class PushableObject : MonoBehaviour
 {
     Rigidbody2D rigid;
     bool beingPushed = false;
+    // Forces at which the player will be thrown if they are on the platform when it gets pushed back
     [SerializeField] float playerPushForceX = -300f;
     [SerializeField] float playerPushForceY = 50f;
 
@@ -19,12 +20,14 @@ public class PushableObject : MonoBehaviour
     {
         if (!rigid.isKinematic)
         {
+            // If the barrier is touched by a projectile, it is pushed back
             if (other.gameObject.tag == "Deadly")
             {
                 rigid.velocity = new Vector2(-100f,100f);
                 StartCoroutine(PushCharacter());
             }
 
+            // If the character is on the barrier and the platform is being pushed by a projectile, the player is pushed too
             if (other.gameObject.tag == "Player" && beingPushed)
             {
                 other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(playerPushForceX, playerPushForceY);
@@ -32,6 +35,7 @@ public class PushableObject : MonoBehaviour
         }
     }
 
+    // Allow for character to be pushed for 0.3 seconds
     IEnumerator PushCharacter()
     {
         beingPushed = true;
@@ -39,6 +43,7 @@ public class PushableObject : MonoBehaviour
         beingPushed = false;
     }
 
+    // Used when the player uses a heavy dash on the barrier
     public void Pushed()
     {
         rigid.isKinematic = false;

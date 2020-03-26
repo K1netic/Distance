@@ -7,42 +7,22 @@ public class AutoKill : MonoBehaviour
 {
     Rigidbody2D playerRigidbody;
     SpriteRenderer playerSprite;
-    Transform spawnPoint;
+    Transform lastSpawnPoint;
     
-    [FMODUnity.EventRef]
-    public string inputsoundforRespawn;
-    [FMODUnity.EventRef]
-    public string inputsoundforDeath;
+    [FMODUnity.EventRef] public string inputsoundforRespawn;
+    [FMODUnity.EventRef] public string inputsoundforDeath;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerSprite = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Respawn player at last spawn point registered when they press the Autokill button
         if (Input.GetButton("Autokill"))
-            Kill();
-    }
-
-    void Kill()
-    {
-        if (transform.position.x < 125f)
-            spawnPoint = GameObject.Find("SpawnPoint_B1").transform;
-        else if (transform.position.x < 375f)
-            spawnPoint = GameObject.Find("SpawnPoint_B2").transform;
-        else if (transform.position.x < 625f)
-            spawnPoint = GameObject.Find("SpawnPoint_B3").transform;
-        else if (transform.position.x < 875f)
-            spawnPoint = GameObject.Find("SpawnPoint_B4").transform;
-        else if (transform.position.x < 1125f)
-            spawnPoint = GameObject.Find("SpawnPoint_B5").transform;
-        else if (transform.position.x < 1375f)
-            spawnPoint = GameObject.Find("SpawnPoint_Transition").transform;
-        StartCoroutine(RespawnPlayer(gameObject));
+            StartCoroutine(RespawnPlayer(gameObject));
     }
 
     public IEnumerator CancelVibration(float delay)
@@ -53,42 +33,52 @@ public class AutoKill : MonoBehaviour
 
     IEnumerator RespawnPlayer(GameObject player)
     {
-        //Arrêter le mouvement
+        // Get the last spawnPoint registered
+        lastSpawnPoint = SpawnManager.spawnPoints[SpawnManager.spawnPoints.Count - 1].transform;
+
+        // Stop movement
         playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.isKinematic = true;
+        PlayerMovement.lockMovement = true;
 
-        //Particules
-        GameObject DeathParticles = player.gameObject.GetComponent<PlayerMovement>().DeathParticles;
-        DeathParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
-        GameObject RespawnParticles = player.gameObject.GetComponent<PlayerMovement>().RespawnParticles;
-        RespawnParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = player.GetComponent<SpriteRenderer>().color;
-        GameObject instantiatedDeathParticles = Instantiate(DeathParticles, player.transform.position, new Quaternion(0,0,0,0));
+        // Generate death particles
+        GameObject DeathParticles = gameObject.GetComponent<PlayerMovement>().DeathParticles;
+        DeathParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
+        GameObject RespawnParticles = gameObject.GetComponent<PlayerMovement>().RespawnParticles;
+        RespawnParticles.transform.GetChild(1).GetComponent<ParticleSystem>().startColor = gameObject.GetComponent<SpriteRenderer>().color;
+        GameObject instantiatedDeathParticles = Instantiate(DeathParticles, gameObject.transform.position, new Quaternion(0,0,0,0));
+        // Death sound
         FMODUnity.RuntimeManager.PlayOneShot(inputsoundforRespawn);
 
-        //Sprite
+        // Sprite
         playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0);
 
-        //Vibrations
+        // Vibrations
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("Death")));
+
         yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
-        GameObject instantiatedRespawnParticles = Instantiate(RespawnParticles, spawnPoint.transform.position, new Quaternion(0,0,0,0));
+        // Generate respawn particles
+        GameObject instantiatedRespawnParticles = Instantiate(RespawnParticles, lastSpawnPoint.transform.position, new Quaternion(0,0,0,0));
+        // Respawn sound
         FMODUnity.RuntimeManager.PlayOneShot(inputsoundforDeath);
 
         yield return new WaitForSeconds(GameManager.timeBeforeRespawn/2.0f);
 
-        //Déplacer le personnage au point de respawn
-        player.transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y);
+        // Move the character to the last spawnPoint
+        player.transform.position = new Vector3(lastSpawnPoint.position.x, lastSpawnPoint.position.y);
         playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.isKinematic = true;
 
         yield return new WaitForSeconds(0.2f);
         playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1);
-        //Redonner la capacité de bouger
+        // Get movement back
         playerRigidbody.isKinematic = false;
+        PlayerMovement.lockMovement = false;
+        player.transform.rotation = new Quaternion(0,0,0,0);
 
         yield return new WaitForSeconds(0.8f);
-        //Détruire les particules instanciées
+        // Destroy instantiated particles
         Destroy(instantiatedDeathParticles);
         Destroy(instantiatedRespawnParticles);
     }

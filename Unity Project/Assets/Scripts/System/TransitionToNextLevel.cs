@@ -9,18 +9,16 @@ using XInputDotNetPure;
 public class TransitionToNextLevel : MonoBehaviour
 {
     [SerializeField] string sceneToLoadName = "";
-    int currentSceneIndex;
     Camera cam;
     GameObject player;
     float fogTransitionDuration = 3.0f;
 
-    // Fade to black
+    // Fade to black management
     [SerializeField] Texture2D fadeTexture;
     float fadeSpeed = 0.2f;
     int drawDepth = -1000;
     float alpha = 1.0f; 
     float fadeDir = -1;
-
     bool fadeToBlack = false;
     bool fogActivated = false;
     [FMODUnity.EventRef]
@@ -28,12 +26,10 @@ public class TransitionToNextLevel : MonoBehaviour
 
     void Start()
     {
-        // currentSceneIndex = int.Parse(SceneManager.GetActiveScene().name.Substring(5,1));
         player = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        // Set base value for black screen
         alpha = 0f;
-        // fadeToBlack = true;
-
     }
 
     void Update()
@@ -52,17 +48,18 @@ public class TransitionToNextLevel : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //Bloquer les mouvements du joueur 
+            // Block player movements
             PlayerMovement.lockMovement = true;
-            //Bloquer l'utilisation de compétences
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            // Block player skills
             foreach(string skill in SkillsManagement.skills)
             {
                 player.GetComponent<SkillsManagement>().LockSkillUse(skill);
             }
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            // Start fading to black
             alpha = 0f;
             fadeToBlack = true;
-            //Charger l'animation de transition d'écran
+            // Load screen transition animation
             StartCoroutine(DisplayFog());
             StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextLevel")));
             FMODUnity.RuntimeManager.PlayOneShot(inputsound);
@@ -78,6 +75,7 @@ public class TransitionToNextLevel : MonoBehaviour
         GUI.depth = drawDepth;
         GUI.DrawTexture(new Rect(0,0,1920f,1080f),fadeTexture);
 
+        // fade to black
         if (fadeToBlack)
         {
             alpha -= fadeDir * fadeSpeed * Time.deltaTime;
@@ -96,43 +94,56 @@ public class TransitionToNextLevel : MonoBehaviour
     
     IEnumerator DisplayFog()
     {
+        // Display fog
         fogActivated = true;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = true;
         }
         yield return new WaitForSeconds(fogTransitionDuration);
-
+        
+        // Hide fog
         fogActivated = false;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = false;
         }
-        //Activer les mouvements du joueur
+        // Activate player movements
         PlayerMovement.lockMovement = false;
-        //Activer l'utilisation des skills du joueur
+        // Activate skill gain
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
         }
     }
 
+    // variables needed to manage fog density over time
     float currentTime = 0f;
     float maxDensity;
     float animationTime;
-    void FogTransition(D2FogsPE fogScript, int index) {
+
+    // Change fog density over time to display it smoothly
+    // Two D2FogsPE scripts are used, each having one color
+    void FogTransition(D2FogsPE fogScript, int index) 
+    {
+        // Total animation time
         animationTime = fogTransitionDuration * 2.0f;
+        // Fog 1 max density
         if (index == 0) maxDensity = 5f;
+        // Fog 2 max density
         else if (index == 1) maxDensity = 3f;
 
+        // Lerp fog density from nearly none to its max for the whole animation time
         if (currentTime <= (animationTime))
         {
             currentTime += Time.deltaTime;
             fogScript.Density = Mathf.Lerp(0.2f, maxDensity, currentTime / animationTime);
         }
 
+        // When the fog has reached its max density, load next level
         if (fogScript.Density == maxDensity)
         {
+            // If the scene is the menu, reset skills
             if (sceneToLoadName == "Menu")
             {
                 for(int i =0; i < SkillsManagement.skills.Count; i ++)
@@ -140,6 +151,7 @@ public class TransitionToNextLevel : MonoBehaviour
                     SkillsManagement.skills[i] = "";
                 }
             }
+            // Load next level
             SceneManager.LoadScene(sceneToLoadName);
 
         }

@@ -13,6 +13,7 @@ public class CinematicBars : MonoBehaviour
 
     void Awake()
     {
+        // Top bar creation
         GameObject gameObject = new GameObject("topBar", typeof(Image));
         gameObject.transform.SetParent(transform, false);
         gameObject.GetComponent<Image>().color = Color.black;
@@ -21,6 +22,7 @@ public class CinematicBars : MonoBehaviour
         topBar.anchorMax = new Vector2(1, 1);
         topBar.sizeDelta = new Vector2(0, 0);
 
+        // Bottom bar creation
         gameObject = new GameObject("bottomBar", typeof(Image));
         gameObject.transform.SetParent(transform, false);
         gameObject.GetComponent<Image>().color = Color.black;
@@ -32,6 +34,7 @@ public class CinematicBars : MonoBehaviour
 
     void Update()
     {
+        // Move the bars through time
         if (isActive)
         {
             Vector2 sizeDelta = topBar.sizeDelta;

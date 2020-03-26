@@ -5,13 +5,10 @@ using XInputDotNetPure;
 public class Jump : MonoBehaviour {
 
     Rigidbody2D rigid;
-
 	[SerializeField] public float jumpForce = 70f;
 	float yVelocity = 0f;
 	[SerializeField] float jumpVelocityThreshold = 15f;
-    [FMODUnity.EventRef]
-    public string inputsound;
-
+    [FMODUnity.EventRef] public string inputsound;
     Animator playerAnimator;
 
     private void Start()
@@ -22,12 +19,12 @@ public class Jump : MonoBehaviour {
 
     void Update () {
 
-        // Saut
+        // Jump
         if ((GroundCheck.isGrounded || GroundCheck.isOnGrass) && Input.GetButtonDown("Jump") && rigid.velocity.y < jumpVelocityThreshold)
 		{
 			playerAnimator.SetBool("jumping", true);
             FMODUnity.RuntimeManager.PlayOneShot(inputsound);
-            // float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
+            // Possible other method : float acceleration = Mathf.SmoothDamp(0, 1 * jumpForce, ref yVelocity, 0.3f, jumpForce);
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
 			StartCoroutine(RefreshFloorTest());
 		}
@@ -39,6 +36,7 @@ public class Jump : MonoBehaviour {
 		GamePad.SetVibration(0,0,0);
 	}
 
+	// Update floor test to check if on the floor or not
 	IEnumerator RefreshFloorTest()
 	{
 		yield return new WaitForSeconds(0.1f);

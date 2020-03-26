@@ -10,6 +10,7 @@ public class PauseScreen : MonoBehaviour {
 
 	void OnEnable()
 	{
+		// Sets resume button as highlighted
 		itemSelected = GameObject.Find ("ResumeButton");
 		itemSelected.GetComponent<Button> ().Select ();
 	}

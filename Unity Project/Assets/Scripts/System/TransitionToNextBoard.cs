@@ -9,19 +9,22 @@ public class TransitionToNextBoard : MonoBehaviour
     Camera cam;
     GameObject player;
     [SerializeField] Transform nextBoardSpawnPoint;
+    // Camera position after moving to next board
     [SerializeField] float newCameraPosition;
+    // The final duration of the animation is two times this value
     float fogTransitionDuration = 0.75f;
     bool fogActivated = false;
+    // Light that displays when the player appears
     GameObject spawnLight;
-    [FMODUnity.EventRef]
-    public string inputsound;
+    [FMODUnity.EventRef] public string inputsound;
     MusicManager musicManager;
     [SerializeField] bool zoneTransition = false;
     bool moveCamera = false;
-    bool gdskhgkhdf = false;
+    bool cameraHasMoved = false;
 
     void Start()
     {
+        // Setup required objects
         player = GameObject.FindGameObjectWithTag("Player");
         spawnLight = player.transform.GetChild(0).gameObject;
         spawnLight.SetActive(false);
@@ -40,10 +43,11 @@ public class TransitionToNextBoard : MonoBehaviour
             }
         }    
 
-        if (moveCamera && !gdskhgkhdf)
+        if (moveCamera && !cameraHasMoved)
         {
+            // Move camere to next board
             cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
-            gdskhgkhdf = true;
+            cameraHasMoved = true;
         }
     }
 
@@ -51,24 +55,25 @@ public class TransitionToNextBoard : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //Bloquer les mouvements du joueur 
+            // Block player movement
             PlayerMovement.lockMovement = true;
             player.GetComponent<Rigidbody2D>().isKinematic = true;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            //Bloquer l'utilisation de compétences
+            // Block skill use
             foreach(string skill in SkillsManagement.skills)
             {
                 player.GetComponent<SkillsManagement>().LockSkillUse(skill);
             }
-            //Charger l'animation de transition d'écran
+            // Load screen transition animation
             StartCoroutine(Transition());
-            //Vibrations
+            // Vibrations
 		    StartCoroutine(CancelVibration (Vibrations.PlayVibration("TransitionToNextBoard")));
-            //Fade music
+            // Play transition sound
             FMODUnity.RuntimeManager.PlayOneShot(inputsound);
+            // Fade music
             if (zoneTransition)
                 musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            //Start Calculating distances between specters and player
+            //Start Calculating distances between specters and player (used in Specter to apply effects depending on how far the player is from the specters)
             Specter[] specterScripts = FindObjectsOfType<Specter>();
             foreach(Specter script in specterScripts)
             {
@@ -79,37 +84,37 @@ public class TransitionToNextBoard : MonoBehaviour
 
     IEnumerator Transition()
     {
-        //Déplacer le joueur sur le nouveau tableau
+        // Move player to new board
         player.transform.position = new Vector3(nextBoardSpawnPoint.position.x, nextBoardSpawnPoint.position.y, 0);
+        // Set player velocity to 0
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        //Afficher le brouillard
+        // Display fog
         fogActivated = true;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = true;
         }
-
         yield return new WaitForSeconds(fogTransitionDuration);
-        // cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
 
+        // Hide fog
         fogActivated = false;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = false;
         }
-        //Activer les mouvements du joueur
+
+        //Activate player movements
         PlayerMovement.lockMovement = false;
         player.GetComponent<Rigidbody2D>().isKinematic = false;
-        //Activer l'utilisation des skills du joueur
+        //Activate player skills
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
         }
-        //FX de spawn
+        //Spawn Light FX
         spawnLight.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         spawnLight.SetActive(false);
-        // cam.transform.position = new Vector3(newCameraPosition, cam.transform.position.y, cam.transform.position.z);
     }
 
 	public IEnumerator CancelVibration(float delay)
@@ -118,27 +123,36 @@ public class TransitionToNextBoard : MonoBehaviour
 		GamePad.SetVibration(0,0,0);
 	}
 
-
+    // Variables needed to manage fog density over time
     float currentTime = 0f;
     float maxDensity;
     float animationTime;
 
-    void FogTransition(D2FogsPE fogScript, int index) {
+    // Change fog density over time to display it smoothly
+    // Two D2FogsPE scripts are used, each having one color
+    void FogTransition(D2FogsPE fogScript, int index) 
+    {
+        // Total animation time
         animationTime = fogTransitionDuration * 2.0f;
+        // Fog 1 max density
         if (index == 0) maxDensity = 5f;
+        // Fog 2 max density
         else if (index == 1) maxDensity = 3f;
 
+        // Lerp fog density from nearly none to its max for the first half of the animation
         if (currentTime < (animationTime/2.0f))
         {
             currentTime += Time.deltaTime;
             fogScript.Density = Mathf.Lerp(0.2f, maxDensity, currentTime / animationTime);
         }
+        // Lerp fog density from its max to nearly none for the second half of the animation
         else if (currentTime <= animationTime)
         {
             moveCamera = true;
             currentTime += Time.deltaTime;
             fogScript.Density = Mathf.Lerp(maxDensity, 0.2f, currentTime / animationTime);
         }
+        // Set density to max in between
         else
         {
             fogScript.Density = maxDensity;

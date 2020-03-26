@@ -5,36 +5,39 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Movement management
+    bool moving = false;
     public static int playerDirection = 1;
-
     [SerializeField] float accelerationSmoothTime = 0.3f;
     [SerializeField] float topSpeed = 20f;
     [SerializeField] float decelerationSmoothTime = 0.1f;
     float xVelocity = 0.0f;
+    Rigidbody2D rigid;
+
+    // Sounds
     [FMODUnity.EventRef] public string inputSoundWood;
     [FMODUnity.EventRef] public string inputSoundGrass;
 
-    Rigidbody2D rigid;
-
-    // Utilisé pour bloquer le mouvement du personnage
+    // Used to block character's movement
 	public static bool lockMovement;
     
     Animator playerAnimator;
+
+    // Particles
     public GameObject DeathParticles;
     public GameObject RespawnParticles;
 
-    bool moving = false;
 
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // Use this for initialization 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         playerAnimator = gameObject.GetComponent<Animator>();
+        // Play footsteep sound every 0.4s
         InvokeRepeating("CallFootsteps", 0, 0.4f);
     }
 
@@ -54,12 +57,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame 
     void FixedUpdate()
     {
         if (!lockMovement)
         {
-            //Gérer la direction de mouvement
+            // Manage movement direction
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
@@ -71,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
                 playerDirection = -1;
             }
 
-            //Commencer un déplacement si un input horizontal est enregistré (ACCELERATION)
+            // Start a movement smoothly if an horizontal input is registered (ACCELERATION)
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
                 playerAnimator.SetBool("running", true);
@@ -80,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
                 moving = true;
             }
 
-            //Arrêter le mouvement du personnage quand l'input est relâché (DECELERATION)
+            // Stop movement smoothly when the input is released (DECELERATION) 
             if (Input.GetAxisRaw("Horizontal") == 0)
             {
                 playerAnimator.SetBool("running", false);
@@ -91,11 +93,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Make character move with a moving platform if they are on it
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if (coll.gameObject.tag == "MovingPlatform") transform.parent = coll.transform;
 	}
 
+    // Stop character from moving accordingly to a moving platform's movement when they leave it
 	void OnCollisionExit2D(Collision2D coll)
 	{
 		if (coll.gameObject.tag == "MovingPlatform") transform.parent = null;

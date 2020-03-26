@@ -5,21 +5,28 @@ using XInputDotNetPure;
 
 public class Vibrations : MonoBehaviour {
 
+	// Left vibration motor values used (shakes the controller)
 	static float lightRumble = 0.25f;
 	static float mediumRumble = 0.5f;
 	static float bigRumble = 1.0f;
+
+	// Right vibration motor values used (sends a sort of "interior" vibration in the controller)
 	static float lightVibration = 0.25f;
 	static float mediumVibration = 0.5f;
 	static float bigVibration = 1.0f;
+
+	// Durations used
 	static float shortVibrationDuration = 0.1f;
 	static float mediumVibrationDuration = 0.4f;
 	static float longVibrationDuration = 1.0f;
+
+	// Method called from other scripts to play vibrations
+	// Also applies screen shakes
 	public static float PlayVibration(string situationName)
 	{
 		float duration = 0f;
 		switch (situationName)
 		{
-		//Done
 		case "Dash":
 			ScreenShake.Instance.ApplyScreenShake (0.1f, 0.25f);
 			GamePad.SetVibration(0, 0, Vibrations.lightVibration);
@@ -30,12 +37,10 @@ public class Vibrations : MonoBehaviour {
 			GamePad.SetVibration(0, 0, Vibrations.mediumVibration);
 			duration = Vibrations.mediumVibrationDuration;
 			return duration;
-		//Done
 		case "FallingOnFloor":
 			GamePad.SetVibration(0, 0, Vibrations.lightVibration);
 			duration = Vibrations.shortVibrationDuration;
 			return duration;
-		//Done
 		case "TransitionToNextBoard":
 			GamePad.SetVibration (0, 0, Vibrations.lightVibration);
 			duration = Vibrations.longVibrationDuration;

@@ -13,12 +13,11 @@ public class GroundCheck : MonoBehaviour
 	public Transform feetPos;
 	public LayerMask groundLayer;
     [FMODUnity.EventRef]
-    public string inputsound;
 	public LayerMask grassLayer;
 	public static bool isOnGrass;
 
 	//SOUND
-	//event:/Player Interactions/MarcheBois
+	public string inputsound;
 	private FMOD.Studio.EventInstance instance;
 
     void Start()
@@ -28,9 +27,9 @@ public class GroundCheck : MonoBehaviour
 
     void Update()
     {
-        // Test si le personnage est au sol
+        // Tests if player on ground
         isGrounded = checkIfGrounded(groundLayer);
-		// Teste si le personnage marche sur de la terre
+		// Tests if player on grass
 		isOnGrass = checkIfGrounded(grassLayer);
 
         // Falling
@@ -74,6 +73,7 @@ public class GroundCheck : MonoBehaviour
 		RaycastHit2D[] leftHits = Physics2D.RaycastAll(new Vector2(position.x - groundDetectRange, position.y), direction, groundDetectDistance, layerToTest);
 		RaycastHit2D[] rightHits = Physics2D.RaycastAll(new Vector2(position.x + groundDetectRange, position.y), direction, groundDetectDistance, layerToTest);
 
+		// Raycasts located slightly on the player's left "feet"
 		for (int i = 0; i < leftHits.Length; i++)
 		{
 			RaycastHit2D leftHit = leftHits [i];
@@ -83,6 +83,7 @@ public class GroundCheck : MonoBehaviour
 			}
 		}
 
+		// Raycasts located slightly on the player's right "feet"
 		for (int i = 0; i < rightHits.Length; i++)
 		{
 			RaycastHit2D rightHit = rightHits [i];

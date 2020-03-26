@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static int numberOfLevels = 2;
     public const float timeBeforeRespawn = 0.4f;
 
     private static GameManager instance;
@@ -25,17 +24,5 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad (gameObject);
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

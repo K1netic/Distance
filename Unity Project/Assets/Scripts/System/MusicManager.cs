@@ -22,22 +22,23 @@ public class MusicManager : MonoBehaviour
 
     void Start()
     {
+        // Play ambient sounds
         FMODUnity.RuntimeManager.PlayOneShot(ambientSounds);
     }
 
     void Update()
     {
+        // Play tuto music
         if (triggerTutoMusic && !tutoMusicPlayed)
         {
-            // FMODUnity.RuntimeManager.PlayOneShot(tutoMusic);
             currentInstance = FMODUnity.RuntimeManager.CreateInstance(tutoMusic);
             currentInstance.start();
             tutoMusicPlayed = true;
         }
 
+        // Fade out current music and play dash music
         if (triggerDashMusic && !dashMusicPlayed)
         {
-            // FMODUnity.RuntimeManager.PlayOneShot(dashMusic);
             currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             currentInstance = FMODUnity.RuntimeManager.CreateInstance(dashMusic);
             currentInstance.start();
@@ -45,9 +46,9 @@ public class MusicManager : MonoBehaviour
             tutoMusicPlayed = false;
         }
 
+        // Fadeout current music and play jump music
         if (triggerJumpMusic && !jumpMusicPlayed) 
         {
-            // FMODUnity.RuntimeManager.PlayOneShot(jumpMusic);
             currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             currentInstance = FMODUnity.RuntimeManager.CreateInstance(jumpMusic);
             currentInstance.start();

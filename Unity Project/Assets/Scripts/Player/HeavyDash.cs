@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
 
+// NOTE : script could be redone using "heritage"
 public class HeavyDash : MonoBehaviour
 {
     float dashForce;
@@ -31,6 +32,7 @@ public class HeavyDash : MonoBehaviour
     
     void OnEnable()
     {
+        // Lock normal dash to use only heavy dash
         dashScript.lockNormalDash = true;
     }
 
@@ -46,24 +48,24 @@ public class HeavyDash : MonoBehaviour
     }
 	
 	void Update () {
-        //Direction de l'input pour le dash
+        // Input dash direction
         var HorizontalInput = Input.GetAxisRaw("Horizontal");
         var VerticalInput = Input.GetAxisRaw("Vertical");
 
-        // Récupération du dash
+        // Dash recovery
         if (GroundCheck.isGrounded && !dashingOnGround) dashAvailable = true;
 
         if (dashAvailable)
         {
             #region Test direction
-            //Dash dans la direction du joueur s'il dash sans bouger
+            // Dash in player's direction if they dash without moving
             if (Input.GetButtonDown("Dash") && (HorizontalInput == 0 && VerticalInput == 0))
             {
                 ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
                 PopParticleWithoutKnowingDirection();
             }
 
-            // Récupération du dash dans le cas d'une utilisation au sol
+            // Dash recovery if using dash on the ground
             if (Input.GetButtonDown("Dash") && Mathf.Abs(HorizontalInput) >= 0 && GroundCheck.isGrounded)
             {
                 dashAvailable = false;
@@ -71,14 +73,14 @@ public class HeavyDash : MonoBehaviour
                 Invoke("DashCooldown", dashCooldown);
             }
 
-            //Dash dans la direction du joueur s'il essaye de dasher vers le haut
+            // Dash in player's direction if trying to dash upward
             if (Input.GetButtonDown("Dash") && (VerticalInput > 0.0f))
             {
                 ApplyDash(new Vector2(PlayerMovement.playerDirection, 0));
                 PopParticleWithoutKnowingDirection();
             }
 
-            //Dash droite
+            // Dash right
             if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
             {
                 ApplyDash(new Vector2(1, 0));
@@ -87,7 +89,7 @@ public class HeavyDash : MonoBehaviour
                 PopParticle(HeavyDashShockwave, 4f, 0, -90);
             }
 
-            //Dash gauche
+            // Dash left
             if (Input.GetButtonDown("Dash") && (HorizontalInput < 0.0f && VerticalInput > -0.25f && VerticalInput < 0.25f))
             {
                 ApplyDash(new Vector2(-1, 0));
@@ -96,7 +98,7 @@ public class HeavyDash : MonoBehaviour
                 PopParticle(HeavyDashShockwave, -4f, 0, 90);
             }
 
-            //Dash bas
+            // Dash downwards
             if (Input.GetButtonDown("Dash") && (VerticalInput < 0.0f && HorizontalInput > -0.30f && HorizontalInput < 0.30f))
             {
                 ApplyDash(new Vector2(0, -1));
@@ -105,7 +107,7 @@ public class HeavyDash : MonoBehaviour
                 PopParticle(HeavyDashShockwave, 0f, -90, -90);
             }
 
-            //Dash bas-droite
+            // Dash downward-right
             if (Input.GetButtonDown("Dash") && (HorizontalInput > 0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
             {
                 ApplyDash(new Vector2(1, -1));
@@ -114,7 +116,7 @@ public class HeavyDash : MonoBehaviour
                 PopParticle(HeavyDashShockwave, 0f, -45, -90);
             }
 
-            //Dash bas-gauche
+            // Dash downward-left
             if (Input.GetButtonDown("Dash") && (HorizontalInput < -0.25f && VerticalInput > -1f && VerticalInput < -0.25f))
             {
                 ApplyDash(new Vector2(-1, -1));
@@ -133,7 +135,6 @@ public class HeavyDash : MonoBehaviour
         PlayerMovement.lockMovement = true;
         dashAvailable = false;
         rigid.gravityScale = 0;
-        // rigid.velocity = Vector2.zero;
         rigid.velocity = direction * dashForce;
         StartCoroutine(CancelVibration (Vibrations.PlayVibration("HeavyDash")));
         Invoke("UnlockMovement", lockMovementDuration);

@@ -38,15 +38,17 @@ public class SkillsManagement : MonoBehaviour
 
         string hashedSkillName = skillName.Substring(0,2);
 
-        // Changement de couleur du perso en fonction du type de skill activé
+        // Character color change depending on type of skill activated
         switch (hashedSkillName)
         {
             case "j_":
                 rColor = characterSprite.color.r - colorAmountToChange;
+                // Greenish for jump related skills
                 StartCoroutine(PopNewSkillParticles(new Color(0.5f,1,0,1)));
                 break;
             case "d_":
                 gColor = characterSprite.color.g - colorAmountToChange;
+                // Orange for dash related skills
                 StartCoroutine(PopNewSkillParticles(new Color(1,0.5f,0,1)));
                 break;
             default:
@@ -56,10 +58,11 @@ public class SkillsManagement : MonoBehaviour
             break;
         }
 
-        // Activation du script correspondant au skill activé
+        // Script activation depending on the skill activated
         switch(skillName)
         {
             case "jump":
+                // Color set when the player gains the jump ability
                 rColor = 0.5f;
                 gColor = 1;
                 bColor = 0;
@@ -67,6 +70,7 @@ public class SkillsManagement : MonoBehaviour
                 StartCoroutine(PopNewSkillParticles(new Color(0.5f,1,0,1)));
                 break;
             case "dash":
+                // Color set when the player gains the dash ability
                 rColor = 1f;
                 gColor = 1f;
                 bColor = 0;
@@ -85,15 +89,15 @@ public class SkillsManagement : MonoBehaviour
             // case "d_blink":
             //     blinkScript.enabled = true;
             //     break;
-            // Ajouter les cas des compétences développées
             default:
                 break;
         }
 
+        // Adding the newly gained script to the player script list
         skills.Add(skillName);
+        // Skill gain management (sound, animations, particles...)
         FMODUnity.RuntimeManager.PlayOneShot(inputsound);
         characterSprite.color = new Color(rColor, gColor, bColor);
-        //Bloquer les mouvements du joueur 
         PlayerMovement.lockMovement = true;
         gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -101,6 +105,7 @@ public class SkillsManagement : MonoBehaviour
         StartCoroutine(UnlockMove());
     }
 
+    // Lock skill usage to avoid player from using them in non-appropriate sections
     public void LockSkillUse(string skillName)
     {
         switch(skillName)
@@ -181,7 +186,6 @@ public class SkillsManagement : MonoBehaviour
     IEnumerator UnlockMove()
     {
         yield return new WaitForSeconds(0.4f);
-        //Débloquer les mouvements du joueur 
         PlayerMovement.lockMovement = false;
         gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
     }

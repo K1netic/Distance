@@ -21,26 +21,27 @@ public class Trampoline : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		//Point de contact entre le joueur et le trampoline
+		// Contact point between player and trampoline
 		Vector3 contact = collision.GetContact(0).point;
 		Vector3 center = Vector3.zero;
-		//Centre du trampoline
+		// Trampoline center
 		if (!isFlat)
 			center = this.transform.position;
 		else if (isFlat)
 			center = new Vector3(contact.x, transform.position.y, 0);
 		if (vertical)
 			center = new Vector3(transform.position.x, contact.y, 0);
-		//Rayon incident
+		// Incident ray
 		Vector3 incident = collision.transform.position - contact;
-		//Normale
+		// Normale
 		Vector3 normale = contact - center;
-		//Rayon réfléchi
+		// Reflected ray
 		Vector3 reflected = - Vector3.Reflect(incident, normale).normalized;
 		Knockback(collision.gameObject, reflected);
 		anim.SetTrigger("Touched");
 	}
 
+	// Apply a knockback on the player when they touch the trampoline
 	void Knockback(GameObject player, Vector3 direction)
 	{
         rigid.AddForce(direction * knockBackTrampoline, ForceMode2D.Impulse);

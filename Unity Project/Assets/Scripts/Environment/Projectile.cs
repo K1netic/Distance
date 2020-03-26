@@ -5,21 +5,25 @@ using XInputDotNetPure;
 
 public class Projectile : MonoBehaviour {
 
+	// Speed management
 	float xAcceleration;
 	float yAcceleration;
 	public float maxSpeed = 300f;
 	float smoothTime = 0.3f;
 	float xVelocity = 10.0f;
 	float yVelocity = 10.0f;
+	// Rotation
 	float rotation;
 	Rigidbody2D rigid;
+	// Where the projectile should spawn from (managed in ProjectileThrower)
 	[HideInInspector] public Transform respawnPoint;
-	Animator playerAnimator;
+	// Parent projectile thrower
 	[HideInInspector] public GameObject projectileThrower;
 
 	void Start () 
 	{
 		rigid = this.GetComponent<Rigidbody2D> ();
+		// Determine rotation depending on orientation of the thrower
 		switch(projectileThrower.GetComponent<ProjectileThrower>().orientation)
 		{
 			case "right":
@@ -43,6 +47,7 @@ public class Projectile : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+		// Determine movement direction depending on thrower orientation
 		switch(projectileThrower.GetComponent<ProjectileThrower>().orientation)
 		{
 			case "right":
@@ -66,24 +71,21 @@ public class Projectile : MonoBehaviour {
 				break;
 		}
 
+		// move
 		rigid.velocity = new Vector2(xAcceleration, yAcceleration);
 		
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
+		// Ignore potential collisions with canon in case it touches it on spawn
 		if (coll.gameObject.tag == "Canon") 
 			Physics2D.IgnoreCollision (this.GetComponent<Collider2D> (), coll.gameObject.GetComponent<Collider2D>(), true);
-		else if (coll.gameObject.tag == "Player")
-		{
-			Destroy(this.gameObject);
-		}
+		// Destroy projectile if it touches anything
 		else 
 		{
 			Destroy(this.gameObject, 0.05f);
 		}
-		// else 
-		// 	Physics2D.IgnoreCollision (this.GetComponent<Collider2D> (), coll.gameObject.GetComponent<Collider2D>(), false);
 	}
 
 	// Destroy projectile when it's out of the camera's view

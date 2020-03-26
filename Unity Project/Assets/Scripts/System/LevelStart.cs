@@ -15,22 +15,24 @@ public class LevelStart : MonoBehaviour
     bool fogActivated = false;
     string sceneName = "";
     
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        // Position camera
         cam.transform.position = new Vector3(0,0,-10);
+        // Position player at first spawnPoint
         player.transform.position = GameObject.Find("SpawnPoint_B1").transform.position;
-        //Bloquer les mouvements du joueur 
+        // Block player's movements
         PlayerMovement.lockMovement = true;
         player.GetComponent<Rigidbody2D>().isKinematic = true;
 
-        //Bloquer l'utilisation de compétences
+        // Block skill use
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().LockSkillUse(skill);
         }
+        // Fog transition
         StartCoroutine(DisplayFog());
     }
 
@@ -46,7 +48,7 @@ public class LevelStart : MonoBehaviour
             }
         }
 
-        // Jouer une musique en fonction du niveau
+        // Play music depending on scene name
         switch(sceneName)
         {
             case "TUTO":
@@ -66,23 +68,28 @@ public class LevelStart : MonoBehaviour
 
     IEnumerator DisplayFog()
     {
+        // Activate fog
         fogActivated = true;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = true;
         }
         yield return new WaitForSeconds(fogTransitionDuration);
-
+        // Deactivate fog once the transition is over
         fogActivated = false;
         foreach(D2FogsPE fogScript in cam.GetComponents<D2FogsPE>())
         {
             fogScript.enabled = false;
         }
-        //Activer les mouvements du joueur
+        UnblockPlayerActions();
+
+    }
+
+    void UnblockPlayerActions()
+    {
         PlayerMovement.lockMovement = false;
         player.GetComponent<Rigidbody2D>().isKinematic = false;
 
-        //Activer l'utilisation des skills du joueur
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
@@ -91,6 +98,7 @@ public class LevelStart : MonoBehaviour
 
     void FogTransition(D2FogsPE fogScript, int index) 
     {
+        // Change fog density over time to make it appear smoothly
         animationTime = fogTransitionDuration * 2.0f;
         if (index == 0) maxDensity = 5f;
         else if (index == 1) maxDensity = 3f;

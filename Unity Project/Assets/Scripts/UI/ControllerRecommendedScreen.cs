@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ControllerRecommendedScreen : MonoBehaviour
 {
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetButtonDown("Submit"))

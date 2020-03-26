@@ -23,11 +23,13 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        // Open pause menu if it isn't yet opened
         if (Input.GetButtonDown("Pause") && !pauseMenu.activeSelf)
         {
             OpenPauseMenu ();
         }
 
+        // Close pause menu if it is opened
         else if ((Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel")) && pauseMenu.activeSelf) 
         {
             ClosePauseMenu ();
@@ -51,9 +53,9 @@ public class PauseMenu : MonoBehaviour
 
     void FreezePlayer()
 	{
-        //Bloquer les mouvements du joueur 
+        // Block player movements
         PlayerMovement.lockMovement = true;
-        //Bloquer l'utilisation de compétences
+        // Block skill use
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().LockSkillUse(skill);
@@ -63,9 +65,9 @@ public class PauseMenu : MonoBehaviour
 
     void UnfreezePlayer()
 	{
-		//Activer les mouvements du joueur
+		// Unblock player movements
         PlayerMovement.lockMovement = false;
-        //Activer l'utilisation des skills du joueur
+        // Unblock skill use
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);

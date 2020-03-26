@@ -5,31 +5,41 @@ using UnityEngine.UI;
 
 public class Specter : MonoBehaviour
 {
+    // Skill given by the specter
     [SerializeField] string associatedSkillName;
+    // Other specter is required to allow darkening it if approaching the specter
+    [SerializeField] GameObject otherSpecter;
     Specter otherSpecterScript;
     SpriteRenderer otherSpecterSprite;
-    [SerializeField] GameObject disappearParticles;
+    // Managing distance with player to darken the other specter depending on how close to the current specter the player is
+    float distanceWithPlayer;
+    public bool calculateDistance = false;
+    float distanceThreshold = 20f;
+
+    // UI
     [SerializeField] GameObject interactionButton;
     [SerializeField] GameObject bubble;
     [SerializeField] GameObject[] bubbleButtons;
-
     bool displayInteraction = false;
     GameObject player;
+
+    // Exit opened by the specter upon talking to them
     [SerializeField] GameObject associatedExit;
-    [SerializeField] GameObject otherSpecter;
     // Used for the particular case of tutorial specters
     [SerializeField] bool tutorialSpecter = false;
     // Used for the particular case of specters that don't give any skills
     [SerializeField] bool noSkillSpecter = false;
 
+    // Test management (specter disappears when the test is succeeded)
     public bool testSucceed = false;
     bool closeTest = false;
     bool interacted = false;
+    [SerializeField] GameObject disappearParticles;
+
+    // Sound
     [FMODUnity.EventRef] public string inputsoundSpecterTalk;
     [FMODUnity.EventRef] public string inputsoundSpecterDisappear;
-    float distanceWithPlayer;
-    public bool calculateDistance = false;
-    float distanceThreshold = 20f;
+
 
     // Dialogue management
     [SerializeField] TextAsset csv;
@@ -41,7 +51,6 @@ public class Specter : MonoBehaviour
     int lineIndex = 0;
     bool dialogueOver = false;
     bool dialogueStarted = false;
-
     CinematicBars cinematicBars;
 
     void Start()
@@ -55,6 +64,7 @@ public class Specter : MonoBehaviour
             }
         }
 
+        // Setting up the scene
         if (!tutorialSpecter)
         {
             associatedExit.SetActive(false);
@@ -72,6 +82,7 @@ public class Specter : MonoBehaviour
 
     void Update()
     {
+        // Allow interaction with specter when nearby
         if (displayInteraction)
         {
             if (Input.GetButtonDown("Interact") && !interacted)
@@ -81,19 +92,21 @@ public class Specter : MonoBehaviour
             }
         }
 
+        // Move/Disappear specter if test succeeded
         if (testSucceed && !closeTest)
         {
-            // StartCoroutine(SpecterDisappearance());
+            // DOESNT WORK IN BUILD : StartCoroutine(SpecterDisappearance());
             transform.position = new Vector3(0,500,0);
             closeTest = true;
         }
 
+        // Darkening other specter color depending on how close to current specter the player is
         if (!tutorialSpecter && calculateDistance)
         {
             distanceWithPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
             if (distanceWithPlayer <= distanceThreshold)
             {
-                // otherSpecterSprite.color = new Color(otherSpecterSprite.color.r, otherSpecterSprite.color.g, otherSpecterSprite.color.b, distanceWithPlayer/distanceThreshold);
+                // DOESNT WORK : otherSpecterSprite.color = new Color(otherSpecterSprite.color.r, otherSpecterSprite.color.g, otherSpecterSprite.color.b, distanceWithPlayer/distanceThreshold);
                 Color newColor = otherSpecterSprite.color;
                 newColor.r = distanceWithPlayer/distanceThreshold;
                 newColor.g = distanceWithPlayer/distanceThreshold;
@@ -103,6 +116,7 @@ public class Specter : MonoBehaviour
             }
         }
 
+        // Start displaying dialogue if initiated
         if (dialogueStarted)
         {
             DisplayLineByLine();
@@ -111,6 +125,7 @@ public class Specter : MonoBehaviour
 
     IEnumerator SpecterInteraction()
     {
+        // Display dialogue
         interactionButton.SetActive(false);
         BlockPlayerActions();
         cinematicBars.Show(150, 0.3f);
@@ -119,10 +134,13 @@ public class Specter : MonoBehaviour
         yield return new WaitUntil(() => dialogueOver == true);
         cinematicBars.Hide(0.3f);
 
-        // Gain de compétence
+        // Skill gain
         if (!noSkillSpecter) player.GetComponent<SkillsManagement>().ActivateSkill(associatedSkillName);
+
         yield return new WaitForSeconds(0.5f);
         UnblockPlayerActions();
+
+        // Display controls
         if (bubbleButtons != null) 
         {
             foreach(GameObject button in bubbleButtons)
@@ -131,6 +149,7 @@ public class Specter : MonoBehaviour
             }
         }
 
+        // Enable exit and make other specter disappear
         if (!tutorialSpecter)
         {
             associatedExit.SetActive(true);
@@ -139,7 +158,8 @@ public class Specter : MonoBehaviour
         }
     }
 
-    // The following code works in Editor but no on the build for mystical reasons
+    // The following code works in Editor but not on the build for 
+    // mystical reasons
 
     // IEnumerator SpecterDisappearance()
     // {
@@ -180,9 +200,7 @@ public class Specter : MonoBehaviour
 
     void BlockPlayerActions()
     {
-        //Bloquer les mouvements du joueur 
         PlayerMovement.lockMovement = true;
-        //Bloquer l'utilisation de compétences
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().LockSkillUse(skill);
@@ -192,9 +210,7 @@ public class Specter : MonoBehaviour
 
     void UnblockPlayerActions()
     {
-        //Activer les mouvements du joueur
         PlayerMovement.lockMovement = false;
-        //Activer l'utilisation des skills du joueur
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
@@ -203,10 +219,10 @@ public class Specter : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        // Allow interaction with specter and display a button to show how to do it when nearby
         if (other.tag == "Player")
         {
             displayInteraction = true;
-            // player = other.gameObject;
             if (!interacted) interactionButton.SetActive(true);
         }
     }
@@ -220,7 +236,6 @@ public class Specter : MonoBehaviour
     {
         GameObject instantiated = Instantiate(particleToPop,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), new Quaternion(0,0,0,0));
         instantiated.transform.Rotate(new Vector3(0,0,0),Space.Self);
-        // instantiated.transform.parent = gameObject.transform;
         instantiated.transform.localScale = new Vector3(1,1,1);
         Destroy(instantiated, instantiated.GetComponent<ParticleSystem>().main.duration + instantiated.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
     }

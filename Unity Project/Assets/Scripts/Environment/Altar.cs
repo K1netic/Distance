@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Altar : MonoBehaviour
 {
     [SerializeField] GameObject interactionButton;
-    
     [SerializeField] GameObject Parchment;
 
     // Dialogue management
@@ -27,7 +26,6 @@ public class Altar : MonoBehaviour
     float pauseBeforeNextSentence = 1f;
 	string message;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -36,7 +34,6 @@ public class Altar : MonoBehaviour
         dataArray = CSVReader.SplitCsvGrid(csv.text);
         fullText = CSVReader.GetTextWithKey(dataArray, dialogueToLoadKey); 
         text.text = fullText;
-        // text.text = "";
     }
 
     // Update is called once per frame
@@ -44,6 +41,7 @@ public class Altar : MonoBehaviour
     {
         if (displayInteraction)
         {
+            // Display text if the player presses the interact button
             if (Input.GetButtonDown("Interact") && !interacted)
             {
                 StartCoroutine(TextActivating());
@@ -53,11 +51,7 @@ public class Altar : MonoBehaviour
 
         if (textDisplayed)
         {
-            // if(!textTyped)
-            // {
-            //     StartCoroutine(TypeText());
-            //     textTyped = true;
-            // }
+            // Close text if the player presses A / space
             if (Input.GetButtonDown("Jump"))
                 closeText = true;
         }
@@ -65,35 +59,26 @@ public class Altar : MonoBehaviour
 
     IEnumerator TextActivating()
     {
+        // Display parchment and text
         interactionButton.SetActive(false);
         BlockPlayerActions();
-        // zoom camera / add black lines
         Parchment.SetActive(true);
         textDisplayed = true;
         yield return new WaitUntil(() => closeText == true);
+        // Hide parchment and text
         Parchment.SetActive(false);
         interacted = false;
         textDisplayed = false;
         closeText = false;
-        // textTyped = false;
         UnblockPlayerActions();
     }
 
-    // IEnumerator TypeText () 
-    // {
-	// 	foreach (char letter in fullText.ToCharArray()) 
-    //     {
-    //         if (letter == '.') yield return new WaitForSeconds(pauseBeforeNextSentence);
-	// 		text.text += letter;
-	// 		yield return new WaitForSeconds (letterPause);
-	// 	}
-	// }
-
-        void BlockPlayerActions()
+    // Block movement and player skills
+    void BlockPlayerActions()
     {
-        //Bloquer les mouvements du joueur 
+        //Block movements
         PlayerMovement.lockMovement = true;
-        //Bloquer l'utilisation de compétences
+        //Block skills
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().LockSkillUse(skill);
@@ -101,27 +86,29 @@ public class Altar : MonoBehaviour
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
+    // Unblock movement and player skills
     void UnblockPlayerActions()
     {
-        //Activer les mouvements du joueur
+        //Activate movements
         PlayerMovement.lockMovement = false;
-        //Activer l'utilisation des skills du joueur
+        //Activate skills
         foreach(string skill in SkillsManagement.skills)
         {
             player.GetComponent<SkillsManagement>().UnlockSkillUse(skill);
         }
     }
 
+    // Enable interaction with Altar if the player is nearby
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             displayInteraction = true;
-            // player = other.gameObject;
             if (!interacted) interactionButton.SetActive(true);
         }
     }
 
+    // Disable interaction with Altar if the player is too far
     void OnTriggerExit2D(Collider2D other)
     {
         interactionButton.SetActive(false);
