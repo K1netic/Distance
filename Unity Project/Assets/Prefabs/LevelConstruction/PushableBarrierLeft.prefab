@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!233 &2076721560
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834284650021779680}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: -1.2670288, y: -5.594118}
+  m_ConnectedAnchor: {x: 268.70297, y: 1.9058819}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 1
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: -90
+--- !u!1001 &7820166956214282784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3427243916510291048, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_Name
+      value: PushableBarrierLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916510291047, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243917661016894, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243916570093120, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243917661016890, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: nonKinematicOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427243917661016890, guid: a82532097aed8cd4583c5cd429217d5c,
+        type: 3}
+      propertyPath: fallRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 1.3399963
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.6399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_Anchor.x
+      value: 1.3699951
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_Anchor.y
+      value: -5.7299995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_EnableCollision
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+      propertyPath: m_UseLimits
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1988654523, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a82532097aed8cd4583c5cd429217d5c, type: 3}
+--- !u!1 &4834284650021779680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3427243917661016768, guid: a82532097aed8cd4583c5cd429217d5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7820166956214282784}
+  m_PrefabAsset: {fileID: 0}
