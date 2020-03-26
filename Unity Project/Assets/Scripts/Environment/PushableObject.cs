@@ -10,6 +10,8 @@ public class PushableObject : MonoBehaviour
     [SerializeField] float playerPushForceX = -300f;
     [SerializeField] float playerPushForceY = 50f;
 
+    [SerializeField] bool fallRight = true;
+
     void Start()
     {
         rigid = this.GetComponent<Rigidbody2D>();
@@ -18,21 +20,23 @@ public class PushableObject : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (!rigid.isKinematic)
+        // If the barrier is touched by a projectile, it is pushed back
+        if (other.gameObject.tag == "Deadly")
         {
-            // If the barrier is touched by a projectile, it is pushed back
-            if (other.gameObject.tag == "Deadly")
-            {
+            rigid.isKinematic = false;
+            if (fallRight)
                 rigid.velocity = new Vector2(-100f,100f);
-                StartCoroutine(PushCharacter());
-            }
-
-            // If the character is on the barrier and the platform is being pushed by a projectile, the player is pushed too
-            if (other.gameObject.tag == "Player" && beingPushed)
-            {
-                other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(playerPushForceX, playerPushForceY);
-            }
+            else 
+                rigid.velocity = new Vector2(100f,100f);
+            StartCoroutine(PushCharacter());
         }
+
+        // If the character is on the barrier and the platform is being pushed by a projectile, the player is pushed too
+        if (other.gameObject.tag == "Player" && beingPushed)
+        {
+            other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(playerPushForceX, playerPushForceY);
+        }
+
     }
 
     // Allow for character to be pushed for 0.3 seconds
@@ -47,6 +51,9 @@ public class PushableObject : MonoBehaviour
     public void Pushed()
     {
         rigid.isKinematic = false;
-        rigid.velocity = new Vector2(200f,-200f);
+        if (fallRight)
+            rigid.velocity = new Vector2(200f,-200f);
+        else
+            rigid.velocity = new Vector2(-200f,-200f);
     }
 }
