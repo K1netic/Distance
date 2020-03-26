@@ -10,7 +10,11 @@ public class PushableObject : MonoBehaviour
     [SerializeField] float playerPushForceX = -300f;
     [SerializeField] float playerPushForceY = 50f;
 
+    // Uncheck if the pushable barrier should fall to the left
+    // Check if the pushable barrier should fall to the right
     [SerializeField] bool fallRight = true;
+    // Check so that the pushable barrier isn't affected by forces once pushed by the player
+    [SerializeField] bool metalBarrier = false;
 
     void Start()
     {
@@ -21,7 +25,7 @@ public class PushableObject : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         // If the barrier is touched by a projectile, it is pushed back
-        if (other.gameObject.tag == "Deadly")
+        if (other.gameObject.tag == "Deadly" && !metalBarrier)
         {
             rigid.isKinematic = false;
             if (fallRight)
@@ -55,5 +59,13 @@ public class PushableObject : MonoBehaviour
             rigid.velocity = new Vector2(200f,-200f);
         else
             rigid.velocity = new Vector2(-200f,-200f);
+        if (metalBarrier)
+            StartCoroutine(ApplyMetalBarrier());
+    }
+
+    IEnumerator ApplyMetalBarrier()
+    {
+        yield return new WaitForSeconds(0.4f);
+        rigid.isKinematic = true;
     }
 }
