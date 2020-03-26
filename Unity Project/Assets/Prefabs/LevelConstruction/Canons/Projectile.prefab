@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387e7271d8791da47a26e0935ed15bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 300
+  maxSpeed: 400
   respawnPoint: {fileID: 0}
   projectileThrower: {fileID: 0}
 --- !u!50 &1734369556056244029
