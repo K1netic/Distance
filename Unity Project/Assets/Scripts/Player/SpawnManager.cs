@@ -48,6 +48,9 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator RespawnPlayer(GameObject player)
     {
+
+        GameManager.Instance.playerJustRespawn = true; 
+
         // Get the last spawnPoint registered
         lastSpawnPoint = spawnPoints[spawnPoints.Count - 1].transform;
 
@@ -93,6 +96,7 @@ public class SpawnManager : MonoBehaviour
         player.transform.rotation = new Quaternion(0,0,0,0);
 
         yield return new WaitForSeconds(0.8f);
+        GameManager.Instance.playerJustRespawn = false; 
         // Destroy instantiated particles
         Destroy(instantiatedDeathParticles);
         Destroy(instantiatedRespawnParticles);
