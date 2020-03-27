@@ -12,7 +12,7 @@ public class PushableObject : MonoBehaviour
 
     // Uncheck if the pushable barrier should fall to the left
     // Check if the pushable barrier should fall to the right
-    [SerializeField] bool fallRight = true;
+    [SerializeField] public bool fallRight = true;
     // Check so that the pushable barrier isn't affected by forces once pushed by the player
     [SerializeField] bool metalBarrier = false;
 

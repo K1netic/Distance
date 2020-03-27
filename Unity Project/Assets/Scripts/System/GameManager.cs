@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public const float timeBeforeRespawn = 0.4f;
+	public bool playerJustRespawn = false;
 
     private static GameManager instance;
 
