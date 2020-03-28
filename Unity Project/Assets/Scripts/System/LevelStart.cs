@@ -14,9 +14,11 @@ public class LevelStart : MonoBehaviour
     float fogTransitionDuration = 2.0f;
     bool fogActivated = false;
     string sceneName = "";
+    MusicManager musicManager;
     
     void Start()
     {
+        musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         // Position camera
@@ -55,10 +57,40 @@ public class LevelStart : MonoBehaviour
                 MusicManager.triggerTutoMusic = true;
                 break;
             case "D":
+                // Stop the previous music in case it was still running
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 MusicManager.triggerDashMusic = true;
                 break;
             case "J":
+                // Stop the previous music in case it was still running
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 MusicManager.triggerJumpMusic = true;
+                break;
+            case "DD":
+                // Stop the previous music in case it was still running
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                MusicManager.triggerDashDashMusic = true;
+                break;
+            case "JJ":
+                // Stop the previous music in case it was still running
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                MusicManager.triggerJumpJumpMusic = true;
+                break;
+            case "JD":
+                // Stop the previous music in case it was still running
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                MusicManager.triggerJumpDashMusic = true;
+                break;
+            case "DJ":
+                // Stop the previous music in case it was still running
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                MusicManager.triggerDashJumpMusic = true;
                 break;
             default :
                 break;

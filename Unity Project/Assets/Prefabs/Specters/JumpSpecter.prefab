@@ -805,20 +805,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   associatedSkillName: j_wallJump
-  associatedExit: {fileID: 0}
   otherSpecter: {fileID: 0}
-  disappearParticles: {fileID: 5438932523516770895, guid: b6e9e409d34e56649b05df882ab395b7,
-    type: 3}
+  calculateDistance: 0
   interactionButton: {fileID: 720305855416216306}
   bubble: {fileID: 7604236958770353631}
   bubbleButtons:
   - {fileID: 498739397696899608}
+  associatedExit: {fileID: 0}
   tutorialSpecter: 0
   noSkillSpecter: 1
   testSucceed: 0
+  disappearParticles: {fileID: 5438932523516770895, guid: b6e9e409d34e56649b05df882ab395b7,
+    type: 3}
   inputsoundSpecterTalk: event:/Events/InteractionFantome
   inputsoundSpecterDisappear: event:/Events/DisparitionFantome
-  calculateDistance: 0
   csv: {fileID: 4900000, guid: 0e321763f451c574f96a5d7414dd1519, type: 3}
   text: {fileID: 1580991876}
   dialogueToLoadKey: S-J

@@ -23,6 +23,7 @@ public class TriggerMoon : MonoBehaviour
             script.startMoving = true;
             // Stop the current music
             musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicManager.currentInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
     }
 }

@@ -708,8 +708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   associatedSkillName: d_heavyDash
-  disappearParticles: {fileID: 6646895993694793027, guid: f27761ed7134965499a764cb77cb7ad5,
-    type: 3}
+  otherSpecter: {fileID: 0}
+  calculateDistance: 0
   interactionButton: {fileID: 6476751675352911819}
   bubble: {fileID: 4150819359620821222}
   bubbleButtons:
@@ -717,14 +717,13 @@ MonoBehaviour:
   - {fileID: 316780287051588795}
   - {fileID: 8198472745826713419}
   associatedExit: {fileID: 0}
-  otherSpecter: {fileID: 0}
   tutorialSpecter: 0
   noSkillSpecter: 1
-  endingSpecter: 0
   testSucceed: 0
+  disappearParticles: {fileID: 6646895993694793027, guid: f27761ed7134965499a764cb77cb7ad5,
+    type: 3}
   inputsoundSpecterTalk: event:/Events/InteractionFantome
   inputsoundSpecterDisappear: event:/Events/DisparitionFantome
-  calculateDistance: 0
   csv: {fileID: 4900000, guid: 0e321763f451c574f96a5d7414dd1519, type: 3}
   text: {fileID: 940972092}
   dialogueToLoadKey: I-J
